@@ -1,0 +1,14 @@
+[project]
+name = "scene_language"
+version = "0.1.0"
+description = "scene_language"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai>=1.65.4",
+    "python-dotenv>=1.0.1",
+    "tqdm>=4.67.1",
+]
+
+[tool.setuptools]
+py-modules = []
