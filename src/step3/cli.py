@@ -68,7 +68,9 @@ class Renderer:
 
     # ---------- 基础画布:原图尽量占满,仅留极窄边距,无装饰 ----------
 
-    def canvas(self, stage_title: str = "", scene: str = "", extra: str = "") -> tuple[Image.Image, tuple]:
+    def canvas(
+        self, stage_title: str = "", scene: str = "", extra: str = ""
+    ) -> tuple[Image.Image, tuple]:
         """竖版画布:模糊放大的原图做背景,前景图几乎占满(边距 12px)。"""
         bg = self.src.resize((W, H), Image.LANCZOS).filter(ImageFilter.GaussianBlur(24))
         bg = Image.eval(bg, lambda p: int(p * 0.55))
@@ -89,10 +91,19 @@ class Renderer:
             chip_w = int(d.textlength(stage_title, font=self.f_small)) + 44
             cx0, cy0 = (W - chip_w) // 2, 16
             d.rounded_rectangle(
-                [(cx0, cy0), (cx0 + chip_w, cy0 + 46)], radius=23,
-                fill=(16, 20, 28), outline=(255, 255, 255), width=1,
+                [(cx0, cy0), (cx0 + chip_w, cy0 + 46)],
+                radius=23,
+                fill=(16, 20, 28),
+                outline=(255, 255, 255),
+                width=1,
             )
-            d.text((W // 2, cy0 + 23), stage_title, font=self.f_small, fill=(255, 255, 255), anchor="mm")
+            d.text(
+                (W // 2, cy0 + 23),
+                stage_title,
+                font=self.f_small,
+                fill=(255, 255, 255),
+                anchor="mm",
+            )
         return canvas, rect
 
     # ---------- 发音层:与中英标注统一的深色玻璃卡 ----------
@@ -100,7 +111,11 @@ class Renderer:
     def render_pronunciation(self, data: SceneData) -> Path:
         canvas, rect = self.canvas("发音音标", data.scene)
         lines_per_word = [
-            [(w.en, self.f_label_en), (w.zh, self.f_label_zh), (w.ipa, self.f_label_ipa)]
+            [
+                (w.en, self.f_label_en),
+                (w.zh, self.f_label_zh),
+                (w.ipa, self.f_label_ipa),
+            ]
             for w in data.words
         ]
         sizes = [self._card_size(lines) for lines in lines_per_word]
@@ -110,7 +125,9 @@ class Renderer:
         ]
         boxes = self._layout(anchors, sizes, rect)
         for i, (box, anchor, lines) in enumerate(zip(boxes, anchors, lines_per_word)):
-            self._draw_card(canvas, box, anchor, i + 1, lines, PALETTE[i % len(PALETTE)])
+            self._draw_card(
+                canvas, box, anchor, i + 1, lines, PALETTE[i % len(PALETTE)]
+            )
 
         out = config.PRON_DIR / f"{Path(data.image).stem}.png"
         config.PRON_DIR.mkdir(parents=True, exist_ok=True)
@@ -120,14 +137,18 @@ class Renderer:
 
     # ---------- 标签排版(抗重叠) ----------
 
-    def _card_size(self, lines: list[tuple[str, ImageFont.FreeTypeFont]]) -> tuple[int, int]:
+    def _card_size(
+        self, lines: list[tuple[str, ImageFont.FreeTypeFont]]
+    ) -> tuple[int, int]:
         d = ImageDraw.Draw(Image.new("RGB", (8, 8)))
         pad, gap = 13, 2
         w = max((d.textlength(t, font=f) for t, f in lines), default=0)
         h = sum(f.size + gap for _, f in lines)
         return int(w) + pad * 2, h + pad * 2
 
-    def _layout(self, anchors: list[tuple[float, float]], sizes: list[tuple[int, int]], rect):
+    def _layout(
+        self, anchors: list[tuple[float, float]], sizes: list[tuple[int, int]], rect
+    ):
         """为每个标签在锚点附近选一个不与已放置标签重叠、且不出画面区域的位置。"""
         rx0, ry0, rx1, ry1 = rect
         pad = 6
@@ -183,7 +204,12 @@ class Renderer:
         py = min(max(ay, y), y + h)
         d = ImageDraw.Draw(canvas)
         d.line([(ax, ay), (px, py)], fill=(245, 245, 242), width=3)
-        d.ellipse([(ax - 7, ay - 7), (ax + 7, ay + 7)], fill=color, outline=(255, 255, 255), width=2)
+        d.ellipse(
+            [(ax - 7, ay - 7), (ax + 7, ay + 7)],
+            fill=color,
+            outline=(255, 255, 255),
+            width=2,
+        )
 
     def _draw_card(
         self,
@@ -208,7 +234,9 @@ class Renderer:
             if not text:
                 continue
             fill = (255, 255, 255) if i == 0 else (190, 198, 208)
-            d.text((x + 17, ty + font.size // 2), text, font=font, fill=fill, anchor="lm")
+            d.text(
+                (x + 17, ty + font.size // 2), text, font=font, fill=fill, anchor="lm"
+            )
             ty += font.size + 2
 
     # ---------- 三层标注图 ----------
@@ -216,22 +244,42 @@ class Renderer:
     def render_layers(self, data: SceneData) -> list[Path]:
         layers = [
             ("source_language", "中文场景", [lambda w: (w.zh, self.f_label_zh)]),
-            ("target_language", "中英对照", [lambda w: (w.en, self.f_label_en), lambda w: (w.zh, self.f_label_zh)]),
+            (
+                "target_language",
+                "中英对照",
+                [lambda w: (w.en, self.f_label_en), lambda w: (w.zh, self.f_label_zh)],
+            ),
         ]
         rect = None
         outputs = []
         for dirname, stage, getters in layers:
-            canvas, rect = self.canvas(stage, data.scene, extra=f"共 {len(data.words)} 个词汇")
+            canvas, rect = self.canvas(
+                stage, data.scene, extra=f"共 {len(data.words)} 个词汇"
+            )
             lines_per_word = [[g(w) for g in getters] for w in data.words]
             sizes = [self._card_size(ls) for ls in lines_per_word]
             anchors = [
-                (rect[0] + w.x * (rect[2] - rect[0]), rect[1] + w.y * (rect[3] - rect[1]))
+                (
+                    rect[0] + w.x * (rect[2] - rect[0]),
+                    rect[1] + w.y * (rect[3] - rect[1]),
+                )
                 for w in data.words
             ]
             boxes = self._layout(anchors, sizes, rect)
-            for i, (w, box, anchor, lines) in enumerate(zip(data.words, boxes, anchors, lines_per_word), 1):
-                self._draw_card(canvas, box, anchor, i, lines, PALETTE[(i - 1) % len(PALETTE)])
-            out_dir = getattr(config, {"source_language": "SOURCE_LANG_DIR", "target_language": "TARGET_LANG_DIR", "pronunciation": "PRON_DIR"}[dirname])
+            for i, (w, box, anchor, lines) in enumerate(
+                zip(data.words, boxes, anchors, lines_per_word), 1
+            ):
+                self._draw_card(
+                    canvas, box, anchor, i, lines, PALETTE[(i - 1) % len(PALETTE)]
+                )
+            out_dir = getattr(
+                config,
+                {
+                    "source_language": "SOURCE_LANG_DIR",
+                    "target_language": "TARGET_LANG_DIR",
+                    "pronunciation": "PRON_DIR",
+                }[dirname],
+            )
             out_dir.mkdir(parents=True, exist_ok=True)
             out = out_dir / f"{Path(data.image).stem}.png"
             canvas.save(out)
@@ -289,14 +337,40 @@ class Renderer:
         canvas = Image.alpha_composite(canvas.convert("RGBA"), overlay).convert("RGB")
         d = ImageDraw.Draw(canvas)
 
-        d.text((MARGIN, 50), "SCENE VOCABULARY", font=self.f_badge, fill=(236, 184, 72), anchor="la")
-        d.text((MARGIN, 96), "场景词汇 · 例句", font=self.f_title, fill=(255, 255, 255), anchor="la")
-        d.text((W - MARGIN, 110), f"{n:02d} WORDS", font=self.f_badge, fill=(178, 187, 200), anchor="ra")
+        d.text(
+            (MARGIN, 50),
+            "SCENE VOCABULARY",
+            font=self.f_badge,
+            fill=(236, 184, 72),
+            anchor="la",
+        )
+        d.text(
+            (MARGIN, 96),
+            "场景词汇 · 例句",
+            font=self.f_title,
+            fill=(255, 255, 255),
+            anchor="la",
+        )
+        d.text(
+            (W - MARGIN, 110),
+            f"{n:02d} WORDS",
+            font=self.f_badge,
+            fill=(178, 187, 200),
+            anchor="ra",
+        )
 
         # 表头
-        d.rectangle([(left, table_top), (right, table_top + header_h)], fill=(34, 40, 52))
-        for (title, cx, cw) in zip(("单词", "例句", "例句翻译"), col_x, col_w):
-            d.text((cx + 16, table_top + header_h // 2), title, font=f_head, fill=(255, 255, 255), anchor="lm")
+        d.rectangle(
+            [(left, table_top), (right, table_top + header_h)], fill=(34, 40, 52)
+        )
+        for title, cx, cw in zip(("单词", "例句", "例句翻译"), col_x, col_w):
+            d.text(
+                (cx + 16, table_top + header_h // 2),
+                title,
+                font=f_head,
+                fill=(255, 255, 255),
+                anchor="lm",
+            )
 
         for i, w in enumerate(data.words):
             y0 = table_top + header_h + i * row_h
@@ -307,7 +381,11 @@ class Renderer:
             elif highlight == i:
                 d.rectangle([(left, y0), (right, y1)], fill=(255, 216, 106))
                 d.rectangle([(left, y0), (left + 6, y1)], fill=(200, 90, 20))
-            d.line([(left, y1), (right, y1)], fill=(255, 255, 255) if highlight is None else (70, 76, 88), width=1)
+            d.line(
+                [(left, y1), (right, y1)],
+                fill=(255, 255, 255) if highlight is None else (70, 76, 88),
+                width=1,
+            )
 
             dark_text = highlight == i
             c_word = (17, 20, 28)
@@ -323,7 +401,13 @@ class Renderer:
             wy = y0 + (row_h - block_h) // 2
             d.text((wx, wy), w.en, font=f_en, fill=c_word, anchor="la")
             d.text((wx, wy + f_en.size + 3), w.zh, font=f_zh, fill=c_sub, anchor="la")
-            d.text((wx, wy + f_en.size + f_zh.size + 8), w.ipa, font=f_ipa, fill=c_ipa, anchor="la")
+            d.text(
+                (wx, wy + f_en.size + f_zh.size + 8),
+                w.ipa,
+                font=f_ipa,
+                fill=c_ipa,
+                anchor="la",
+            )
 
             # 列2:英文例句折行居中
             lines = self._wrap(w.example_en, f_ex, col_w[1] - 32)[:4]
@@ -367,16 +451,27 @@ def render_all(json_path: Path) -> dict:
     layers = r.render_layers(data)
     pronunciation = r.render_pronunciation(data)
     table, table_frames = r.render_table(data)
-    return {"layers": layers, "pronunciation": pronunciation, "table": table, "table_frames": table_frames}
+    return {
+        "layers": layers,
+        "pronunciation": pronunciation,
+        "table": table,
+        "table_frames": table_frames,
+    }
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Step3 · 图片渲染")
-    parser.add_argument("--image", required=True, help="输入图片(定位 output/json 下同名 JSON)")
+    parser.add_argument(
+        "--image", required=True, help="输入图片(定位 output/json 下同名 JSON)"
+    )
     parser.add_argument("--json", default=None, help="直接指定 JSON 路径")
     args = parser.parse_args()
     config.ensure_dirs()
-    json_path = Path(args.json) if args.json else config.JSON_DIR / f"{Path(args.image).stem}.json"
+    json_path = (
+        Path(args.json)
+        if args.json
+        else config.JSON_DIR / f"{Path(args.image).stem}.json"
+    )
     if not json_path.exists():
         raise SystemExit(f"找不到 {json_path},先运行 step1/step2")
     render_all(json_path)

@@ -207,6 +207,7 @@ temp_export*
 
 
 # ---- scene_language 生成产物与本地缓存 ----
+output/
 .kokoro/
 audios/
 frames/

@@ -34,7 +34,10 @@ PROMPT = """你是英式英语词汇专家。下面是一张{scene}场景照片�
 def generate_language(json_path: Path, no_cache: bool = False) -> Path:
     """读取 step1 的 JSON,补全 en/ipa 后写回。返回同一 JSON 路径。"""
     data: SceneData = load_scene_data(json_path)
-    if all(w.en and w.ipa and w.example_en and w.example_zh for w in data.words) and not no_cache:
+    if (
+        all(w.en and w.ipa and w.example_en and w.example_zh for w in data.words)
+        and not no_cache
+    ):
         print(f"[step2] 已有翻译,使用缓存 {json_path}")
         return json_path
 
@@ -64,7 +67,9 @@ def generate_language(json_path: Path, no_cache: bool = False) -> Path:
                 w.example_zh = str(it.get("example_zh", "")).strip()
                 if not w.ipa.startswith("/"):
                     w.ipa = f"/{w.ipa.strip('/')}/"
-            if not all(w.en and w.ipa and w.example_en and w.example_zh for w in data.words):
+            if not all(
+                w.en and w.ipa and w.example_en and w.example_zh for w in data.words
+            ):
                 raise ValueError("存在缺失 en/ipa/例句 的条目")
             json_path.write_text(data.model_dump_json(indent=2), encoding="utf-8")
             print(f"[step2] 翻译完成 -> {json_path}")
@@ -80,11 +85,17 @@ def generate_language(json_path: Path, no_cache: bool = False) -> Path:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Step2 · LLM 翻译与音标")
-    parser.add_argument("--image", required=True, help="输入图片(定位 output/json 下同名 JSON)")
+    parser.add_argument(
+        "--image", required=True, help="输入图片(定位 output/json 下同名 JSON)"
+    )
     parser.add_argument("--json", default=None, help="直接指定 step1 输出的 JSON 路径")
     parser.add_argument("--no-cache", action="store_true", help="忽略已有翻译重新请求")
     args = parser.parse_args()
-    json_path = Path(args.json) if args.json else config.JSON_DIR / f"{Path(args.image).stem}.json"
+    json_path = (
+        Path(args.json)
+        if args.json
+        else config.JSON_DIR / f"{Path(args.image).stem}.json"
+    )
     if not json_path.exists():
         raise SystemExit(
             f"找不到 {json_path},先运行: uv run python -m src.step1.cli --image {args.image}"

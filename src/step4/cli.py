@@ -23,18 +23,31 @@ from src import config
 from src.models import SceneData, load_scene_data
 
 FPS = 25
-LEAD, TAIL = 0.30, 0.55  # 每段音频前后留白(秒)
+LEAD, TAIL = 0.15, 0.3  # 每段音频前后留白(秒)
 MIN_SEG = 1.6  # 单段最短时长
-STILL_DUR = 5.0  # 片头每层静止时长(秒,可用 --still-dur 覆盖)
-XFADE_DUR = 0.5  # 片头交叉淡化时长(秒)
+STILL_DUR = 1.5  # 片头每层静止时长(秒,可用 --still-dur 覆盖)
+XFADE_DUR = 0.2  # 片头交叉淡化时长(秒)
 
 # 音色前缀 -> espeak 语言代码(Kokoro 多语言音素化)
 _VOICE_LANG = {
-    "af": "en-us", "am": "en-us", "bf": "en-gb", "bm": "en-gb",
-    "ef": "es", "em": "es", "ff": "fr-fr", "fm": "fr-fr",
-    "hf": "hi", "hm": "hi", "if": "it", "im": "it",
-    "jf": "ja", "jm": "ja", "pf": "pt", "pm": "pt",
-    "zf": "cmn", "zm": "cmn",
+    "af": "en-us",
+    "am": "en-us",
+    "bf": "en-gb",
+    "bm": "en-gb",
+    "ef": "es",
+    "em": "es",
+    "ff": "fr-fr",
+    "fm": "fr-fr",
+    "hf": "hi",
+    "hm": "hi",
+    "if": "it",
+    "im": "it",
+    "jf": "ja",
+    "jm": "ja",
+    "pf": "pt",
+    "pm": "pt",
+    "zf": "cmn",
+    "zm": "cmn",
 }
 
 
@@ -58,12 +71,13 @@ def _build_voices_npz() -> str:
 
 
 class TTS:
-    def __init__(self):
+    def __init__(self, no_cache: bool = False):
         from kokoro_onnx import Kokoro
 
         self.kokoro = Kokoro(
             model_path=str(config.KOKORO_ONNX), voices_path=_build_voices_npz()
         )
+        self.no_cache = no_cache
         self.cache_dir = config.AUDIO_DIR / ".tts_cache"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
 
@@ -72,7 +86,7 @@ class TTS:
 
         key = f"{text}|{voice}|{speed}"
         cache = self.cache_dir / f"{hashlib.md5(key.encode()).hexdigest()}.npy"
-        if cache.exists():
+        if cache.exists() and not self.no_cache:
             return np.load(cache)
         lang = _VOICE_LANG.get(voice[:2], "en-us")
         phonemes = self.kokoro.tokenizer.phonemize(text, lang)
@@ -94,7 +108,11 @@ class TTS:
             ids = np.array([[0, *tokens, 0]], dtype=np.int64)
             audio = self.kokoro.sess.run(
                 None,
-                {"input_ids": ids, "style": style, "speed": np.array([speed], dtype=np.float32)},
+                {
+                    "input_ids": ids,
+                    "style": style,
+                    "speed": np.array([speed], dtype=np.float32),
+                },
             )[0]
             parts.append(np.asarray(audio, dtype=np.float32).reshape(-1))
         out = np.concatenate(parts) if parts else np.zeros(1, dtype=np.float32)
@@ -119,13 +137,38 @@ def _write_wav(path: Path, audio: np.ndarray) -> None:
 def _run_ffmpeg(seg_dir: Path, idx: int, image: Path, wav: Path, dur: float) -> Path:
     out = seg_dir / f"seg_{idx:03d}.mp4"
     cmd = [
-        "ffmpeg", "-y", "-loglevel", "error",
-        "-loop", "1", "-i", str(image), "-i", str(wav),
-        "-t", f"{dur:.3f}", "-r", str(FPS),
-        "-vf", "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2,format=yuv420p",
-        "-c:v", "libx264", "-preset", "fast", "-crf", "20",
-        "-c:a", "aac", "-b:a", "160k", "-ar", "44100", "-ac", "2",
-        "-shortest", str(out),
+        "ffmpeg",
+        "-y",
+        "-loglevel",
+        "error",
+        "-loop",
+        "1",
+        "-i",
+        str(image),
+        "-i",
+        str(wav),
+        "-t",
+        f"{dur:.3f}",
+        "-r",
+        str(FPS),
+        "-vf",
+        "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2,format=yuv420p",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "fast",
+        "-crf",
+        "20",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-shortest",
+        str(out),
     ]
     subprocess.run(cmd, check=True)
     return out
@@ -147,12 +190,35 @@ def _intro_clip(stills: list[Path], out: Path, still_dur: float = STILL_DUR) -> 
         )
         prev = lab
     cmd = [
-        "ffmpeg", "-y", "-loglevel", "error", *inputs,
-        "-filter_complex", ";".join(fc) + f";{prev}null[vout]",
-        "-map", "[vout]", "-map", f"{len(stills)}:a",
-        "-t", f"{total:.2f}", "-r", str(FPS),
-        "-c:v", "libx264", "-preset", "fast", "-crf", "20",
-        "-c:a", "aac", "-b:a", "160k", "-ar", "44100", "-ac", "2",
+        "ffmpeg",
+        "-y",
+        "-loglevel",
+        "error",
+        *inputs,
+        "-filter_complex",
+        ";".join(fc) + f";{prev}null[vout]",
+        "-map",
+        "[vout]",
+        "-map",
+        f"{len(stills)}:a",
+        "-t",
+        f"{total:.2f}",
+        "-r",
+        str(FPS),
+        "-c:v",
+        "libx264",
+        "-preset",
+        "fast",
+        "-crf",
+        "20",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "160k",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
         str(out),
     ]
     subprocess.run(cmd, check=True)
@@ -163,8 +229,8 @@ def compose_video(
     json_path: Path,
     voice: str = config.DEFAULT_VOICE,
     speed: float = 1.2,
-    zh_voice: str = config.DEFAULT_ZH_VOICE,
     still_dur: float = STILL_DUR,
+    no_cache: bool = False,
 ) -> Path:
     data: SceneData = load_scene_data(json_path)
     stem = Path(data.image).stem
@@ -183,7 +249,7 @@ def compose_video(
         )
 
     print("[step4] 加载 Kokoro TTS 模型…")
-    tts = TTS()
+    tts = TTS(no_cache=no_cache)
 
     work = config.VIDEO_DIR / f".work_{stem}"
     work.mkdir(parents=True, exist_ok=True)
@@ -195,10 +261,12 @@ def compose_video(
     segs: list[tuple[Path, np.ndarray, float]] = []
     for img, w in zip(table_frames, data.words):
         en = tts.synth(w.example_en, voice, speed)
-        padded = _pad(en, LEAD, TAIL, 5.0)
+        padded = _pad(en, LEAD, TAIL, MIN_SEG)
         segs.append((img, padded, len(padded) / sr))
 
-    total = (len(stills) * still_dur - (len(stills) - 1) * XFADE_DUR) + sum(d for _, _, d in segs)
+    total = (len(stills) * still_dur - (len(stills) - 1) * XFADE_DUR) + sum(
+        d for _, _, d in segs
+    )
     print(f"[step4] 合成片头 + {len(segs)} 个例句段,总时长 {total / 60:.1f} 分钟…")
     for i, (img, audio, dur) in enumerate(segs, 1):
         wav = work / f"a_{i:03d}.wav"
@@ -211,8 +279,21 @@ def compose_video(
         "".join(f"file '{p.as_posix()}'\n" for p in parts), encoding="utf-8"
     )
     subprocess.run(
-        ["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
-         "-i", str(concat_file), "-c", "copy", str(final)],
+        [
+            "ffmpeg",
+            "-y",
+            "-loglevel",
+            "error",
+            "-f",
+            "concat",
+            "-safe",
+            "0",
+            "-i",
+            str(concat_file),
+            "-c",
+            "copy",
+            str(final),
+        ],
         check=True,
     )
     print(f"[step4] 视频完成 -> {final}")
@@ -223,18 +304,37 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Step4 · TTS + 视频合成")
     parser.add_argument("--image", required=True, help="输入图片(定位 JSON 与渲染产物)")
     parser.add_argument("--json", default=None, help="直接指定 JSON 路径")
-    parser.add_argument("--voice", default=config.DEFAULT_VOICE, help=f"英文音色(默认 {config.DEFAULT_VOICE})")
-    parser.add_argument("--zh-voice", default=config.DEFAULT_ZH_VOICE, help=f"中文音色(默认 {config.DEFAULT_ZH_VOICE})")
+    parser.add_argument(
+        "--voice",
+        default=config.DEFAULT_VOICE,
+        help=f"英文音色(默认 {config.DEFAULT_VOICE})",
+    )
     parser.add_argument("--speed", type=float, default=1.2, help="英文语速 0.5~2.0")
-    parser.add_argument("--still-dur", type=float, default=STILL_DUR,
-                        help=f"片头每层静止时长秒(默认 {STILL_DUR:g}s)")
+    parser.add_argument(
+        "--still-dur",
+        type=float,
+        default=STILL_DUR,
+        help=f"片头每层静止时长秒(默认 {STILL_DUR:g}s)",
+    )
+    parser.add_argument(
+        "--no-cache", action="store_true", help="忽略 TTS 语音缓存重新合成"
+    )
     args = parser.parse_args()
     config.ensure_dirs()
-    json_path = Path(args.json) if args.json else config.JSON_DIR / f"{Path(args.image).stem}.json"
+    json_path = (
+        Path(args.json)
+        if args.json
+        else config.JSON_DIR / f"{Path(args.image).stem}.json"
+    )
     if not json_path.exists():
         raise SystemExit(f"找不到 {json_path},先运行 step1/step2")
-    compose_video(json_path, voice=args.voice, speed=args.speed, zh_voice=args.zh_voice,
-                  still_dur=args.still_dur)
+    compose_video(
+        json_path,
+        voice=args.voice,
+        speed=args.speed,
+        still_dur=args.still_dur,
+        no_cache=args.no_cache,
+    )
 
 
 if __name__ == "__main__":

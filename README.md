@@ -50,13 +50,19 @@ uv run python -m src.main --all
 uv run python -m src.main --image input_pics/生活场景/carriage.png --no-cache
 
 # 指定音色 (默认英式男声 bm_george，可选 bf_emma, bm_daniel 等) 与语速
-uv run python -m src.main --image input_pics/生活场景/carriage.png --voice bm_george --speed 0.95
+uv run python -m src.main --image input_pics/生活场景/carriage.png --voice bf_emma --speed 1.2
 
 # 仅渲染分层图片 (不合成视频)
 uv run python -m src.main --image input_pics/生活场景/carriage.png --no-video
 
 # 单独执行某个步骤 (1=VLM识别, 2=LLM翻译与音标, 3=图片渲染, 4=视频合成)
+uv run python -m src.main --image input_pics/生活场景/carriage.png --step 1 --no-cache
+uv run python -m src.main --image input_pics/生活场景/carriage.png --step 2
 uv run python -m src.main --image input_pics/生活场景/carriage.png --step 3
+uv run python -m src.main --image input_pics/生活场景/carriage.png --step 4 --no-cache
+
+# 支持音色
+uv run python -m src.main --list-voices
 ```
 
 ## 自动上传到各平台
@@ -72,7 +78,6 @@ uv run sau douyin login --account lawrence        # 抖音，扫码
 uv run sau xiaohongshu login --account lawrence   # 小红书，扫码
 uv run sau tencent login --account lawrence       # 视频号，扫码
 uv run sau bilibili login --account lawrence      # B站
-uv run sau youtube login --account lawrence       # YouTube (需代理，在 conf.py 配 YT_PROXY)
 ```
 
 登录后可用 `uv run sau douyin check --account lawrence` 校验 cookie 是否有效，失效则重新 login。
@@ -88,9 +93,3 @@ uv run sau douyin upload-video --account lawrence `
 # 支持 --schedule "2026-08-23 09:00" 定时发布（抖音/小红书/视频号/B站支持）
 # 支持 --headless 后台运行 / --debug 调试
 ```
-
-### 注意事项
-
-- 视频号、YouTube 的页面自动化相对脆弱，平台改版可能导致脚本失效，需及时更新该仓库（`git pull && uv sync`）
-- 上传前建议先对各平台跑一遍 `check`，避免批量上传中途因 cookie 失效中断
-- B 站上传基于 biliup，首次运行会自动下载

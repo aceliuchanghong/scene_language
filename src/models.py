@@ -63,7 +63,9 @@ def parse_scene_data(raw: str, image_path: Path) -> SceneData:
                 en=str(it.get("en") or it.get("english") or it.get("en_word") or ""),
                 ipa=str(it.get("ipa") or ""),
                 example_en=str(it.get("example_en") or it.get("example") or ""),
-                example_zh=str(it.get("example_zh") or it.get("example_translation") or ""),
+                example_zh=str(
+                    it.get("example_zh") or it.get("example_translation") or ""
+                ),
                 x=float(it.get("x", 0.5)),
                 y=float(it.get("y", 0.5)),
             )
@@ -82,4 +84,10 @@ def load_scene_data(path: Path) -> SceneData:
     return SceneData.model_validate_json(path.read_text(encoding="utf-8"))
 
 
-__all__ = ["WordItem", "SceneData", "parse_scene_data", "load_scene_data", "ValidationError"]
+__all__ = [
+    "WordItem",
+    "SceneData",
+    "parse_scene_data",
+    "load_scene_data",
+    "ValidationError",
+]
