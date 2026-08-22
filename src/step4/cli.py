@@ -1,10 +1,8 @@
 """Step 4 · Video Composer — Kokoro-82M TTS + FFmpeg 合成教学视频。
 
 视频结构(1080x1920, 25fps):
-    阶段1 中文层    : 逐词播中文(zm_yunxi)
-    阶段2 双语层    : 逐词播英文(bm_george)
-    阶段3 聚光帧    : 每词一帧,播英文(慢速)
-    阶段4 词汇表格  : 快速跟读英文
+    片头(静音,交叉淡化):中文层 -> 双语层 -> 音标层,各层默认 5s(--still-dur 可调)
+    正文:表格逐行高亮,AI 逐句朗读英文例句
 
 单独运行:
     uv run python -m src.step4.cli --image input_pics/生活场景/carriage.png
@@ -27,7 +25,8 @@ from src.models import SceneData, load_scene_data
 FPS = 25
 LEAD, TAIL = 0.30, 0.55  # 每段音频前后留白(秒)
 MIN_SEG = 1.6  # 单段最短时长
-GAP_TABLE = 0.25  # 表格阶段词间隔
+STILL_DUR = 5.0  # 片头每层静止时长(秒,可用 --still-dur 覆盖)
+XFADE_DUR = 0.5  # 片头交叉淡化时长(秒)
 
 # 音色前缀 -> espeak 语言代码(Kokoro 多语言音素化)
 _VOICE_LANG = {
@@ -132,56 +131,80 @@ def _run_ffmpeg(seg_dir: Path, idx: int, image: Path, wav: Path, dur: float) -> 
     return out
 
 
+def _intro_clip(stills: list[Path], out: Path, still_dur: float = STILL_DUR) -> Path:
+    """三层静止图各 still_dur 秒,之间交叉淡化,配静音轨。"""
+    inputs: list[str] = []
+    for p in stills:
+        inputs += ["-loop", "1", "-t", f"{still_dur:.2f}", "-i", str(p)]
+    total = len(stills) * still_dur - (len(stills) - 1) * XFADE_DUR
+    inputs += ["-f", "lavfi", "-t", f"{total:.2f}", "-i", "anullsrc=r=44100:cl=stereo"]
+    fc, prev = [], "[0:v]"
+    for k in range(1, len(stills)):
+        offset = k * still_dur - k * XFADE_DUR
+        lab = f"[v{k}]"
+        fc.append(
+            f"{prev}[{k}:v]xfade=transition=fade:duration={XFADE_DUR}:offset={offset:.2f}{lab}"
+        )
+        prev = lab
+    cmd = [
+        "ffmpeg", "-y", "-loglevel", "error", *inputs,
+        "-filter_complex", ";".join(fc) + f";{prev}null[vout]",
+        "-map", "[vout]", "-map", f"{len(stills)}:a",
+        "-t", f"{total:.2f}", "-r", str(FPS),
+        "-c:v", "libx264", "-preset", "fast", "-crf", "20",
+        "-c:a", "aac", "-b:a", "160k", "-ar", "44100", "-ac", "2",
+        str(out),
+    ]
+    subprocess.run(cmd, check=True)
+    return out
+
+
 def compose_video(
     json_path: Path,
     voice: str = config.DEFAULT_VOICE,
-    speed: float = 1.0,
+    speed: float = 1.2,
     zh_voice: str = config.DEFAULT_ZH_VOICE,
+    still_dur: float = STILL_DUR,
 ) -> Path:
     data: SceneData = load_scene_data(json_path)
     stem = Path(data.image).stem
-    layers = {
-        "source": config.SOURCE_LANG_DIR / f"{stem}.png",
-        "target": config.TARGET_LANG_DIR / f"{stem}.png",
-        "table": config.TABLE_DIR / f"{stem}.png",
-    }
-    frames = sorted((config.FRAMES_DIR / stem).glob("*.png"))
-    missing = [str(p) for p in [*layers.values(), *frames] if not p.exists()]
+    stills = [
+        config.SOURCE_LANG_DIR / f"{stem}.png",
+        config.TARGET_LANG_DIR / f"{stem}.png",
+        config.PRON_DIR / f"{stem}.png",
+    ]
+    table_frames = sorted((config.TABLE_DIR / stem).glob("*.png"))
+    missing = [str(p) for p in [*stills, *table_frames] if not p.exists()]
     if missing:
         raise SystemExit(f"[step4] 缺少渲染产物 {missing},先运行 step3")
+    if len(table_frames) != len(data.words):
+        raise SystemExit(
+            f"[step4] 表格高亮帧 {len(table_frames)} 个 != 词汇 {len(data.words)} 个,请重跑 step3"
+        )
 
     print("[step4] 加载 Kokoro TTS 模型…")
     tts = TTS()
 
-    def segment(image: Path, audio: np.ndarray, min_total: float = MIN_SEG) -> tuple[Path, np.ndarray, float]:
-        padded = _pad(audio, LEAD, TAIL, min_total)
-        return image, padded, len(padded) / config.TTS_SAMPLE_RATE
-
-    segs: list[tuple[Path, np.ndarray, float]] = []
-    # 阶段1:中文逐词
-    for w in data.words:
-        segs.append(segment(layers["source"], tts.synth(w.zh, zh_voice, 1.0)))
-    # 阶段2:双语层英文逐词
-    for w in data.words:
-        segs.append(segment(layers["target"], tts.synth(w.en, voice, speed)))
-    # 阶段3:聚光帧 + 慢速英文
-    for img, w in zip(frames, data.words):
-        segs.append(segment(img, tts.synth(w.en, voice, speed * 0.9), min_total=2.0))
-    # 阶段4:表格快速跟读
-    for w in data.words:
-        segs.append(segment(layers["table"], tts.synth(w.en, voice, speed), min_total=1.2))
-
     work = config.VIDEO_DIR / f".work_{stem}"
     work.mkdir(parents=True, exist_ok=True)
     final = config.VIDEO_DIR / f"{stem}.mp4"
-    parts = []
-    total = sum(d for _, _, d in segs)
-    print(f"[step4] 合成 {len(segs)} 段,总时长 {total / 60:.1f} 分钟…")
+    parts = [_intro_clip(stills, work / "intro.mp4", still_dur)]
+
+    # 正文:表格逐行高亮,朗读英文例句(不读中文翻译)
+    sr = config.TTS_SAMPLE_RATE
+    segs: list[tuple[Path, np.ndarray, float]] = []
+    for img, w in zip(table_frames, data.words):
+        en = tts.synth(w.example_en, voice, speed)
+        padded = _pad(en, LEAD, TAIL, 5.0)
+        segs.append((img, padded, len(padded) / sr))
+
+    total = (len(stills) * still_dur - (len(stills) - 1) * XFADE_DUR) + sum(d for _, _, d in segs)
+    print(f"[step4] 合成片头 + {len(segs)} 个例句段,总时长 {total / 60:.1f} 分钟…")
     for i, (img, audio, dur) in enumerate(segs, 1):
         wav = work / f"a_{i:03d}.wav"
         _write_wav(wav, audio)
         parts.append(_run_ffmpeg(work, i, img, wav, dur))
-        print(f"       段 {i}/{len(segs)} ({dur:.1f}s)")
+        print(f"       例句段 {i}/{len(segs)} ({dur:.1f}s)")
 
     concat_file = work / "list.txt"
     concat_file.write_text(
@@ -202,13 +225,16 @@ def main() -> None:
     parser.add_argument("--json", default=None, help="直接指定 JSON 路径")
     parser.add_argument("--voice", default=config.DEFAULT_VOICE, help=f"英文音色(默认 {config.DEFAULT_VOICE})")
     parser.add_argument("--zh-voice", default=config.DEFAULT_ZH_VOICE, help=f"中文音色(默认 {config.DEFAULT_ZH_VOICE})")
-    parser.add_argument("--speed", type=float, default=1.0, help="英文语速 0.5~2.0")
+    parser.add_argument("--speed", type=float, default=1.2, help="英文语速 0.5~2.0")
+    parser.add_argument("--still-dur", type=float, default=STILL_DUR,
+                        help=f"片头每层静止时长秒(默认 {STILL_DUR:g}s)")
     args = parser.parse_args()
     config.ensure_dirs()
     json_path = Path(args.json) if args.json else config.JSON_DIR / f"{Path(args.image).stem}.json"
     if not json_path.exists():
         raise SystemExit(f"找不到 {json_path},先运行 step1/step2")
-    compose_video(json_path, voice=args.voice, speed=args.speed, zh_voice=args.zh_voice)
+    compose_video(json_path, voice=args.voice, speed=args.speed, zh_voice=args.zh_voice,
+                  still_dur=args.still_dur)
 
 
 if __name__ == "__main__":

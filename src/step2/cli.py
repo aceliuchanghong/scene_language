@@ -21,9 +21,11 @@ PROMPT = """你是英式英语词汇专家。下面是一张{scene}场景照片�
 为每个词给出:
 - en: 最地道、最常用的英文单词或短语(英式用法优先,如 pram/baby carriage)
 - ipa: 该英文表达的标准英式发音国际音标(带重音符号与长音符号,如 /ˈpræm/)
+- example_en: 一个包含该词的日常简短英文例句(8~14 词,英式用法)
+- example_zh: 该例句的中文翻译
 
 只输出 JSON 数组,顺序与输入一致:
-[{{"zh": "婴儿车", "en": "pram", "ipa": "/ˈpræm/"}}]
+[{{"zh": "婴儿车", "en": "pram", "ipa": "/ˈpræm/", "example_en": "She pushed the pram along the pavement.", "example_zh": "她推着婴儿车沿着人行道走。"}}]
 
 词汇列表:
 {words}"""
@@ -32,7 +34,7 @@ PROMPT = """你是英式英语词汇专家。下面是一张{scene}场景照片�
 def generate_language(json_path: Path, no_cache: bool = False) -> Path:
     """读取 step1 的 JSON,补全 en/ipa 后写回。返回同一 JSON 路径。"""
     data: SceneData = load_scene_data(json_path)
-    if all(w.en and w.ipa for w in data.words) and not no_cache:
+    if all(w.en and w.ipa and w.example_en and w.example_zh for w in data.words) and not no_cache:
         print(f"[step2] 已有翻译,使用缓存 {json_path}")
         return json_path
 
@@ -58,10 +60,12 @@ def generate_language(json_path: Path, no_cache: bool = False) -> Path:
                 it = {k.lower(): v for k, v in it.items()}
                 w.en = str(it.get("en", "")).strip()
                 w.ipa = str(it.get("ipa", "")).strip()
+                w.example_en = str(it.get("example_en", "")).strip()
+                w.example_zh = str(it.get("example_zh", "")).strip()
                 if not w.ipa.startswith("/"):
                     w.ipa = f"/{w.ipa.strip('/')}/"
-            if not all(w.en and w.ipa for w in data.words):
-                raise ValueError("存在缺失 en/ipa 的条目")
+            if not all(w.en and w.ipa and w.example_en and w.example_zh for w in data.words):
+                raise ValueError("存在缺失 en/ipa/例句 的条目")
             json_path.write_text(data.model_dump_json(indent=2), encoding="utf-8")
             print(f"[step2] 翻译完成 -> {json_path}")
             for w in data.words:

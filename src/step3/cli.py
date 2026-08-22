@@ -1,11 +1,11 @@
-"""Step 3 · Visual Renderer — 基于 Pillow 的 4 层标注图 + 聚光高亮帧。
+"""Step 3 · Visual Renderer — 基于 Pillow 的 3 层标注图 + 例句表格。
 
 输出(统一 1080x1920 竖版,竖屏短视频友好):
     output/source_language/<stem>.png   中文层
     output/target_language/<stem>.png   中英双语层
     output/pronunciation/<stem>.png     双语+音标层
-    output/table/<stem>.png             词汇总览表格
-    output/frames/<stem>/NN.png         每个词的聚光高亮帧
+    output/table/<stem>.png             词汇例句表格(单词/例句/例句翻译)
+    output/table/<stem>/NN.png          表格逐行高亮帧(供视频逐句朗读)
 
 单独运行:
     uv run python -m src.step3.cli --image input_pics/生活场景/carriage.png
@@ -239,124 +239,135 @@ class Renderer:
             print(f"[step3] {stage} -> {out}")
         return outputs
 
-    # ---------- 聚光高亮帧 ----------
+    # ---------- 词汇例句表格 ----------
 
-    def render_spotlight_frames(self, data: SceneData) -> list[Path]:
-        out_dir = config.FRAMES_DIR / Path(data.image).stem
-        out_dir.mkdir(parents=True, exist_ok=True)
-        outputs = []
+    def _wrap(self, text: str, font, max_w: int) -> list[str]:
+        """贪心折行:拉丁按词断,中日韩按字断。"""
+        d = ImageDraw.Draw(Image.new("RGB", (8, 8)))
+        lines: list[str] = []
+        cur = ""
+        for ch in text:
+            if ch == "\n":
+                lines.append(cur)
+                cur = ""
+                continue
+            if d.textlength(cur + ch, font=font) <= max_w or not cur:
+                cur += ch
+                # 拉丁词间优先在空格断行
+            else:
+                if " " in cur and ch != " ":
+                    head, tail = cur.rsplit(" ", 1)
+                    lines.append(head)
+                    cur = tail + ch
+                else:
+                    lines.append(cur)
+                    cur = ch
+        if cur:
+            lines.append(cur)
+        return lines
+
+    def _render_table(self, data: SceneData, highlight: int | None, path: Path) -> Path:
         n = len(data.words)
-        for i, w in enumerate(data.words, 1):
-            canvas, rect = self.canvas(f"聚焦学习 {i} / {n}", data.scene)
-            px = rect[0] + w.x * (rect[2] - rect[0])
-            py = rect[1] + w.y * (rect[3] - rect[1])
-            r = int(min(rect[2] - rect[0], rect[3] - rect[1]) * 0.22)
+        left, right = MARGIN, W - MARGIN
+        table_top, table_bottom = 252, H - 80
+        header_h = 64
+        row_h = (table_bottom - table_top - header_h) // n
+        # 三列:单词 / 例句 / 例句翻译
+        col_x = [left, left + 268, left + 268 + 396]
+        col_w = [268, 396, right - col_x[2]]
 
-            # 暗幕 + 径向透光
-            fg_zone = canvas.crop(rect)
-            dark = Image.eval(fg_zone, lambda p: int(p * 0.32))
-            mask = Image.new("L", fg_zone.size, 255)
-            md = ImageDraw.Draw(mask)
-            md.ellipse([(px - rect[0] - r, py - rect[1] - r), (px - rect[0] + r, py - rect[1] + r)], fill=0)
-            mask = mask.filter(ImageFilter.GaussianBlur(r // 5))
-            fg_zone.paste(dark, (0, 0), mask)
-            canvas.paste(fg_zone, (rect[0], rect[1]))
-
-            d = ImageDraw.Draw(canvas)
-            color = PALETTE[(i - 1) % len(PALETTE)]
-            d.ellipse([(px - r, py - r), (px + r, py + r)], outline=(255, 216, 106), width=6)
-            d.ellipse([(px - r + 12, py - r + 12), (px + r - 12, py + r - 12)], outline=color, width=2)
-
-            # 底部居中大词卡(白底细黑描边,与标注卡同风格)
-            card_w, card_h = W - 2 * MARGIN - 80, 190
-            cx, cy = MARGIN + 40, H - card_h - 50
-            d.rounded_rectangle([(cx, cy), (cx + card_w, cy + card_h)], radius=14, fill=(255, 255, 255), outline=(15, 18, 26), width=2)
-            d.text((cx + card_w // 2, cy + 48), w.en, font=self.f_en_big, fill=(17, 20, 28), anchor="mm")
-            d.text((cx + card_w // 2, cy + 108), w.zh, font=self.f_zh, fill=(60, 66, 78), anchor="mm")
-            d.text((cx + card_w // 2, cy + 155), w.ipa, font=self.f_ipa, fill=(105, 112, 125), anchor="mm")
-            out = out_dir / f"{i:02d}.png"
-            canvas.save(out)
-            outputs.append(out)
-        print(f"[step3] 聚光帧 x{n} -> {out_dir}/")
-        return outputs
-
-    # ---------- 词汇总览表格 ----------
-
-    def render_table(self, data: SceneData) -> Path:
-        n = len(data.words)
-        cols = 1 if n <= 6 else 2
-        rows = (n + cols - 1) // cols
-        top, bottom = 250, H - 92
-        gap_x = 22
-        gap_y = 18 if rows <= 6 else 10
-        cell_w = (W - 2 * MARGIN - gap_x) // cols
-        cell_h = (bottom - top - gap_y * (rows - 1)) // rows
-        thumb = max(72, min(cell_h - 24, 150 if cols == 2 else 190))
-        if cell_h >= 220:
-            card_en, card_zh, card_ipa = self.f_en, self.f_zh, self.f_ipa
-        elif cell_h >= 165:
-            card_en = _font(config.FONT_EN, 32)
-            card_zh = _font(config.FONT_ZH, 29)
-            card_ipa = _font(config.FONT_EN, 24)
-        else:
-            card_en = _font(config.FONT_EN, 27)
-            card_zh = _font(config.FONT_ZH, 24)
-            card_ipa = _font(config.FONT_EN, 20)
+        f_en = _font(config.FONT_EN_BOLD, 30)
+        f_zh = _font(config.FONT_ZH, 26)
+        f_ipa = _font(config.FONT_EN, 21)
+        f_ex = _font(config.FONT_EN, 25)
+        f_ex_zh = _font(config.FONT_ZH, 25)
+        f_head = _font(config.FONT_ZH_BOLD, 30)
 
         bg = self.src.resize((W, H), Image.LANCZOS).filter(ImageFilter.GaussianBlur(40))
         canvas = Image.eval(bg, lambda p: int(p * 0.22)).convert("RGB")
-        overlay = Image.new("RGBA", (W, H), (8, 12, 18, 185))
+        overlay = Image.new("RGBA", (W, H), (8, 12, 18, 190))
         canvas = Image.alpha_composite(canvas.convert("RGBA"), overlay).convert("RGB")
         d = ImageDraw.Draw(canvas)
-        d.text((MARGIN, 58), "SCENE VOCABULARY", font=self.f_badge, fill=(236, 184, 72), anchor="la")
-        d.text((MARGIN, 108), "场景词汇", font=self.f_title, fill=(255, 255, 255), anchor="la")
-        scene = data.scene or "生活场景"
-        d.text((MARGIN, 176), scene, font=self.f_small, fill=(178, 187, 200), anchor="la")
-        count_text = f"{n:02d} WORDS"
-        d.text((W - MARGIN, 120), count_text, font=self.f_badge, fill=(178, 187, 200), anchor="ra")
-        d.line([(MARGIN, 216), (W - MARGIN, 216)], fill=(255, 255, 255), width=1)
 
-        sw, sh = self.src.size
+        d.text((MARGIN, 50), "SCENE VOCABULARY", font=self.f_badge, fill=(236, 184, 72), anchor="la")
+        d.text((MARGIN, 96), "场景词汇 · 例句", font=self.f_title, fill=(255, 255, 255), anchor="la")
+        d.text((W - MARGIN, 110), f"{n:02d} WORDS", font=self.f_badge, fill=(178, 187, 200), anchor="ra")
+
+        # 表头
+        d.rectangle([(left, table_top), (right, table_top + header_h)], fill=(34, 40, 52))
+        for (title, cx, cw) in zip(("单词", "例句", "例句翻译"), col_x, col_w):
+            d.text((cx + 16, table_top + header_h // 2), title, font=f_head, fill=(255, 255, 255), anchor="lm")
+
         for i, w in enumerate(data.words):
-            r, c = divmod(i, cols)
-            x = MARGIN + c * (cell_w + gap_x)
-            y = top + r * (cell_h + gap_y)
-            color = PALETTE[i % len(PALETTE)]
-            d.rounded_rectangle([(x, y), (x + cell_w, y + cell_h)], radius=18, fill=(247, 247, 244))
-            d.rounded_rectangle([(x, y), (x + 6, y + cell_h)], radius=3, fill=color)
-            # 缩略图:以词坐标为中心裁剪正方形
-            cx_px, cy_px = int(w.x * sw), int(w.y * sh)
-            side = max(int(min(sw, sh) * 0.30), 60)
-            x0, y0 = max(0, min(sw - side, cx_px - side // 2)), max(0, min(sh - side, cy_px - side // 2))
-            crop = self.src.crop((x0, y0, x0 + side, y0 + side)).resize((thumb, thumb), Image.LANCZOS)
-            iy = y + (cell_h - thumb) // 2
-            canvas.paste(crop, (x + 18, iy))
-            tx = x + 18 + thumb + 18
-            content_h = card_en.size + card_zh.size + card_ipa.size + 10
-            content_y = y + (cell_h - content_h) // 2
-            d.text((tx, y + 16), f"{i + 1:02d}", font=self.f_index, fill=color, anchor="la")
-            d.text((tx, content_y), w.en, font=card_en, fill=(19, 24, 32), anchor="la")
-            d.text((tx, content_y + card_en.size + 4), w.zh, font=card_zh, fill=(65, 72, 82), anchor="la")
-            d.text((tx, content_y + card_en.size + card_zh.size + 10), w.ipa, font=card_ipa, fill=(116, 123, 132), anchor="la")
+            y0 = table_top + header_h + i * row_h
+            y1 = y0 + row_h - 1
+            if highlight is not None and i != highlight:
+                # 高亮帧:非当前行压暗
+                d.rectangle([(left, y0), (right, y1)], fill=(10, 13, 19))
+            elif highlight == i:
+                d.rectangle([(left, y0), (right, y1)], fill=(255, 216, 106))
+                d.rectangle([(left, y0), (left + 6, y1)], fill=(200, 90, 20))
+            d.line([(left, y1), (right, y1)], fill=(255, 255, 255) if highlight is None else (70, 76, 88), width=1)
 
-        d.text((W // 2, H - 45), "LOOK · LISTEN · REMEMBER", font=self.f_badge, fill=(150, 158, 170), anchor="mm")
-        out = config.TABLE_DIR / f"{Path(data.image).stem}.png"
-        config.TABLE_DIR.mkdir(parents=True, exist_ok=True)
-        canvas.save(out)
-        print(f"[step3] 词汇表格 -> {out}")
-        return out
+            dark_text = highlight == i
+            c_word = (17, 20, 28)
+            c_sub = (74, 62, 24) if dark_text else (72, 79, 90)
+            c_ipa = (60, 52, 20) if dark_text else (116, 123, 132)
+            c_ex = (35, 30, 10) if dark_text else (232, 238, 246)
+            if highlight is not None and i != highlight:
+                c_word = c_sub = c_ipa = c_ex = (128, 135, 148)
+
+            # 列1:单词(en/zh/ipa 纵排居中)
+            wx = col_x[0] + 16
+            block_h = f_en.size + f_zh.size + f_ipa.size + 12
+            wy = y0 + (row_h - block_h) // 2
+            d.text((wx, wy), w.en, font=f_en, fill=c_word, anchor="la")
+            d.text((wx, wy + f_en.size + 3), w.zh, font=f_zh, fill=c_sub, anchor="la")
+            d.text((wx, wy + f_en.size + f_zh.size + 8), w.ipa, font=f_ipa, fill=c_ipa, anchor="la")
+
+            # 列2:英文例句折行居中
+            lines = self._wrap(w.example_en, f_ex, col_w[1] - 32)[:4]
+            lh = f_ex.size + 6
+            ly = y0 + (row_h - lh * len(lines)) // 2
+            for ln in lines:
+                d.text((col_x[1] + 16, ly), ln, font=f_ex, fill=c_ex, anchor="lm")
+                ly += lh
+
+            # 列3:例句翻译折行居中
+            lines = self._wrap(w.example_zh, f_ex_zh, col_w[2] - 32)[:4]
+            ly = y0 + (row_h - lh * len(lines)) // 2
+            for ln in lines:
+                d.text((col_x[2] + 16, ly), ln, font=f_ex_zh, fill=c_ex, anchor="lm")
+                ly += lh
+
+        path.parent.mkdir(parents=True, exist_ok=True)
+        canvas.save(path)
+        return path
+
+    def render_table(self, data: SceneData) -> tuple[Path, list[Path]]:
+        stem = Path(data.image).stem
+        base = self._render_table(data, None, config.TABLE_DIR / f"{stem}.png")
+        print(f"[step3] 词汇例句表格 -> {base}")
+        out_dir = config.TABLE_DIR / stem
+        frames = [
+            self._render_table(data, i, out_dir / f"{i + 1:02d}.png")
+            for i in range(len(data.words))
+        ]
+        print(f"[step3] 表格高亮帧 x{len(frames)} -> {out_dir}/")
+        return base, frames
 
 
-def render_all(json_path: Path) -> dict[str, list[Path] | Path]:
+def render_all(json_path: Path) -> dict:
     data: SceneData = load_scene_data(json_path)
     if not all(w.en and w.ipa for w in data.words):
         raise SystemExit("[step3] JSON 缺少 en/ipa,先运行 step2")
+    if not all(w.example_en and w.example_zh for w in data.words):
+        raise SystemExit("[step3] JSON 缺少例句,先运行 step2(可加 --no-cache)")
     r = Renderer(Path(data.image))
     layers = r.render_layers(data)
     pronunciation = r.render_pronunciation(data)
-    frames = r.render_spotlight_frames(data)
-    table = r.render_table(data)
-    return {"layers": layers, "pronunciation": pronunciation, "frames": frames, "table": table}
+    table, table_frames = r.render_table(data)
+    return {"layers": layers, "pronunciation": pronunciation, "table": table, "table_frames": table_frames}
 
 
 def main() -> None:

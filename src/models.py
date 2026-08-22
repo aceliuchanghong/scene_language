@@ -4,7 +4,17 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, Field, ValidationError, field_validator
+
+_PUNCT = ".,!?;:'\"“”‘’()[]{}<>《》…—-·,。!?:;、~〜·"
+
+
+def strip_punct(s: str) -> str:
+    """去掉标点(保留英文撇号,避免破坏 don't 等词),压缩多余空格。"""
+    s = "".join(ch for ch in s if ch not in _PUNCT or ch == "'")
+    while "  " in s:
+        s = s.replace("  ", " ")
+    return s.strip()
 
 
 class WordItem(BaseModel):
@@ -13,8 +23,15 @@ class WordItem(BaseModel):
     zh: str
     en: str = ""
     ipa: str = ""
+    example_en: str = ""  # 英文例句
+    example_zh: str = ""  # 例句中文翻译
     x: float = Field(ge=0.0, le=1.0)
     y: float = Field(ge=0.0, le=1.0)
+
+    @field_validator("example_en", "example_zh", mode="after")
+    @classmethod
+    def _no_punct(cls, v: str) -> str:
+        return strip_punct(v)
 
 
 class SceneData(BaseModel):
@@ -45,6 +62,8 @@ def parse_scene_data(raw: str, image_path: Path) -> SceneData:
                 zh=str(it.get("zh") or it.get("chinese") or it.get("zh_word") or ""),
                 en=str(it.get("en") or it.get("english") or it.get("en_word") or ""),
                 ipa=str(it.get("ipa") or ""),
+                example_en=str(it.get("example_en") or it.get("example") or ""),
+                example_zh=str(it.get("example_zh") or it.get("example_translation") or ""),
                 x=float(it.get("x", 0.5)),
                 y=float(it.get("y", 0.5)),
             )
