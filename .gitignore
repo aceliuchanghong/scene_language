@@ -199,7 +199,6 @@ tmp/
 layouts/
 models/
 *.mp3
-*.wav
 data/
 *.srt
 *.mp4

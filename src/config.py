@@ -44,6 +44,8 @@ TABLE_DIR = OUTPUT_DIR / "table"
 FRAMES_DIR = OUTPUT_DIR / "frames"
 AUDIO_DIR = OUTPUT_DIR / "audios"
 VIDEO_DIR = OUTPUT_DIR / "videos"
+MUSIC_DIR = ROOT / "src" / "music"
+DEFAULT_BGM = MUSIC_DIR / "booty.wav"
 
 # Windows 字体
 FONT_ZH = r"C:\Windows\Fonts\msyh.ttc"  # 微软雅黑(中文+拉丁)

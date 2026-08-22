@@ -388,10 +388,10 @@ class Renderer:
             )
 
             dark_text = highlight == i
-            c_word = (17, 20, 28)
-            c_sub = (74, 62, 24) if dark_text else (72, 79, 90)
-            c_ipa = (60, 52, 20) if dark_text else (116, 123, 132)
-            c_ex = (35, 30, 10) if dark_text else (232, 238, 246)
+            c_word = (17, 20, 28) if dark_text else (255, 255, 255)
+            c_sub = (74, 62, 24) if dark_text else (255, 205, 80)
+            c_ipa = (60, 52, 20) if dark_text else (100, 200, 255)
+            c_ex = (35, 30, 10) if dark_text else (240, 246, 255)
             if highlight is not None and i != highlight:
                 c_word = c_sub = c_ipa = c_ex = (128, 135, 148)
 

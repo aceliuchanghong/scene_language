@@ -81,7 +81,8 @@ def run_pipeline(
     no_cache: bool = False,
     no_video: bool = False,
     voice: str = config.DEFAULT_VOICE,
-    speed: float = 1.0,
+    speed: float = 1.2,
+    zoom: float = 1.7,
 ) -> None:
     stem = image_path.stem
     json_path = config.JSON_DIR / f"{stem}.json"
@@ -91,7 +92,7 @@ def run_pipeline(
         2: lambda: generate_language(json_path, no_cache=no_cache),
         3: lambda: render_all(json_path),
         4: lambda: compose_video(
-            json_path, voice=voice, speed=speed, no_cache=no_cache
+            json_path, voice=voice, speed=speed, zoom_target=zoom, no_cache=no_cache
         ),
     }
     # 单步模式:step1 需要 image,其余依赖 json;批量入口可能跨目录重名,step1 总是先跑
@@ -119,7 +120,8 @@ def main() -> None:
     parser.add_argument("--no-cache", action="store_true", help="强制重新请求 VLM/LLM")
     parser.add_argument("--no-video", action="store_true", help="只渲染图片,不合成视频")
     parser.add_argument("--voice", default=config.DEFAULT_VOICE, help="英文 TTS 音色")
-    parser.add_argument("--speed", type=float, default=1.2, help="英文语速")
+    parser.add_argument("--speed", type=float, default=1.2, help="英文语速 (默认 1.2)")
+    parser.add_argument("--zoom", type=float, default=1.7, help="推镜缩放倍率 (默认 1.7)")
     parser.add_argument(
         "--list-voices", action="store_true", help="列出可用 TTS 音色后退出"
     )
@@ -141,6 +143,7 @@ def main() -> None:
                 no_video=args.no_video,
                 voice=args.voice,
                 speed=args.speed,
+                zoom=args.zoom,
             )
         except SystemExit:
             raise
