@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "H12",
+  "slug": "H12_nursery",
+  "batch": "A",
+  "category": {
+    "id": "H",
+    "order": 1,
+    "zh": "居家生活",
+    "en": "Home life"
+  },
+  "scene": {
+    "zh": "婴儿房",
+    "en": "nursery"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "婴儿床",
+      "en": "cot"
+    },
+    {
+      "order": 2,
+      "zh": "婴儿车",
+      "en": "pram"
+    },
+    {
+      "order": 3,
+      "zh": "奶瓶",
+      "en": "baby bottle"
+    },
+    {
+      "order": 4,
+      "zh": "尿布",
+      "en": "nappy"
+    },
+    {
+      "order": 5,
+      "zh": "围嘴",
+      "en": "bib"
+    },
+    {
+      "order": 6,
+      "zh": "安抚奶嘴",
+      "en": "dummy"
+    },
+    {
+      "order": 7,
+      "zh": "拨浪鼓",
+      "en": "rattle"
+    },
+    {
+      "order": 8,
+      "zh": "泰迪熊",
+      "en": "teddy bear"
+    },
+    {
+      "order": 9,
+      "zh": "儿童餐椅",
+      "en": "high chair"
+    },
+    {
+      "order": 10,
+      "zh": "换尿布垫",
+      "en": "changing mat"
+    }
+  ],
+  "image": {
+    "filename": "H12_nursery.png",
+    "path": "input_pics/01_居家生活/H12_nursery.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of nursery (婴儿房).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: cot, pram, baby bottle, nappy, bib, dummy, rattle, teddy bear, high chair, changing mat.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "007a0246fd482239b75c9b751c5ccd2d85ee454caeccf788b93e29c87c724568"
+}

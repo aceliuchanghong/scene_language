@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "S05",
+  "slug": "S05_post_office",
+  "batch": "B",
+  "category": {
+    "id": "S",
+    "order": 5,
+    "zh": "医疗与公共服务",
+    "en": "Health and public services"
+  },
+  "scene": {
+    "zh": "邮局",
+    "en": "post office"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "邮局柜台",
+      "en": "post office counter"
+    },
+    {
+      "order": 2,
+      "zh": "邮局职员",
+      "en": "postal clerk"
+    },
+    {
+      "order": 3,
+      "zh": "信封",
+      "en": "envelope"
+    },
+    {
+      "order": 4,
+      "zh": "邮票",
+      "en": "stamp"
+    },
+    {
+      "order": 5,
+      "zh": "地址标签",
+      "en": "address label"
+    },
+    {
+      "order": 6,
+      "zh": "包裹秤",
+      "en": "parcel scales"
+    },
+    {
+      "order": 7,
+      "zh": "信",
+      "en": "letter"
+    },
+    {
+      "order": 8,
+      "zh": "明信片",
+      "en": "postcard"
+    },
+    {
+      "order": 9,
+      "zh": "邮箱",
+      "en": "mailbox"
+    },
+    {
+      "order": 10,
+      "zh": "跟踪回执",
+      "en": "tracking receipt"
+    }
+  ],
+  "image": {
+    "filename": "S05_post_office.png",
+    "path": "input_pics/05_医疗与公共服务/S05_post_office.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of post office (邮局).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: post office counter, postal clerk, envelope, stamp, address label, parcel scales, letter, postcard, mailbox, tracking receipt.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "4cf9f92d176a29a65fe54aa16982948dec2dce1848fa8c8834238787304feaa8"
+}

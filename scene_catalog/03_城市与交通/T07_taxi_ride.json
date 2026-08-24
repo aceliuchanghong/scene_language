@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "T07",
+  "slug": "T07_taxi_ride",
+  "batch": "A",
+  "category": {
+    "id": "T",
+    "order": 3,
+    "zh": "城市与交通",
+    "en": "City and transport"
+  },
+  "scene": {
+    "zh": "出租车内",
+    "en": "taxi ride"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "出租车",
+      "en": "taxi"
+    },
+    {
+      "order": 2,
+      "zh": "出租车司机",
+      "en": "taxi driver"
+    },
+    {
+      "order": 3,
+      "zh": "后视镜",
+      "en": "rear-view mirror"
+    },
+    {
+      "order": 4,
+      "zh": "方向盘",
+      "en": "steering wheel"
+    },
+    {
+      "order": 5,
+      "zh": "计价器",
+      "en": "meter"
+    },
+    {
+      "order": 6,
+      "zh": "导航仪",
+      "en": "satnav"
+    },
+    {
+      "order": 7,
+      "zh": "后排座位",
+      "en": "back seat"
+    },
+    {
+      "order": 8,
+      "zh": "后备箱",
+      "en": "boot"
+    },
+    {
+      "order": 9,
+      "zh": "车费",
+      "en": "fare"
+    },
+    {
+      "order": 10,
+      "zh": "出租车候客区",
+      "en": "taxi rank"
+    }
+  ],
+  "image": {
+    "filename": "T07_taxi_ride.png",
+    "path": "input_pics/03_城市与交通/T07_taxi_ride.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of taxi ride (出租车内).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: taxi, taxi driver, rear-view mirror, steering wheel, meter, satnav, back seat, boot, fare, taxi rank.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "2e476d960fecce814b3eb542b5097bec86d72f99c743c1eeaddd5e6f2790d602"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "H",
+    "order": 1,
+    "zh": "居家生活",
+    "en": "Home life",
+    "batch": "A"
+  },
+  "summary": {
+    "scene_count": 12,
+    "learning_slots": 120
+  },
+  "scenes": [
+    "H01_entrance.json",
+    "H02_living_room.json",
+    "H03_dining_room.json",
+    "H04_kitchen_counter.json",
+    "H05_fridge_and_pantry.json",
+    "H06_bedroom.json",
+    "H07_bathroom.json",
+    "H08_laundry_area.json",
+    "H09_home_cleaning.json",
+    "H10_home_office.json",
+    "H11_balcony_garden.json",
+    "H12_nursery.json"
+  ]
+}

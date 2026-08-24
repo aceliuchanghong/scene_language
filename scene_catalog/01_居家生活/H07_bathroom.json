@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "H07",
+  "slug": "H07_bathroom",
+  "batch": "A",
+  "category": {
+    "id": "H",
+    "order": 1,
+    "zh": "居家生活",
+    "en": "Home life"
+  },
+  "scene": {
+    "zh": "浴室",
+    "en": "bathroom"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "马桶",
+      "en": "toilet"
+    },
+    {
+      "order": 2,
+      "zh": "洗脸盆",
+      "en": "washbasin"
+    },
+    {
+      "order": 3,
+      "zh": "镜子",
+      "en": "mirror"
+    },
+    {
+      "order": 4,
+      "zh": "淋浴",
+      "en": "shower"
+    },
+    {
+      "order": 5,
+      "zh": "浴缸",
+      "en": "bathtub"
+    },
+    {
+      "order": 6,
+      "zh": "毛巾",
+      "en": "towel"
+    },
+    {
+      "order": 7,
+      "zh": "牙刷",
+      "en": "toothbrush"
+    },
+    {
+      "order": 8,
+      "zh": "牙膏",
+      "en": "toothpaste"
+    },
+    {
+      "order": 9,
+      "zh": "肥皂",
+      "en": "soap"
+    },
+    {
+      "order": 10,
+      "zh": "卫生纸",
+      "en": "toilet paper"
+    }
+  ],
+  "image": {
+    "filename": "H07_bathroom.png",
+    "path": "input_pics/01_居家生活/H07_bathroom.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of bathroom (浴室).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: toilet, washbasin, mirror, shower, bathtub, towel, toothbrush, toothpaste, soap, toilet paper.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "74cb09ef166ef5589c02fd803d2d1163a0870fe42524a60de10bf9ebb128801f"
+}

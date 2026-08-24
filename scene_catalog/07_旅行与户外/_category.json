@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "R",
+    "order": 7,
+    "zh": "旅行与户外",
+    "en": "Travel and outdoors",
+    "batch": "C"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "R01_hotel_reception.json",
+    "R02_hotel_room.json",
+    "R03_campsite.json",
+    "R04_beach.json",
+    "R05_sightseeing.json",
+    "R06_hiking_trail.json"
+  ]
+}

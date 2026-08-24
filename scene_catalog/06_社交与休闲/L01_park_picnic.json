@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "L01",
+  "slug": "L01_park_picnic",
+  "batch": "B",
+  "category": {
+    "id": "L",
+    "order": 6,
+    "zh": "社交与休闲",
+    "en": "Social life and leisure"
+  },
+  "scene": {
+    "zh": "公园野餐",
+    "en": "park picnic"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "野餐垫",
+      "en": "picnic blanket"
+    },
+    {
+      "order": 2,
+      "zh": "野餐篮",
+      "en": "picnic basket"
+    },
+    {
+      "order": 3,
+      "zh": "草地",
+      "en": "grass"
+    },
+    {
+      "order": 4,
+      "zh": "树",
+      "en": "tree"
+    },
+    {
+      "order": 5,
+      "zh": "池塘",
+      "en": "pond"
+    },
+    {
+      "order": 6,
+      "zh": "鸭子",
+      "en": "duck"
+    },
+    {
+      "order": 7,
+      "zh": "飞盘",
+      "en": "frisbee"
+    },
+    {
+      "order": 8,
+      "zh": "风筝",
+      "en": "kite"
+    },
+    {
+      "order": 9,
+      "zh": "足球",
+      "en": "football"
+    },
+    {
+      "order": 10,
+      "zh": "冷藏箱",
+      "en": "cool box"
+    }
+  ],
+  "image": {
+    "filename": "L01_park_picnic.png",
+    "path": "input_pics/06_社交与休闲/L01_park_picnic.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of park picnic (公园野餐).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: picnic blanket, picnic basket, grass, tree, pond, duck, frisbee, kite, football, cool box.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "feca5391b319292ef5dc5720f19ea37c4ba071688caebae367c7fb7c7442917b"
+}

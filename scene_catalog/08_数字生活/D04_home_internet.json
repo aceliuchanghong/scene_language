@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "D04",
+  "slug": "D04_home_internet",
+  "batch": "C",
+  "category": {
+    "id": "D",
+    "order": 8,
+    "zh": "数字生活",
+    "en": "Digital life"
+  },
+  "scene": {
+    "zh": "家庭网络",
+    "en": "home internet"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "路由器",
+      "en": "router"
+    },
+    {
+      "order": 2,
+      "zh": "无线信号",
+      "en": "Wi-Fi signal"
+    },
+    {
+      "order": 3,
+      "zh": "调制解调器",
+      "en": "modem"
+    },
+    {
+      "order": 4,
+      "zh": "网线",
+      "en": "network cable"
+    },
+    {
+      "order": 5,
+      "zh": "插座",
+      "en": "socket"
+    },
+    {
+      "order": 6,
+      "zh": "插头",
+      "en": "plug"
+    },
+    {
+      "order": 7,
+      "zh": "电源按钮",
+      "en": "power button"
+    },
+    {
+      "order": 8,
+      "zh": "指示灯",
+      "en": "indicator light"
+    },
+    {
+      "order": 9,
+      "zh": "密码标签",
+      "en": "password label"
+    },
+    {
+      "order": 10,
+      "zh": "智能音箱",
+      "en": "smart speaker"
+    }
+  ],
+  "image": {
+    "filename": "D04_home_internet.png",
+    "path": "input_pics/08_数字生活/D04_home_internet.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of home internet (家庭网络).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: router, Wi-Fi signal, modem, network cable, socket, plug, power button, indicator light, password label, smart speaker.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "63e14c3acfa82bdd0ebea35708f6d265acdd808f07632cf7246a9f12592981d1"
+}

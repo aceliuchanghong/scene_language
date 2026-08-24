@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "D01",
+  "slug": "D01_smartphone",
+  "batch": "C",
+  "category": {
+    "id": "D",
+    "order": 8,
+    "zh": "数字生活",
+    "en": "Digital life"
+  },
+  "scene": {
+    "zh": "智能手机",
+    "en": "smartphone"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "智能手机",
+      "en": "smartphone"
+    },
+    {
+      "order": 2,
+      "zh": "触摸屏",
+      "en": "touchscreen"
+    },
+    {
+      "order": 3,
+      "zh": "应用程序",
+      "en": "app"
+    },
+    {
+      "order": 4,
+      "zh": "通知",
+      "en": "notification"
+    },
+    {
+      "order": 5,
+      "zh": "消息",
+      "en": "message"
+    },
+    {
+      "order": 6,
+      "zh": "联系人",
+      "en": "contact"
+    },
+    {
+      "order": 7,
+      "zh": "摄像头镜头",
+      "en": "camera lens"
+    },
+    {
+      "order": 8,
+      "zh": "音量键",
+      "en": "volume button"
+    },
+    {
+      "order": 9,
+      "zh": "充电线",
+      "en": "charging cable"
+    },
+    {
+      "order": 10,
+      "zh": "耳机",
+      "en": "earphones"
+    }
+  ],
+  "image": {
+    "filename": "D01_smartphone.png",
+    "path": "input_pics/08_数字生活/D01_smartphone.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of smartphone (智能手机).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: smartphone, touchscreen, app, notification, message, contact, camera lens, volume button, charging cable, earphones.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "0880b907208d9c8f366c93509ed0a456bf9da9d933d13fb837f06550225ef451"
+}

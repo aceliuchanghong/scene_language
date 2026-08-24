@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "H01",
+  "slug": "H01_entrance",
+  "batch": "A",
+  "category": {
+    "id": "H",
+    "order": 1,
+    "zh": "居家生活",
+    "en": "Home life"
+  },
+  "scene": {
+    "zh": "玄关",
+    "en": "entrance"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "前门",
+      "en": "front door"
+    },
+    {
+      "order": 2,
+      "zh": "门铃",
+      "en": "doorbell"
+    },
+    {
+      "order": 3,
+      "zh": "门垫",
+      "en": "doormat"
+    },
+    {
+      "order": 4,
+      "zh": "钥匙",
+      "en": "key"
+    },
+    {
+      "order": 5,
+      "zh": "门锁",
+      "en": "lock"
+    },
+    {
+      "order": 6,
+      "zh": "门把手",
+      "en": "door handle"
+    },
+    {
+      "order": 7,
+      "zh": "鞋架",
+      "en": "shoe rack"
+    },
+    {
+      "order": 8,
+      "zh": "伞架",
+      "en": "umbrella stand"
+    },
+    {
+      "order": 9,
+      "zh": "挂衣钩",
+      "en": "coat hook"
+    },
+    {
+      "order": 10,
+      "zh": "包裹",
+      "en": "parcel"
+    }
+  ],
+  "image": {
+    "filename": "H01_entrance.png",
+    "path": "input_pics/01_居家生活/H01_entrance.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of entrance (玄关).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: front door, doorbell, doormat, key, lock, door handle, shoe rack, umbrella stand, coat hook, parcel.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "158e3adb256e3e586ca4dde2afd182655793d8853e2a8fb4149524086cb9c27a"
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "summary": {
+    "category_count": 8,
+    "scene_count": 64,
+    "targets_per_scene": 10,
+    "learning_slots": 640,
+    "unique_english_targets": 633
+  },
+  "status_flow": [
+    "planned",
+    "generated",
+    "qa_passed",
+    "localized",
+    "rendered",
+    "published"
+  ],
+  "batches": {
+    "A": [
+      "H",
+      "F",
+      "T"
+    ],
+    "B": [
+      "W",
+      "S",
+      "L"
+    ],
+    "C": [
+      "R",
+      "D"
+    ]
+  },
+  "categories": [
+    {
+      "id": "H",
+      "order": 1,
+      "zh": "居家生活",
+      "en": "Home life",
+      "batch": "A",
+      "scene_count": 12,
+      "learning_slots": 120,
+      "directory": "01_居家生活",
+      "index": "01_居家生活/_category.json"
+    },
+    {
+      "id": "F",
+      "order": 2,
+      "zh": "饮食与购物",
+      "en": "Food and shopping",
+      "batch": "A",
+      "scene_count": 10,
+      "learning_slots": 100,
+      "directory": "02_饮食与购物",
+      "index": "02_饮食与购物/_category.json"
+    },
+    {
+      "id": "T",
+      "order": 3,
+      "zh": "城市与交通",
+      "en": "City and transport",
+      "batch": "A",
+      "scene_count": 10,
+      "learning_slots": 100,
+      "directory": "03_城市与交通",
+      "index": "03_城市与交通/_category.json"
+    },
+    {
+      "id": "W",
+      "order": 4,
+      "zh": "学习与工作",
+      "en": "Study and work",
+      "batch": "B",
+      "scene_count": 8,
+      "learning_slots": 80,
+      "directory": "04_学习与工作",
+      "index": "04_学习与工作/_category.json"
+    },
+    {
+      "id": "S",
+      "order": 5,
+      "zh": "医疗与公共服务",
+      "en": "Health and public services",
+      "batch": "B",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "05_医疗与公共服务",
+      "index": "05_医疗与公共服务/_category.json"
+    },
+    {
+      "id": "L",
+      "order": 6,
+      "zh": "社交与休闲",
+      "en": "Social life and leisure",
+      "batch": "B",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "06_社交与休闲",
+      "index": "06_社交与休闲/_category.json"
+    },
+    {
+      "id": "R",
+      "order": 7,
+      "zh": "旅行与户外",
+      "en": "Travel and outdoors",
+      "batch": "C",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "07_旅行与户外",
+      "index": "07_旅行与户外/_category.json"
+    },
+    {
+      "id": "D",
+      "order": 8,
+      "zh": "数字生活",
+      "en": "Digital life",
+      "batch": "C",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "08_数字生活",
+      "index": "08_数字生活/_category.json"
+    }
+  ]
+}

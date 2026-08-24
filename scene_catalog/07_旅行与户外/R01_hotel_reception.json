@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "R01",
+  "slug": "R01_hotel_reception",
+  "batch": "C",
+  "category": {
+    "id": "R",
+    "order": 7,
+    "zh": "旅行与户外",
+    "en": "Travel and outdoors"
+  },
+  "scene": {
+    "zh": "酒店前台",
+    "en": "hotel reception"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "酒店",
+      "en": "hotel"
+    },
+    {
+      "order": 2,
+      "zh": "礼宾员",
+      "en": "concierge"
+    },
+    {
+      "order": 3,
+      "zh": "前台",
+      "en": "reception"
+    },
+    {
+      "order": 4,
+      "zh": "预订单",
+      "en": "booking form"
+    },
+    {
+      "order": 5,
+      "zh": "房卡",
+      "en": "key card"
+    },
+    {
+      "order": 6,
+      "zh": "行李",
+      "en": "luggage"
+    },
+    {
+      "order": 7,
+      "zh": "行李车",
+      "en": "luggage trolley"
+    },
+    {
+      "order": 8,
+      "zh": "大堂",
+      "en": "lobby"
+    },
+    {
+      "order": 9,
+      "zh": "房号牌",
+      "en": "room number sign"
+    },
+    {
+      "order": 10,
+      "zh": "旋转门",
+      "en": "revolving door"
+    }
+  ],
+  "image": {
+    "filename": "R01_hotel_reception.png",
+    "path": "input_pics/07_旅行与户外/R01_hotel_reception.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of hotel reception (酒店前台).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: hotel, concierge, reception, booking form, key card, luggage, luggage trolley, lobby, room number sign, revolving door.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "f27a44e2cba42bb1495a07839e15466165c43924e46e2601bae3b871f13d72d9"
+}

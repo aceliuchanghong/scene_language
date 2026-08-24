@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "L",
+    "order": 6,
+    "zh": "社交与休闲",
+    "en": "Social life and leisure",
+    "batch": "B"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "L01_park_picnic.json",
+    "L02_playground.json",
+    "L03_gym.json",
+    "L04_swimming_pool.json",
+    "L05_cinema.json",
+    "L06_birthday_party.json"
+  ]
+}

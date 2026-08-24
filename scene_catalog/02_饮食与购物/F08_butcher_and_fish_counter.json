@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "F08",
+  "slug": "F08_butcher_and_fish_counter",
+  "batch": "A",
+  "category": {
+    "id": "F",
+    "order": 2,
+    "zh": "饮食与购物",
+    "en": "Food and shopping"
+  },
+  "scene": {
+    "zh": "肉铺与海鲜柜",
+    "en": "butcher and fish counter"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "肉贩",
+      "en": "butcher"
+    },
+    {
+      "order": 2,
+      "zh": "围裙",
+      "en": "apron"
+    },
+    {
+      "order": 3,
+      "zh": "牛肉",
+      "en": "beef"
+    },
+    {
+      "order": 4,
+      "zh": "鸡肉",
+      "en": "chicken"
+    },
+    {
+      "order": 5,
+      "zh": "香肠",
+      "en": "sausage"
+    },
+    {
+      "order": 6,
+      "zh": "鱼",
+      "en": "fish"
+    },
+    {
+      "order": 7,
+      "zh": "大虾",
+      "en": "prawns"
+    },
+    {
+      "order": 8,
+      "zh": "切肉墩",
+      "en": "chopping block"
+    },
+    {
+      "order": 9,
+      "zh": "砍刀",
+      "en": "cleaver"
+    },
+    {
+      "order": 10,
+      "zh": "展示柜",
+      "en": "display counter"
+    }
+  ],
+  "image": {
+    "filename": "F08_butcher_and_fish_counter.png",
+    "path": "input_pics/02_饮食与购物/F08_butcher_and_fish_counter.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of butcher and fish counter (肉铺与海鲜柜).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: butcher, apron, beef, chicken, sausage, fish, prawns, chopping block, cleaver, display counter.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "877021ff7e1ea6a7d6102692e84d35854f7b61162275af5c92a3eac7f17929f8"
+}

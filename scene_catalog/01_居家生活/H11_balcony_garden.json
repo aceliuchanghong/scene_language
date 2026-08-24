@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "H11",
+  "slug": "H11_balcony_garden",
+  "batch": "A",
+  "category": {
+    "id": "H",
+    "order": 1,
+    "zh": "居家生活",
+    "en": "Home life"
+  },
+  "scene": {
+    "zh": "阳台与小花园",
+    "en": "balcony garden"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "阳台",
+      "en": "balcony"
+    },
+    {
+      "order": 2,
+      "zh": "花盆",
+      "en": "plant pot"
+    },
+    {
+      "order": 3,
+      "zh": "浇水壶",
+      "en": "watering can"
+    },
+    {
+      "order": 4,
+      "zh": "花",
+      "en": "flower"
+    },
+    {
+      "order": 5,
+      "zh": "泥土",
+      "en": "soil"
+    },
+    {
+      "order": 6,
+      "zh": "花园椅",
+      "en": "garden chair"
+    },
+    {
+      "order": 7,
+      "zh": "栅栏",
+      "en": "fence"
+    },
+    {
+      "order": 8,
+      "zh": "水管",
+      "en": "hose"
+    },
+    {
+      "order": 9,
+      "zh": "小铲子",
+      "en": "trowel"
+    },
+    {
+      "order": 10,
+      "zh": "晾衣绳",
+      "en": "clothesline"
+    }
+  ],
+  "image": {
+    "filename": "H11_balcony_garden.png",
+    "path": "input_pics/01_居家生活/H11_balcony_garden.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of balcony garden (阳台与小花园).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: balcony, plant pot, watering can, flower, soil, garden chair, fence, hose, trowel, clothesline.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "16e76ea4522d2388c66a20b565bdfe6098fd3f5f37d3b8a47776f3e0b76d72fa"
+}

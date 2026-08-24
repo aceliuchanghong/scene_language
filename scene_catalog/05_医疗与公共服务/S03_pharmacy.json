@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "S03",
+  "slug": "S03_pharmacy",
+  "batch": "B",
+  "category": {
+    "id": "S",
+    "order": 5,
+    "zh": "医疗与公共服务",
+    "en": "Health and public services"
+  },
+  "scene": {
+    "zh": "药店",
+    "en": "pharmacy"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "药剂师",
+      "en": "pharmacist"
+    },
+    {
+      "order": 2,
+      "zh": "药店柜台",
+      "en": "pharmacy counter"
+    },
+    {
+      "order": 3,
+      "zh": "药品架",
+      "en": "medicine shelf"
+    },
+    {
+      "order": 4,
+      "zh": "胶囊",
+      "en": "capsule"
+    },
+    {
+      "order": 5,
+      "zh": "止咳糖浆",
+      "en": "cough syrup"
+    },
+    {
+      "order": 6,
+      "zh": "急救箱",
+      "en": "first-aid kit"
+    },
+    {
+      "order": 7,
+      "zh": "创可贴",
+      "en": "plaster"
+    },
+    {
+      "order": 8,
+      "zh": "口罩",
+      "en": "face mask"
+    },
+    {
+      "order": 9,
+      "zh": "眼药水",
+      "en": "eye drops"
+    },
+    {
+      "order": 10,
+      "zh": "吸入器",
+      "en": "inhaler"
+    }
+  ],
+  "image": {
+    "filename": "S03_pharmacy.png",
+    "path": "input_pics/05_医疗与公共服务/S03_pharmacy.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of pharmacy (药店).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: pharmacist, pharmacy counter, medicine shelf, capsule, cough syrup, first-aid kit, plaster, face mask, eye drops, inhaler.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "336eeb4ffce6c804128e0d084606ba90da71e95b553fcef214331f37e38a431b"
+}

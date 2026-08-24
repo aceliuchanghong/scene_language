@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "F07",
+  "slug": "F07_supermarket_checkout",
+  "batch": "A",
+  "category": {
+    "id": "F",
+    "order": 2,
+    "zh": "饮食与购物",
+    "en": "Food and shopping"
+  },
+  "scene": {
+    "zh": "超市收银区",
+    "en": "supermarket checkout"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "收银台",
+      "en": "checkout"
+    },
+    {
+      "order": 2,
+      "zh": "收银员",
+      "en": "cashier"
+    },
+    {
+      "order": 3,
+      "zh": "传送带",
+      "en": "conveyor belt"
+    },
+    {
+      "order": 4,
+      "zh": "条形码",
+      "en": "barcode"
+    },
+    {
+      "order": 5,
+      "zh": "扫描器",
+      "en": "scanner"
+    },
+    {
+      "order": 6,
+      "zh": "购物袋",
+      "en": "shopping bag"
+    },
+    {
+      "order": 7,
+      "zh": "小包",
+      "en": "packet"
+    },
+    {
+      "order": 8,
+      "zh": "纸盒",
+      "en": "carton"
+    },
+    {
+      "order": 9,
+      "zh": "瓶子",
+      "en": "bottle"
+    },
+    {
+      "order": 10,
+      "zh": "面包条",
+      "en": "loaf"
+    }
+  ],
+  "image": {
+    "filename": "F07_supermarket_checkout.png",
+    "path": "input_pics/02_饮食与购物/F07_supermarket_checkout.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of supermarket checkout (超市收银区).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: checkout, cashier, conveyor belt, barcode, scanner, shopping bag, packet, carton, bottle, loaf.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "ebf7e5338d98fcf2cb4bbbc649182126487dc4fcf08f59f6105d01d9bf5cef13"
+}

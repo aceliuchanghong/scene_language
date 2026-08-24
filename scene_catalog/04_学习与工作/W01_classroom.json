@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "W01",
+  "slug": "W01_classroom",
+  "batch": "B",
+  "category": {
+    "id": "W",
+    "order": 4,
+    "zh": "学习与工作",
+    "en": "Study and work"
+  },
+  "scene": {
+    "zh": "教室",
+    "en": "classroom"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "老师",
+      "en": "teacher"
+    },
+    {
+      "order": 2,
+      "zh": "学生",
+      "en": "pupil"
+    },
+    {
+      "order": 3,
+      "zh": "白板",
+      "en": "whiteboard"
+    },
+    {
+      "order": 4,
+      "zh": "白板笔",
+      "en": "marker pen"
+    },
+    {
+      "order": 5,
+      "zh": "课桌",
+      "en": "school desk"
+    },
+    {
+      "order": 6,
+      "zh": "课本",
+      "en": "textbook"
+    },
+    {
+      "order": 7,
+      "zh": "练习册",
+      "en": "workbook"
+    },
+    {
+      "order": 8,
+      "zh": "尺子",
+      "en": "ruler"
+    },
+    {
+      "order": 9,
+      "zh": "铅笔盒",
+      "en": "pencil case"
+    },
+    {
+      "order": 10,
+      "zh": "书包",
+      "en": "schoolbag"
+    }
+  ],
+  "image": {
+    "filename": "W01_classroom.png",
+    "path": "input_pics/04_学习与工作/W01_classroom.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of classroom (教室).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: teacher, pupil, whiteboard, marker pen, school desk, textbook, workbook, ruler, pencil case, schoolbag.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "ff4b9d6843be163811efc9fe438adcd1e848b1170eff599aecd776d8bd637c09"
+}

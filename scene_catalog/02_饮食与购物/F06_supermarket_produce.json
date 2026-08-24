@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "F06",
+  "slug": "F06_supermarket_produce",
+  "batch": "A",
+  "category": {
+    "id": "F",
+    "order": 2,
+    "zh": "饮食与购物",
+    "en": "Food and shopping"
+  },
+  "scene": {
+    "zh": "超市果蔬区",
+    "en": "supermarket produce"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "购物车",
+      "en": "trolley"
+    },
+    {
+      "order": 2,
+      "zh": "购物篮",
+      "en": "basket"
+    },
+    {
+      "order": 3,
+      "zh": "过道",
+      "en": "aisle"
+    },
+    {
+      "order": 4,
+      "zh": "价签",
+      "en": "price tag"
+    },
+    {
+      "order": 5,
+      "zh": "秤",
+      "en": "scales"
+    },
+    {
+      "order": 6,
+      "zh": "番茄",
+      "en": "tomato"
+    },
+    {
+      "order": 7,
+      "zh": "土豆",
+      "en": "potato"
+    },
+    {
+      "order": 8,
+      "zh": "胡萝卜",
+      "en": "carrot"
+    },
+    {
+      "order": 9,
+      "zh": "洋葱",
+      "en": "onion"
+    },
+    {
+      "order": 10,
+      "zh": "生菜",
+      "en": "lettuce"
+    }
+  ],
+  "image": {
+    "filename": "F06_supermarket_produce.png",
+    "path": "input_pics/02_饮食与购物/F06_supermarket_produce.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of supermarket produce (超市果蔬区).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: trolley, basket, aisle, price tag, scales, tomato, potato, carrot, onion, lettuce.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "39de4cac3f43ef420f1ac74d64cd8bc16abedea54d625d96d0811755117c5d09"
+}

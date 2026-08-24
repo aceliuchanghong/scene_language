@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "D",
+    "order": 8,
+    "zh": "数字生活",
+    "en": "Digital life",
+    "batch": "C"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "D01_smartphone.json",
+    "D02_video_meeting.json",
+    "D03_online_shopping.json",
+    "D04_home_internet.json",
+    "D05_gaming_setup.json",
+    "D06_content_creation.json"
+  ]
+}

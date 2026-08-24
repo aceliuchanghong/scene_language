@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "H05",
+  "slug": "H05_fridge_and_pantry",
+  "batch": "A",
+  "category": {
+    "id": "H",
+    "order": 1,
+    "zh": "居家生活",
+    "en": "Home life"
+  },
+  "scene": {
+    "zh": "冰箱与储物柜",
+    "en": "fridge and pantry"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "冰箱",
+      "en": "fridge"
+    },
+    {
+      "order": 2,
+      "zh": "冷冻室",
+      "en": "freezer"
+    },
+    {
+      "order": 3,
+      "zh": "搁板",
+      "en": "shelf"
+    },
+    {
+      "order": 4,
+      "zh": "抽屉",
+      "en": "drawer"
+    },
+    {
+      "order": 5,
+      "zh": "牛奶",
+      "en": "milk"
+    },
+    {
+      "order": 6,
+      "zh": "鸡蛋",
+      "en": "eggs"
+    },
+    {
+      "order": 7,
+      "zh": "黄油",
+      "en": "butter"
+    },
+    {
+      "order": 8,
+      "zh": "奶酪",
+      "en": "cheese"
+    },
+    {
+      "order": 9,
+      "zh": "玻璃罐",
+      "en": "jar"
+    },
+    {
+      "order": 10,
+      "zh": "罐头",
+      "en": "tin"
+    }
+  ],
+  "image": {
+    "filename": "H05_fridge_and_pantry.png",
+    "path": "input_pics/01_居家生活/H05_fridge_and_pantry.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of fridge and pantry (冰箱与储物柜).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: fridge, freezer, shelf, drawer, milk, eggs, butter, cheese, jar, tin.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "8f5ed8fc60fa0e0fa20f24bd7a6ae88a6da302ec1ff52c999e13aac4a81ba85b"
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "L04",
+  "slug": "L04_swimming_pool",
+  "batch": "B",
+  "category": {
+    "id": "L",
+    "order": 6,
+    "zh": "社交与休闲",
+    "en": "Social life and leisure"
+  },
+  "scene": {
+    "zh": "游泳池",
+    "en": "swimming pool"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "游泳池",
+      "en": "swimming pool"
+    },
+    {
+      "order": 2,
+      "zh": "游泳者",
+      "en": "swimmer"
+    },
+    {
+      "order": 3,
+      "zh": "泳镜",
+      "en": "goggles"
+    },
+    {
+      "order": 4,
+      "zh": "泳帽",
+      "en": "swimming cap"
+    },
+    {
+      "order": 5,
+      "zh": "泳道线",
+      "en": "lane rope"
+    },
+    {
+      "order": 6,
+      "zh": "跳水板",
+      "en": "diving board"
+    },
+    {
+      "order": 7,
+      "zh": "救生员",
+      "en": "lifeguard"
+    },
+    {
+      "order": 8,
+      "zh": "更衣室",
+      "en": "changing room"
+    },
+    {
+      "order": 9,
+      "zh": "浮板",
+      "en": "kickboard"
+    },
+    {
+      "order": 10,
+      "zh": "救生圈",
+      "en": "lifebuoy"
+    }
+  ],
+  "image": {
+    "filename": "L04_swimming_pool.png",
+    "path": "input_pics/06_社交与休闲/L04_swimming_pool.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of swimming pool (游泳池).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: swimming pool, swimmer, goggles, swimming cap, lane rope, diving board, lifeguard, changing room, kickboard, lifebuoy.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "400140f1d8370916a1352e56a0302af8c4def5a440744fc028467209747ddbee"
+}

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "H04",
+  "slug": "H04_kitchen_counter",
+  "batch": "A",
+  "category": {
+    "id": "H",
+    "order": 1,
+    "zh": "居家生活",
+    "en": "Home life"
+  },
+  "scene": {
+    "zh": "厨房操作台",
+    "en": "kitchen counter"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "操作台",
+      "en": "worktop"
+    },
+    {
+      "order": 2,
+      "zh": "水槽",
+      "en": "sink"
+    },
+    {
+      "order": 3,
+      "zh": "水龙头",
+      "en": "tap"
+    },
+    {
+      "order": 4,
+      "zh": "水壶",
+      "en": "kettle"
+    },
+    {
+      "order": 5,
+      "zh": "烤面包机",
+      "en": "toaster"
+    },
+    {
+      "order": 6,
+      "zh": "微波炉",
+      "en": "microwave"
+    },
+    {
+      "order": 7,
+      "zh": "砧板",
+      "en": "chopping board"
+    },
+    {
+      "order": 8,
+      "zh": "刀",
+      "en": "knife"
+    },
+    {
+      "order": 9,
+      "zh": "煎锅",
+      "en": "frying pan"
+    },
+    {
+      "order": 10,
+      "zh": "炖锅",
+      "en": "saucepan"
+    }
+  ],
+  "image": {
+    "filename": "H04_kitchen_counter.png",
+    "path": "input_pics/01_居家生活/H04_kitchen_counter.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of kitchen counter (厨房操作台).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: worktop, sink, tap, kettle, toaster, microwave, chopping board, knife, frying pan, saucepan.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "4d371877e35922802d617a4e1a5d2b6f552c91472dea7c037d2fbb30c7ee7af7"
+}

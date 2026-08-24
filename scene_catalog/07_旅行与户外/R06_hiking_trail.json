@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "R06",
+  "slug": "R06_hiking_trail",
+  "batch": "C",
+  "category": {
+    "id": "R",
+    "order": 7,
+    "zh": "旅行与户外",
+    "en": "Travel and outdoors"
+  },
+  "scene": {
+    "zh": "徒步路线",
+    "en": "hiking trail"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "小径",
+      "en": "trail"
+    },
+    {
+      "order": 2,
+      "zh": "路标",
+      "en": "signpost"
+    },
+    {
+      "order": 3,
+      "zh": "山丘",
+      "en": "hill"
+    },
+    {
+      "order": 4,
+      "zh": "山谷",
+      "en": "valley"
+    },
+    {
+      "order": 5,
+      "zh": "森林",
+      "en": "forest"
+    },
+    {
+      "order": 6,
+      "zh": "河流",
+      "en": "river"
+    },
+    {
+      "order": 7,
+      "zh": "桥",
+      "en": "bridge"
+    },
+    {
+      "order": 8,
+      "zh": "登山杖",
+      "en": "walking stick"
+    },
+    {
+      "order": 9,
+      "zh": "雨衣",
+      "en": "raincoat"
+    },
+    {
+      "order": 10,
+      "zh": "双筒望远镜",
+      "en": "binoculars"
+    }
+  ],
+  "image": {
+    "filename": "R06_hiking_trail.png",
+    "path": "input_pics/07_旅行与户外/R06_hiking_trail.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of hiking trail (徒步路线).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: trail, signpost, hill, valley, forest, river, bridge, walking stick, raincoat, binoculars.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "bc9949e2cdbb88f16a4e803896549c83e9e0dbde3f1fdd145ad642a069c84e2e"
+}

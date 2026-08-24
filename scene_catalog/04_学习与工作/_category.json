@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "W",
+    "order": 4,
+    "zh": "学习与工作",
+    "en": "Study and work",
+    "batch": "B"
+  },
+  "summary": {
+    "scene_count": 8,
+    "learning_slots": 80
+  },
+  "scenes": [
+    "W01_classroom.json",
+    "W02_library.json",
+    "W03_office_meeting.json",
+    "W04_open_plan_office.json",
+    "W05_programming_workspace.json",
+    "W06_workshop_tools.json",
+    "W07_warehouse.json",
+    "W08_construction_site.json"
+  ]
+}

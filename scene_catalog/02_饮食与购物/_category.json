@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "F",
+    "order": 2,
+    "zh": "饮食与购物",
+    "en": "Food and shopping",
+    "batch": "A"
+  },
+  "summary": {
+    "scene_count": 10,
+    "learning_slots": 100
+  },
+  "scenes": [
+    "F01_breakfast_table.json",
+    "F02_packed_lunch.json",
+    "F03_home_baking.json",
+    "F04_cafe.json",
+    "F05_restaurant.json",
+    "F06_supermarket_produce.json",
+    "F07_supermarket_checkout.json",
+    "F08_butcher_and_fish_counter.json",
+    "F09_bakery.json",
+    "F10_street_market.json"
+  ]
+}

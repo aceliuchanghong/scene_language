@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "H09",
+  "slug": "H09_home_cleaning",
+  "batch": "A",
+  "category": {
+    "id": "H",
+    "order": 1,
+    "zh": "居家生活",
+    "en": "Home life"
+  },
+  "scene": {
+    "zh": "家庭清洁",
+    "en": "home cleaning"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "吸尘器",
+      "en": "vacuum cleaner"
+    },
+    {
+      "order": 2,
+      "zh": "扫帚",
+      "en": "broom"
+    },
+    {
+      "order": 3,
+      "zh": "簸箕",
+      "en": "dustpan"
+    },
+    {
+      "order": 4,
+      "zh": "拖把",
+      "en": "mop"
+    },
+    {
+      "order": 5,
+      "zh": "水桶",
+      "en": "bucket"
+    },
+    {
+      "order": 6,
+      "zh": "海绵",
+      "en": "sponge"
+    },
+    {
+      "order": 7,
+      "zh": "橡胶手套",
+      "en": "rubber gloves"
+    },
+    {
+      "order": 8,
+      "zh": "垃圾桶",
+      "en": "bin"
+    },
+    {
+      "order": 9,
+      "zh": "垃圾袋",
+      "en": "bin bag"
+    },
+    {
+      "order": 10,
+      "zh": "喷壶",
+      "en": "spray bottle"
+    }
+  ],
+  "image": {
+    "filename": "H09_home_cleaning.png",
+    "path": "input_pics/01_居家生活/H09_home_cleaning.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of home cleaning (家庭清洁).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: vacuum cleaner, broom, dustpan, mop, bucket, sponge, rubber gloves, bin, bin bag, spray bottle.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "8835b83df32b704c9a36fb818ae616ec99cfa6d2af73e0b7c856bc656e94fafc"
+}

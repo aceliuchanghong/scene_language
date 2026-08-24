@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "T05",
+  "slug": "T05_airport_check_in",
+  "batch": "A",
+  "category": {
+    "id": "T",
+    "order": 3,
+    "zh": "城市与交通",
+    "en": "City and transport"
+  },
+  "scene": {
+    "zh": "机场值机",
+    "en": "airport check in"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "值机柜台",
+      "en": "check-in desk"
+    },
+    {
+      "order": 2,
+      "zh": "登机牌",
+      "en": "boarding pass"
+    },
+    {
+      "order": 3,
+      "zh": "护照",
+      "en": "passport"
+    },
+    {
+      "order": 4,
+      "zh": "行李箱",
+      "en": "suitcase"
+    },
+    {
+      "order": 5,
+      "zh": "行李传送带",
+      "en": "baggage belt"
+    },
+    {
+      "order": 6,
+      "zh": "航空公司职员",
+      "en": "airline staff"
+    },
+    {
+      "order": 7,
+      "zh": "队伍",
+      "en": "queue"
+    },
+    {
+      "order": 8,
+      "zh": "行李牌",
+      "en": "luggage tag"
+    },
+    {
+      "order": 9,
+      "zh": "行李秤",
+      "en": "baggage scale"
+    },
+    {
+      "order": 10,
+      "zh": "航班屏",
+      "en": "flight screen"
+    }
+  ],
+  "image": {
+    "filename": "T05_airport_check_in.png",
+    "path": "input_pics/03_城市与交通/T05_airport_check_in.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of airport check in (机场值机).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: check-in desk, boarding pass, passport, suitcase, baggage belt, airline staff, queue, luggage tag, baggage scale, flight screen.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "b93ab33913c13c421fb937ef19c43124f65c90210bf04476c832e39fecc50508"
+}

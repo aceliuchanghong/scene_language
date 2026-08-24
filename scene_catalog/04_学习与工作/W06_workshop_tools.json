@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "W06",
+  "slug": "W06_workshop_tools",
+  "batch": "B",
+  "category": {
+    "id": "W",
+    "order": 4,
+    "zh": "学习与工作",
+    "en": "Study and work"
+  },
+  "scene": {
+    "zh": "维修工作台",
+    "en": "workshop tools"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "工作台",
+      "en": "workbench"
+    },
+    {
+      "order": 2,
+      "zh": "锤子",
+      "en": "hammer"
+    },
+    {
+      "order": 3,
+      "zh": "螺丝刀",
+      "en": "screwdriver"
+    },
+    {
+      "order": 4,
+      "zh": "扳手",
+      "en": "spanner"
+    },
+    {
+      "order": 5,
+      "zh": "钳子",
+      "en": "pliers"
+    },
+    {
+      "order": 6,
+      "zh": "电钻",
+      "en": "drill"
+    },
+    {
+      "order": 7,
+      "zh": "卷尺",
+      "en": "tape measure"
+    },
+    {
+      "order": 8,
+      "zh": "螺丝",
+      "en": "screw"
+    },
+    {
+      "order": 9,
+      "zh": "钉子",
+      "en": "nail"
+    },
+    {
+      "order": 10,
+      "zh": "工具箱",
+      "en": "toolbox"
+    }
+  ],
+  "image": {
+    "filename": "W06_workshop_tools.png",
+    "path": "input_pics/04_学习与工作/W06_workshop_tools.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of workshop tools (维修工作台).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: workbench, hammer, screwdriver, spanner, pliers, drill, tape measure, screw, nail, toolbox.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "9ac19fdad7556999e9cce8054b1389a69fe1e20865aacf7387ff0e507032c1ab"
+}

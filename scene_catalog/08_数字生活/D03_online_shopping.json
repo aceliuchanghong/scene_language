@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "D03",
+  "slug": "D03_online_shopping",
+  "batch": "C",
+  "category": {
+    "id": "D",
+    "order": 8,
+    "zh": "数字生活",
+    "en": "Digital life"
+  },
+  "scene": {
+    "zh": "网上购物",
+    "en": "online shopping"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "商品页",
+      "en": "product page"
+    },
+    {
+      "order": 2,
+      "zh": "搜索栏",
+      "en": "search bar"
+    },
+    {
+      "order": 3,
+      "zh": "购物车图标",
+      "en": "shopping cart icon"
+    },
+    {
+      "order": 4,
+      "zh": "商品图",
+      "en": "product photo"
+    },
+    {
+      "order": 5,
+      "zh": "尺码选项",
+      "en": "size selector"
+    },
+    {
+      "order": 6,
+      "zh": "加入购物车按钮",
+      "en": "add-to-basket button"
+    },
+    {
+      "order": 7,
+      "zh": "收货地址",
+      "en": "delivery address"
+    },
+    {
+      "order": 8,
+      "zh": "支付卡",
+      "en": "payment card"
+    },
+    {
+      "order": 9,
+      "zh": "订单号",
+      "en": "order number"
+    },
+    {
+      "order": 10,
+      "zh": "送货车",
+      "en": "delivery van"
+    }
+  ],
+  "image": {
+    "filename": "D03_online_shopping.png",
+    "path": "input_pics/08_数字生活/D03_online_shopping.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "programmatic_ui_composite",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of online shopping (网上购物).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: product page, search bar, shopping cart icon, product photo, size selector, add-to-basket button, delivery address, payment card, order number, delivery van.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "8a422de0fac2940a9150a7f5c22ecbee0d013002d5368583e2b5670401e359c0"
+}

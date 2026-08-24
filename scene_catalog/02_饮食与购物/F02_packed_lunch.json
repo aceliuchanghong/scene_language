@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "F02",
+  "slug": "F02_packed_lunch",
+  "batch": "A",
+  "category": {
+    "id": "F",
+    "order": 2,
+    "zh": "饮食与购物",
+    "en": "Food and shopping"
+  },
+  "scene": {
+    "zh": "午餐盒",
+    "en": "packed lunch"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "午餐盒",
+      "en": "lunch box"
+    },
+    {
+      "order": 2,
+      "zh": "三明治",
+      "en": "sandwich"
+    },
+    {
+      "order": 3,
+      "zh": "沙拉",
+      "en": "salad"
+    },
+    {
+      "order": 4,
+      "zh": "汤",
+      "en": "soup"
+    },
+    {
+      "order": 5,
+      "zh": "苹果",
+      "en": "apple"
+    },
+    {
+      "order": 6,
+      "zh": "香蕉",
+      "en": "banana"
+    },
+    {
+      "order": 7,
+      "zh": "饼干",
+      "en": "biscuit"
+    },
+    {
+      "order": 8,
+      "zh": "水瓶",
+      "en": "water bottle"
+    },
+    {
+      "order": 9,
+      "zh": "叉子",
+      "en": "fork"
+    },
+    {
+      "order": 10,
+      "zh": "保温杯",
+      "en": "thermos"
+    }
+  ],
+  "image": {
+    "filename": "F02_packed_lunch.png",
+    "path": "input_pics/02_饮食与购物/F02_packed_lunch.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of packed lunch (午餐盒).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: lunch box, sandwich, salad, soup, apple, banana, biscuit, water bottle, fork, thermos.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "a1138b8a16797d4cbdd691efa12797a0deb65b63f9f0b1b275f37b6a76990874"
+}

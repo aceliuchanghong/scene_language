@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "S",
+    "order": 5,
+    "zh": "医疗与公共服务",
+    "en": "Health and public services",
+    "batch": "B"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "S01_clinic_waiting_room.json",
+    "S02_doctor_consultation.json",
+    "S03_pharmacy.json",
+    "S04_dentist.json",
+    "S05_post_office.json",
+    "S06_bank.json"
+  ]
+}

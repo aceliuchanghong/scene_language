@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "L02",
+  "slug": "L02_playground",
+  "batch": "B",
+  "category": {
+    "id": "L",
+    "order": 6,
+    "zh": "社交与休闲",
+    "en": "Social life and leisure"
+  },
+  "scene": {
+    "zh": "儿童游乐场",
+    "en": "playground"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "秋千",
+      "en": "swing"
+    },
+    {
+      "order": 2,
+      "zh": "滑梯",
+      "en": "slide"
+    },
+    {
+      "order": 3,
+      "zh": "跷跷板",
+      "en": "seesaw"
+    },
+    {
+      "order": 4,
+      "zh": "攀爬架",
+      "en": "climbing frame"
+    },
+    {
+      "order": 5,
+      "zh": "沙坑",
+      "en": "sandpit"
+    },
+    {
+      "order": 6,
+      "zh": "旋转木马",
+      "en": "roundabout"
+    },
+    {
+      "order": 7,
+      "zh": "孩子",
+      "en": "child"
+    },
+    {
+      "order": 8,
+      "zh": "家长",
+      "en": "parent"
+    },
+    {
+      "order": 9,
+      "zh": "球",
+      "en": "ball"
+    },
+    {
+      "order": 10,
+      "zh": "跳绳",
+      "en": "skipping rope"
+    }
+  ],
+  "image": {
+    "filename": "L02_playground.png",
+    "path": "input_pics/06_社交与休闲/L02_playground.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of playground (儿童游乐场).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: swing, slide, seesaw, climbing frame, sandpit, roundabout, child, parent, ball, skipping rope.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "ff1810a7e1dd374dd3648b88db94c402b50e4e1293a5d112ff9667438818d3b8"
+}

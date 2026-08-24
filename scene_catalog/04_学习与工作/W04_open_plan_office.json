@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "W04",
+  "slug": "W04_open_plan_office",
+  "batch": "B",
+  "category": {
+    "id": "W",
+    "order": 4,
+    "zh": "学习与工作",
+    "en": "Study and work"
+  },
+  "scene": {
+    "zh": "开放式办公室",
+    "en": "open plan office"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "办公室职员",
+      "en": "office worker"
+    },
+    {
+      "order": 2,
+      "zh": "工位",
+      "en": "workstation"
+    },
+    {
+      "order": 3,
+      "zh": "耳麦",
+      "en": "headset"
+    },
+    {
+      "order": 4,
+      "zh": "打印机",
+      "en": "printer"
+    },
+    {
+      "order": 5,
+      "zh": "复印机",
+      "en": "photocopier"
+    },
+    {
+      "order": 6,
+      "zh": "文件柜",
+      "en": "filing cabinet"
+    },
+    {
+      "order": 7,
+      "zh": "文件",
+      "en": "document"
+    },
+    {
+      "order": 8,
+      "zh": "订书机",
+      "en": "stapler"
+    },
+    {
+      "order": 9,
+      "zh": "回形针",
+      "en": "paper clip"
+    },
+    {
+      "order": 10,
+      "zh": "饮水机",
+      "en": "water cooler"
+    }
+  ],
+  "image": {
+    "filename": "W04_open_plan_office.png",
+    "path": "input_pics/04_学习与工作/W04_open_plan_office.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of open plan office (开放式办公室).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: office worker, workstation, headset, printer, photocopier, filing cabinet, document, stapler, paper clip, water cooler.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "a89602aabeae7082dce9b883fbcd8c3eb93bb919f56de6e1c7f025a459a9906e"
+}

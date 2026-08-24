@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "T02",
+  "slug": "T02_bus_stop",
+  "batch": "A",
+  "category": {
+    "id": "T",
+    "order": 3,
+    "zh": "城市与交通",
+    "en": "City and transport"
+  },
+  "scene": {
+    "zh": "公交车站",
+    "en": "bus stop"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "公交站",
+      "en": "bus stop"
+    },
+    {
+      "order": 2,
+      "zh": "候车亭",
+      "en": "shelter"
+    },
+    {
+      "order": 3,
+      "zh": "时刻表",
+      "en": "timetable"
+    },
+    {
+      "order": 4,
+      "zh": "公交车",
+      "en": "bus"
+    },
+    {
+      "order": 5,
+      "zh": "司机",
+      "en": "driver"
+    },
+    {
+      "order": 6,
+      "zh": "乘客",
+      "en": "passenger"
+    },
+    {
+      "order": 7,
+      "zh": "售票机",
+      "en": "ticket machine"
+    },
+    {
+      "order": 8,
+      "zh": "交通卡",
+      "en": "travel card"
+    },
+    {
+      "order": 9,
+      "zh": "扶手",
+      "en": "handrail"
+    },
+    {
+      "order": 10,
+      "zh": "优先座",
+      "en": "priority seat"
+    }
+  ],
+  "image": {
+    "filename": "T02_bus_stop.png",
+    "path": "input_pics/03_城市与交通/T02_bus_stop.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of bus stop (公交车站).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: bus stop, shelter, timetable, bus, driver, passenger, ticket machine, travel card, handrail, priority seat.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "918ce4ac51637a3741e24e34de925679305bd735f48a9341b931e01623f312a0"
+}

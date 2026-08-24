@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "W03",
+  "slug": "W03_office_meeting",
+  "batch": "B",
+  "category": {
+    "id": "W",
+    "order": 4,
+    "zh": "学习与工作",
+    "en": "Study and work"
+  },
+  "scene": {
+    "zh": "办公室会议",
+    "en": "office meeting"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "会议室",
+      "en": "meeting room"
+    },
+    {
+      "order": 2,
+      "zh": "会议桌",
+      "en": "conference table"
+    },
+    {
+      "order": 3,
+      "zh": "投影仪",
+      "en": "projector"
+    },
+    {
+      "order": 4,
+      "zh": "投影幕",
+      "en": "projection screen"
+    },
+    {
+      "order": 5,
+      "zh": "演示",
+      "en": "presentation"
+    },
+    {
+      "order": 6,
+      "zh": "同事",
+      "en": "colleague"
+    },
+    {
+      "order": 7,
+      "zh": "议程",
+      "en": "agenda"
+    },
+    {
+      "order": 8,
+      "zh": "便利贴",
+      "en": "sticky note"
+    },
+    {
+      "order": 9,
+      "zh": "活动挂图",
+      "en": "flip chart"
+    },
+    {
+      "order": 10,
+      "zh": "视频通话",
+      "en": "video call"
+    }
+  ],
+  "image": {
+    "filename": "W03_office_meeting.png",
+    "path": "input_pics/04_学习与工作/W03_office_meeting.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of office meeting (办公室会议).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: meeting room, conference table, projector, projection screen, presentation, colleague, agenda, sticky note, flip chart, video call.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "fb3fe047909bb3331677a1b26e4fc53c4a4376dddbc71e454bd11fd2c064216c"
+}
