@@ -24,9 +24,12 @@ MAX_TOKENS = int(os.getenv("MAX_TOKENS", "12800"))
 TIMEOUT = float(os.getenv("TIMEOUT", "60"))
 MAX_RETRIES = int(os.getenv("MAX_RETRIES", "3"))
 
-# 本地 Kokoro-82M ONNX TTS(参考 luoci_log 工具,模型已下载)
+# 本地 Kokoro-82M ONNX TTS(可用 .env 中 KOKORO_MODEL_DIR 覆盖)
 KOKORO_MODEL_DIR = Path(
-    r"C:\Users\lawrence\PycharmProjects\luoci_log\z_using_file\tools\models\Kokoro-82M-v1.0-ONNX"
+    os.getenv(
+        "KOKORO_MODEL_DIR",
+        r"C:\Users\lawrence\PycharmProjects\luoci_log\z_using_file\tools\models\Kokoro-82M-v1.0-ONNX",
+    )
 )
 KOKORO_ONNX = KOKORO_MODEL_DIR / "onnx" / "model.onnx"
 KOKORO_VOICES_DIR = KOKORO_MODEL_DIR / "voices"
@@ -58,8 +61,8 @@ def ensure_dirs() -> None:
         JSON_DIR,
         SOURCE_LANG_DIR,
         TARGET_LANG_DIR,
-    PRON_DIR,
-    FRAMES_DIR,
+        PRON_DIR,
+        FRAMES_DIR,
         AUDIO_DIR,
         VIDEO_DIR,
     ):

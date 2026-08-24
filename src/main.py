@@ -1,9 +1,10 @@
 """流水线总入口。
 
-uv run python -m src.main --image input_pics/生活场景/carriage.png
-uv run python -m src.main --all
-uv run python -m src.main --image ... --step 3      # 单步调试
-uv run python -m src.main --image ... --no-cache --no-video
+uv run python -m src.main input_pics/生活场景/carriage.png
+uv run python -m src.main --all                          # 整个 input_pics/
+uv run python -m src.main input_pics/02_饮食与购物 --all  # 只跑某个子目录
+uv run python -m src.main input_pics/.../carriage.png --step 3   # 单步调试
+uv run python -m src.main input_pics/.../carriage.png --no-cache --no-video
 """
 
 from __future__ import annotations
@@ -62,17 +63,17 @@ def list_voices() -> None:
 
 
 def collect_images(all_pics: bool, image: str | None) -> list[Path]:
+    root = Path(image) if image else config.INPUT_DIR
     if all_pics:
-        pics = sorted(
-            p for p in config.INPUT_DIR.rglob("*") if p.suffix.lower() in IMAGE_EXTS
-        )
+        if not root.exists():
+            raise SystemExit(f"目录不存在: {root}")
+        pics = sorted(p for p in root.rglob("*") if p.suffix.lower() in IMAGE_EXTS)
         if not pics:
-            raise SystemExit(f"{config.INPUT_DIR} 下没有图片")
+            raise SystemExit(f"{root} 下没有图片")
         return pics
-    p = Path(image or "")
-    if not p.exists():
-        raise SystemExit(f"图片不存在: {p}")
-    return [p]
+    if not root.is_file():
+        raise SystemExit(f"图片不存在: {root}")
+    return [root]
 
 
 def run_pipeline(
@@ -112,9 +113,13 @@ def run_pipeline(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="场景外语词汇视频生成流水线")
-    parser.add_argument("--image", help="单张图片路径")
     parser.add_argument(
-        "--all", action="store_true", help="批处理 input_pics/ 下全部图片"
+        "image",
+        nargs="?",
+        help="单张图片路径;配合 --all 时为要批处理的子目录 (默认整个 input_pics/)",
+    )
+    parser.add_argument(
+        "--all", action="store_true", help="批处理指定目录(或 input_pics/)下全部图片"
     )
     parser.add_argument("--step", type=int, choices=[1, 2, 3, 4], help="只执行某一步")
     parser.add_argument("--no-cache", action="store_true", help="强制重新请求 VLM/LLM")
