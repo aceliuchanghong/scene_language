@@ -36,8 +36,8 @@ FPS = 25
 # 2. 片头 3 张全景图展示与过渡
 DEFAULT_LAYER_DURS = [
     1.5,
-    3.0,
-    3.0,
+    4.0,
+    4.0,
 ]  # 片头 3 张图展示时长(中文1.5s, 双语3.0s, 音标3.0s)
 DEFAULT_XFADE_DUR = 0.30  # 片头图片之间交叉淡化时长(秒)
 
@@ -53,8 +53,8 @@ DEFAULT_AUDIO_POST_PAD = 0.50  # 朗读后静音留白时长(秒)
 DEFAULT_MIN_SEG_DUR = 1.20  # 单个词汇片段保底最小时长(秒)
 
 # 4. 片尾收束
-DEFAULT_OUTRO_HOLD_DUR = 3.0  # 片尾回显第 3 张图(图C)静止停留时长(秒)
-OUTRO_FADE_DUR = 0.60  # 片尾结束前淡出至黑场的时长(秒)
+DEFAULT_OUTRO_HOLD_DUR = 4.0  # 片尾回显第 3 张图(图C)静止停留时长(秒)
+OUTRO_FADE_DUR = 0.50  # 片尾结束前淡出至黑场的时长(秒)
 
 # 5. 背景音乐 (BGM) 智能压音与混音
 BGM_VOLUME_INTRO = 0.70  # 片头静止图展示阶段 BGM 音量 (0.0~1.0, 较大声)
@@ -62,6 +62,11 @@ BGM_VOLUME_DUCKED = 0.15  # 正文 TTS 朗读阶段 BGM 压低音量 (0.0~1.0, �
 BGM_DUCK_LEAD = 0.40  # BGM 在片头结束前提早开始压音的时间(秒)
 BGM_DUCK_TAIL = 0.30  # BGM 压音过渡到最低音量的时间点(片头结束后秒数)
 BGM_FADE_OUT_DUR = 0.50  # 视频结尾 BGM 平滑淡出时长(秒)
+
+# 6. 输出画面整体缩放 (内容等比缩小后居中，四周补黑)
+OUTPUT_SHRINK_FRACTION = (
+    1 / 6
+)  # 缩小量：内容保留原尺寸的 5/6，画布仍保持 1080x1920 黑底
 
 # ==============================================================================
 
@@ -209,14 +214,14 @@ class VisualCueAnimator:
         self.src_img = Image.open(image_path).convert("RGB")
         self.src_w, self.src_h = self.src_img.size
 
-        # 字体加载
+        # 字体加载 (教学卡片字体统一放大 1.5 倍)
         self.f_sub = _font(config.FONT_ZH, 24)
-        self.f_word_en = _font(config.FONT_EN_BOLD, 46)
-        self.f_word_ipa = _font(config.FONT_EN, 28)
-        self.f_word_zh = _font(config.FONT_ZH_BOLD, 32)
-        self.f_ex_en = _font(config.FONT_EN, 28)
-        self.f_ex_zh = _font(config.FONT_ZH, 24)
-        self.f_badge = _font(config.FONT_EN_BOLD, 22)
+        self.f_word_en = _font(config.FONT_EN_BOLD, 69)
+        self.f_word_ipa = _font(config.FONT_EN, 42)
+        self.f_word_zh = _font(config.FONT_ZH_BOLD, 48)
+        self.f_ex_en = _font(config.FONT_EN, 42)
+        self.f_ex_zh = _font(config.FONT_ZH, 36)
+        self.f_badge = _font(config.FONT_EN_BOLD, 33)
         self.f_reticle = _font(config.FONT_EN_BOLD, 18)
 
         # 预先生成环境背景 (高斯模糊 + 压暗)
@@ -386,23 +391,18 @@ class VisualCueAnimator:
         )
         d = ImageDraw.Draw(canvas)
 
-        # 6. 悬浮教学卡片 (HUD Focus Card)
-        # 智能避让：如果目标物体靠近屏幕下方，将卡片移至上方
-        card_w = 1000
-        card_h = 280
+        # 6. 悬浮教学卡片 (HUD Focus Card) — 统一放大 1.5 倍，置于上半屏 (卡片顶部在画面 0.2 高度处)
+        card_w = 1040
+        card_h = 420
         card_x0 = (W - card_w) // 2
         card_x1 = card_x0 + card_w
-
-        if py > 1300:
-            card_y0 = 100
-        else:
-            card_y0 = H - card_h - 50
+        card_y0 = int(H * 0.2)
         card_y1 = card_y0 + card_h
 
         # 卡片底板 (深色玻璃质感)
         card_mask = Image.new("L", (card_w, card_h), 0)
         ImageDraw.Draw(card_mask).rounded_rectangle(
-            [(0, 0), (card_w, card_h)], radius=22, fill=235
+            [(0, 0), (card_w, card_h)], radius=33, fill=235
         )
         card_bg = Image.new("RGB", (card_w, card_h), (12, 16, 24))
         canvas.paste(card_bg, (card_x0, card_y0), card_mask)
@@ -410,13 +410,13 @@ class VisualCueAnimator:
         # 卡片边框与顶部强调条
         d.rounded_rectangle(
             [(card_x0, card_y0), (card_x1, card_y1)],
-            radius=22,
+            radius=33,
             outline=(60, 72, 90),
-            width=2,
+            width=3,
         )
         d.rounded_rectangle(
-            [(card_x0 + 20, card_y0), (card_x0 + 160, card_y0 + 5)],
-            radius=2,
+            [(card_x0 + 30, card_y0), (card_x0 + 240, card_y0 + 8)],
+            radius=3,
             fill=theme_color,
         )
 
@@ -424,12 +424,12 @@ class VisualCueAnimator:
         # 第 1 行：序号角标 + 英文大字 + 音标 + 中文释义
         tag_text = f"FOCUS {word_idx:02d}"
         d.rounded_rectangle(
-            [(card_x0 + 28, card_y0 + 24), (card_x0 + 144, card_y0 + 60)],
-            radius=6,
+            [(card_x0 + 42, card_y0 + 36), (card_x0 + 216, card_y0 + 90)],
+            radius=9,
             fill=(*theme_color,),
         )
         d.text(
-            (card_x0 + 86, card_y0 + 42),
+            (card_x0 + 129, card_y0 + 63),
             tag_text,
             font=self.f_badge,
             fill=(15, 20, 30),
@@ -437,9 +437,9 @@ class VisualCueAnimator:
         )
 
         # 单词英文
-        en_x = card_x0 + 164
+        en_x = card_x0 + 246
         d.text(
-            (en_x, card_y0 + 42),
+            (en_x, card_y0 + 63),
             word.en,
             font=self.f_word_en,
             fill=(255, 255, 255),
@@ -448,9 +448,9 @@ class VisualCueAnimator:
         en_len = int(d.textlength(word.en, font=self.f_word_en))
 
         # 音标
-        ipa_x = en_x + en_len + 18
+        ipa_x = en_x + en_len + 27
         d.text(
-            (ipa_x, card_y0 + 44),
+            (ipa_x, card_y0 + 66),
             word.ipa,
             font=self.f_word_ipa,
             fill=(100, 200, 255),
@@ -459,10 +459,10 @@ class VisualCueAnimator:
         ipa_len = int(d.textlength(word.ipa, font=self.f_word_ipa))
 
         # 中文含义
-        zh_x = ipa_x + ipa_len + 20
-        if zh_x < card_x1 - 180:
+        zh_x = ipa_x + ipa_len + 30
+        if zh_x < card_x1 - 270:
             d.text(
-                (zh_x, card_y0 + 42),
+                (zh_x, card_y0 + 63),
                 f"· {word.zh}",
                 font=self.f_word_zh,
                 fill=(255, 214, 102),
@@ -471,7 +471,7 @@ class VisualCueAnimator:
         else:
             # 若一行排不下，中文在右上角
             d.text(
-                (card_x1 - 32, card_y0 + 42),
+                (card_x1 - 48, card_y0 + 63),
                 word.zh,
                 font=self.f_word_zh,
                 fill=(255, 214, 102),
@@ -479,36 +479,36 @@ class VisualCueAnimator:
             )
 
         # 分割线
-        div_y = card_y0 + 84
+        div_y = card_y0 + 126
         d.line(
-            [(card_x0 + 28, div_y), (card_x1 - 28, div_y)], fill=(38, 48, 62), width=1
+            [(card_x0 + 42, div_y), (card_x1 - 42, div_y)], fill=(38, 48, 62), width=2
         )
 
         # 第 2 行：英文例句 (自动换行)
-        ex_en_lines = _wrap_text(word.example_en, self.f_ex_en, card_w - 60)[:2]
-        line_y = div_y + 18
+        ex_en_lines = _wrap_text(word.example_en, self.f_ex_en, card_w - 90)[:3]
+        line_y = div_y + 24
         for line in ex_en_lines:
             d.text(
-                (card_x0 + 32, line_y),
+                (card_x0 + 48, line_y),
                 line,
                 font=self.f_ex_en,
                 fill=(240, 246, 255),
                 anchor="la",
             )
-            line_y += self.f_ex_en.size + 8
+            line_y += self.f_ex_en.size + 12
 
         # 第 3 行：中文翻译 (自动换行)
-        line_y += 4
-        ex_zh_lines = _wrap_text(word.example_zh, self.f_ex_zh, card_w - 60)[:2]
+        line_y += 6
+        ex_zh_lines = _wrap_text(word.example_zh, self.f_ex_zh, card_w - 90)[:2]
         for line in ex_zh_lines:
             d.text(
-                (card_x0 + 32, line_y),
+                (card_x0 + 48, line_y),
                 line,
                 font=self.f_ex_zh,
                 fill=(160, 175, 195),
                 anchor="la",
             )
-            line_y += self.f_ex_zh.size + 6
+            line_y += self.f_ex_zh.size + 9
 
         return canvas
 
@@ -721,6 +721,34 @@ def _outro_hold_clip(
     return hold_dur
 
 
+def _apply_shrink_pad(src: Path, dst: Path) -> None:
+    """把视频内容整体缩小 1/6 (保留 5/6 尺寸) 并居中放到 1080x1920 黑色画布上 (保持 9:16)。"""
+    sw = round(W * (1 - OUTPUT_SHRINK_FRACTION))
+    sh = round(H * (1 - OUTPUT_SHRINK_FRACTION))
+    subprocess.run(
+        [
+            "ffmpeg",
+            "-y",
+            "-loglevel",
+            "error",
+            "-i",
+            str(src),
+            "-vf",
+            f"scale={sw}:{sh},pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:color=black",
+            "-c:v",
+            "libx264",
+            "-preset",
+            "fast",
+            "-crf",
+            "20",
+            "-c:a",
+            "copy",
+            str(dst),
+        ],
+        check=True,
+    )
+
+
 def compose_video(
     json_path: Path,
     voice: str = config.DEFAULT_VOICE,
@@ -864,6 +892,7 @@ def compose_video(
             f"[voice][bgm]amix=inputs=2:duration=first:dropout_transition=0:weights=1 1[aout]"
         )
 
+        mixed_video = work_dir / "mixed_full.mp4"
         subprocess.run(
             [
                 "ffmpeg",
@@ -886,14 +915,17 @@ def compose_video(
                 "aac",
                 "-b:a",
                 "192k",
-                str(final_video),
+                str(mixed_video),
             ],
             check=True,
         )
     else:
-        import shutil
+        mixed_video = raw_concat
 
-        shutil.copyfile(raw_concat, final_video)
+    print(
+        f"[step4] 输出画面整体缩小 {OUTPUT_SHRINK_FRACTION:.2f} 并居中补黑 (保持 {W}x{H})…"
+    )
+    _apply_shrink_pad(mixed_video, final_video)
 
     print(f"[step4] 视频合成完毕! 输出: {final_video}")
     return final_video

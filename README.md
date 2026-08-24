@@ -130,15 +130,17 @@ uv run python -m src.main --list-voices
 
 ## 自动上传到各平台
 
-使用 [social-auto-upload](https://github.com/dreammis/social-auto-upload)（已克隆安装到 `C:\Users\lawrence\PycharmProjects\social-auto-upload`），基于浏览器自动化，支持 抖音、小红书、视频号、Bilibili、YouTube 等平台。无需 API key，扫码登录一次即可。
+使用 [social-auto-upload](https://github.com/dreammis/social-auto-upload)（已克隆安装到 `../social-auto-upload`），基于浏览器自动化，支持 抖音、小红书、视频号、Bilibili、YouTube 等平台。无需 API key，扫码登录一次即可。
 
-### 登录（每个平台只需一次，cookie 会保存）
+### 登录
 
 ```powershell
 cd C:\Users\lawrence\PycharmProjects\social-auto-upload
+(Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& c:\Users\lawrence\PycharmProjects\social-auto-upload\.venv\Scripts\Activate.ps1)
 
 uv run sau douyin login --account lawrence        # 抖音，扫码
 uv run sau xiaohongshu login --account lawrence   # 小红书，扫码
+
 uv run sau tencent login --account lawrence       # 视频号，扫码
 uv run sau bilibili login --account lawrence      # B站
 ```
@@ -148,11 +150,11 @@ uv run sau bilibili login --account lawrence      # B站
 ### 上传视频
 
 ```powershell
-uv run sau douyin upload-video --account lawrence `
-  --file output/carriage.mp4 `
-  --title "马车 carriage" --desc "场景词汇学习" --tags "英语,词汇"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H01_entrance.mp4 --title "第一集-居家生活-玄关场景" --desc "居家生活-玄关场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --collection "场景英语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H01_entrance.png --declaration "内容为个人观点或见解"
+
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H01_entrance.mp4 --title "第一集-居家生活-玄关场景" --desc "居家生活-玄关场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记"
 
 # 其他平台同理，把 douyin 换成 xiaohongshu / tencent / bilibili / youtube
 # 支持 --schedule "2026-08-23 09:00" 定时发布（抖音/小红书/视频号/B站支持）
-# 支持 --headless 后台运行 / --debug 调试
+# --thumbnail-landscape 4:3 横版封面 --thumbnail-portrait 3:4 竖版封面
 ```

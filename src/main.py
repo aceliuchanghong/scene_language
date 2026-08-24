@@ -123,6 +123,11 @@ def main() -> None:
     )
     parser.add_argument("--step", type=int, choices=[1, 2, 3, 4], help="只执行某一步")
     parser.add_argument("--no-cache", action="store_true", help="强制重新请求 VLM/LLM")
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="批处理时不跳过已有视频的图片,强制重跑 (--no-cache 隐含此行为)",
+    )
     parser.add_argument("--no-video", action="store_true", help="只渲染图片,不合成视频")
     parser.add_argument("--voice", default=config.DEFAULT_VOICE, help="英文 TTS 音色")
     parser.add_argument("--speed", type=float, default=1.2, help="英文语速 (默认 1.2)")
@@ -138,8 +143,18 @@ def main() -> None:
         parser.error("需要 --image 或 --all")
 
     config.ensure_dirs()
-    for image_path in collect_images(args.all, args.image):
+    images = collect_images(args.all, args.image)
+    skip_existing = (
+        args.all and not args.force and not args.no_cache and not args.step and not args.no_video
+    )
+    failed: list[Path] = []
+    done = skipped = 0
+    for image_path in images:
         print(f"\n===== {image_path} =====")
+        if skip_existing and (config.VIDEO_DIR / f"{image_path.stem}.mp4").exists():
+            print(f"[main] 视频已存在,跳过: {image_path.stem}.mp4")
+            skipped += 1
+            continue
         try:
             run_pipeline(
                 image_path,
@@ -150,12 +165,24 @@ def main() -> None:
                 speed=args.speed,
                 zoom=args.zoom,
             )
-        except SystemExit:
-            raise
+            done += 1
+        except SystemExit as e:  # 各步骤以 SystemExit 报错;批量模式下记录后继续
+            failed.append(image_path)
+            print(f"[main] 处理 {image_path.name} 失败: {e}", file=sys.stderr)
         except Exception as e:  # noqa: BLE001
+            failed.append(image_path)
             print(f"[main] 处理 {image_path.name} 失败: {e}", file=sys.stderr)
             if not args.all:
                 raise
+
+    if args.all:
+        total = len(images)
+        print(f"\n===== 批量完成: 共 {total} | 成功 {done} | 跳过 {skipped} | 失败 {len(failed)} =====")
+        if failed:
+            print("失败列表:")
+            for p in failed:
+                print(f"  - {p}")
+            sys.exit(1)
 
 
 if __name__ == "__main__":
