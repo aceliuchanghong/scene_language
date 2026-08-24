@@ -3,7 +3,7 @@
 视频结构 (1080x1920, 25fps):
     1. 片头 (~3s): 全景图展示与场景引导
     2. 正文 (遍历词汇): 镜头平滑推近至目标物体 (x, y) + 聚光灯高亮 + 悬浮大字卡片 + 单词发音与例句朗读
-    3. 片尾 (~4s): 完整词汇汇总表格打卡页 (提示截图保存)
+    3. 片尾 (~3s): 回显图C (音标层) 静止停留后淡出至黑场收束
 
 单独运行:
     uv run python -m src.step4.cli --image input_pics/生活场景/carriage.png
@@ -49,8 +49,12 @@ DEFAULT_TRANS_GLIDE = 0.35  # 后续词汇平移漫游时长(秒, 从上一词�
 # 4. TTS 语音朗读与音频留白
 DEFAULT_SPEED = 1.2  # 默认英文例句 TTS 朗读语速 (1.0 为原速, 1.2 为加速 20%)
 DEFAULT_AUDIO_PRE_PAD = 0.06  # 朗读前静音留白时长(秒)
-DEFAULT_AUDIO_POST_PAD = 0.08  # 朗读后静音留白时长(秒)
+DEFAULT_AUDIO_POST_PAD = 0.50  # 朗读后静音留白时长(秒)
 DEFAULT_MIN_SEG_DUR = 1.20  # 单个词汇片段保底最小时长(秒)
+
+# 4. 片尾收束
+DEFAULT_OUTRO_HOLD_DUR = 3.0  # 片尾回显第 3 张图(图C)静止停留时长(秒)
+OUTRO_FADE_DUR = 0.60  # 片尾结束前淡出至黑场的时长(秒)
 
 # 5. 背景音乐 (BGM) 智能压音与混音
 BGM_VOLUME_INTRO = 0.70  # 片头静止图展示阶段 BGM 音量 (0.0~1.0, 较大声)
@@ -206,7 +210,6 @@ class VisualCueAnimator:
         self.src_w, self.src_h = self.src_img.size
 
         # 字体加载
-        self.f_title = _font(config.FONT_ZH_BOLD, 32)
         self.f_sub = _font(config.FONT_ZH, 24)
         self.f_word_en = _font(config.FONT_EN_BOLD, 46)
         self.f_word_ipa = _font(config.FONT_EN, 28)
@@ -238,7 +241,6 @@ class VisualCueAnimator:
         total_words: int,
         t: float,
         duration: float,
-        scene_title: str,
         zoom_target: float = DEFAULT_ZOOM,
         prev_word: WordItem | None = None,
     ) -> Image.Image:
@@ -330,30 +332,8 @@ class VisualCueAnimator:
 
         d = ImageDraw.Draw(canvas)
 
-        # 5. 顶部场景状态条 (Top Pill Bar)
+        # 5. 目标锚点指示器 (Reticle & Pulse Glow)
         theme_color = PALETTE[(word_idx - 1) % len(PALETTE)]
-        top_title = (
-            f"{scene_title or '场景外语学习'} · 词汇 {word_idx:02d}/{total_words:02d}"
-        )
-        top_chip_w = int(d.textlength(top_title, font=self.f_title)) + 48
-        tc_x0 = (W - top_chip_w) // 2
-        tc_y0 = 32
-        d.rounded_rectangle(
-            [(tc_x0, tc_y0), (tc_x0 + top_chip_w, tc_y0 + 52)],
-            radius=26,
-            fill=(14, 18, 26),
-            outline=(255, 255, 255),
-            width=1,
-        )
-        d.text(
-            (W // 2, tc_y0 + 26),
-            top_title,
-            font=self.f_title,
-            fill=(255, 255, 255),
-            anchor="mm",
-        )
-
-        # 6. 目标锚点指示器 (Reticle & Pulse Glow)
         pulse = (math.sin(t * 6.0) + 1.0) / 2.0  # 0~1 呼吸
         r_inner = 20
         r_pulse = int(24 + 10 * pulse)
@@ -406,7 +386,7 @@ class VisualCueAnimator:
         )
         d = ImageDraw.Draw(canvas)
 
-        # 7. 悬浮教学卡片 (HUD Focus Card)
+        # 6. 悬浮教学卡片 (HUD Focus Card)
         # 智能避让：如果目标物体靠近屏幕下方，将卡片移至上方
         card_w = 1000
         card_h = 280
@@ -547,7 +527,6 @@ def _render_word_segment_video(
     total_words: int,
     audio_wav: Path,
     duration: float,
-    scene_title: str,
     out_mp4: Path,
     zoom_target: float = DEFAULT_ZOOM,
     prev_word: WordItem | None = None,
@@ -601,7 +580,6 @@ def _render_word_segment_video(
             total_words=total_words,
             t=t,
             duration=duration,
-            scene_title=scene_title,
             zoom_target=zoom_target,
             prev_word=prev_word,
         )
@@ -691,6 +669,58 @@ def _intro_layers_clip(
     return total
 
 
+def _outro_hold_clip(
+    still: Path,
+    out_mp4: Path,
+    hold_dur: float = DEFAULT_OUTRO_HOLD_DUR,
+) -> float:
+    """片尾：回显图C静止停留 hold_dur 秒，结尾淡出至黑场后收束。返回总时长。"""
+    fade_st = max(0.0, hold_dur - OUTRO_FADE_DUR)
+
+    cmd = [
+        "ffmpeg",
+        "-y",
+        "-loglevel",
+        "error",
+        "-loop",
+        "1",
+        "-t",
+        f"{hold_dur:.2f}",
+        "-i",
+        str(still),
+        "-f",
+        "lavfi",
+        "-t",
+        f"{hold_dur:.2f}",
+        "-i",
+        "anullsrc=r=44100:cl=stereo",
+        "-vf",
+        f"fade=t=out:st={fade_st:.2f}:d={OUTRO_FADE_DUR:.2f}",
+        "-t",
+        f"{hold_dur:.2f}",
+        "-r",
+        str(FPS),
+        "-c:v",
+        "libx264",
+        "-preset",
+        "fast",
+        "-crf",
+        "20",
+        "-c:a",
+        "aac",
+        "-b:a",
+        "192k",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
+        "-shortest",
+        str(out_mp4),
+    ]
+    subprocess.run(cmd, check=True)
+    return hold_dur
+
+
 def compose_video(
     json_path: Path,
     voice: str = config.DEFAULT_VOICE,
@@ -775,14 +805,19 @@ def compose_video(
             total_words=total_words,
             audio_wav=wav_path,
             duration=seg_dur,
-            scene_title=data.scene,
             out_mp4=seg_mp4,
             zoom_target=zoom_target,
             prev_word=prev_word,
         )
         parts.append(seg_mp4)
 
-    # 3. 视频初步无缝拼接 (3图全景 + 逐词漫游 TTS 视频)
+    # 3. 片尾收束: 回显图C静止 3s 后淡出关闭
+    outro_mp4 = work_dir / "99_outro.mp4"
+    total_outro_t = _outro_hold_clip(stills[2], outro_mp4)
+    print(f"[step4] 片尾图C回显 {total_outro_t:.1f}s (结尾淡出收束) 生成完毕")
+    parts.append(outro_mp4)
+
+    # 4. 视频初步无缝拼接 (3图全景 + 逐词漫游 TTS 视频 + 片尾回显)
     concat_list = work_dir / "concat_list.txt"
     concat_list.write_text(
         "".join(f"file '{p.as_posix()}'\n" for p in parts),
@@ -809,8 +844,8 @@ def compose_video(
         check=True,
     )
 
-    # 4. 全局 BGM 动态智能压音混音 (片头静止图较大声，TTS朗读时自动压低轻柔旋律)
-    total_video_t = total_intro_t + sum(word_durations)
+    # 5. 全局 BGM 动态智能压音混音 (片头静止图较大声，TTS朗读时自动压低轻柔旋律)
+    total_video_t = total_intro_t + sum(word_durations) + total_outro_t
     if bgm_path and Path(bgm_path).exists():
         print(
             f"[step4] 正在注入全篇智能压音 BGM ({Path(bgm_path).name}) -> {final_video}"

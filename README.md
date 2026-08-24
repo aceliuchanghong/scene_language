@@ -29,7 +29,7 @@ Input (如 carriage.png)
 
 ## 当前状态
 
-支持 `en`，默认英式男声 `bm_george`。示例输入：`input_pics/生活场景/carriage.png`，图片与视频输出在 `output/` 下。
+支持 `en`，默认英式男声 `bm_george`。示例输入：`input_pics/01_居家生活/H01_entrance.png`，图片与视频输出在 `output/` 下。
 
 ## 安装
 ```powershell
@@ -39,25 +39,25 @@ uv sync
 ## 运行
 ```powershell
 # 对单个图片生成完整视频 (支持 Visual Cue 镜头缩放与聚焦)
-uv run python -m src.main --image input_pics/生活场景/carriage.png
+uv run python -m src.main --image input_pics/01_居家生活/H01_entrance.png
 
 # 批量处理 input_pics/ 下的所有场景图片
 uv run python -m src.main --all
 
 # 强制重新请求 VLM/LLM (不使用中间缓存)
-uv run python -m src.main --image input_pics/生活场景/carriage.png --no-cache
+uv run python -m src.main --image input_pics/01_居家生活/H01_entrance.png --no-cache
 
 # 指定音色、语速与运镜放大倍率 (默认 zoom 1.7)
-uv run python -m src.main --image input_pics/生活场景/carriage.png --voice bm_george --speed 1.1 --zoom 1.7
+uv run python -m src.main --image input_pics/01_居家生活/H01_entrance.png --voice bm_george --speed 1.1 --zoom 1.7
 
 # 仅渲染分层图片 (不合成视频)
-uv run python -m src.main --image input_pics/生活场景/carriage.png --no-video
+uv run python -m src.main --image input_pics/01_居家生活/H01_entrance.png --no-video
 
 # 单独执行某个步骤 (1=VLM识别, 2=LLM翻译与音标, 3=图片渲染, 4=Visual Cue 视频合成)
-uv run python -m src.main --image input_pics/生活场景/carriage.png --step 1 --no-cache
-uv run python -m src.main --image input_pics/生活场景/carriage.png --step 2
-uv run python -m src.main --image input_pics/生活场景/carriage.png --step 3
-uv run python -m src.main --image input_pics/生活场景/carriage.png --step 4 --no-cache
+uv run python -m src.main --image input_pics/01_居家生活/H01_entrance.png --step 1 --no-cache
+uv run python -m src.main --image input_pics/01_居家生活/H01_entrance.png --step 2
+uv run python -m src.main --image input_pics/01_居家生活/H01_entrance.png --step 3
+uv run python -m src.main --image input_pics/01_居家生活/H01_entrance.png --step 4 --no-cache
 
 # 支持音色
 uv run python -m src.main --list-voices

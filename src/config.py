@@ -40,7 +40,6 @@ JSON_DIR = OUTPUT_DIR / "json"
 SOURCE_LANG_DIR = OUTPUT_DIR / "source_language"
 TARGET_LANG_DIR = OUTPUT_DIR / "target_language"
 PRON_DIR = OUTPUT_DIR / "pronunciation"
-TABLE_DIR = OUTPUT_DIR / "table"
 FRAMES_DIR = OUTPUT_DIR / "frames"
 AUDIO_DIR = OUTPUT_DIR / "audios"
 VIDEO_DIR = OUTPUT_DIR / "videos"
@@ -59,9 +58,8 @@ def ensure_dirs() -> None:
         JSON_DIR,
         SOURCE_LANG_DIR,
         TARGET_LANG_DIR,
-        PRON_DIR,
-        TABLE_DIR,
-        FRAMES_DIR,
+    PRON_DIR,
+    FRAMES_DIR,
         AUDIO_DIR,
         VIDEO_DIR,
     ):
