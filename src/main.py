@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+import time
 from pathlib import Path
 
 from src import config
@@ -80,6 +81,9 @@ def run_pipeline(
     image_path: Path,
     step: int | None = None,
     no_cache: bool = False,
+    no_cache_vlm: bool = False,
+    no_cache_llm: bool = False,
+    no_cache_tts: bool = False,
     no_video: bool = False,
     voice: str = config.DEFAULT_VOICE,
     speed: float = 1.2,
@@ -88,12 +92,16 @@ def run_pipeline(
     stem = image_path.stem
     json_path = config.JSON_DIR / f"{stem}.json"
 
+    vlm_no_cache = no_cache or no_cache_vlm
+    llm_no_cache = no_cache or no_cache_llm
+    tts_no_cache = no_cache or no_cache_tts
+
     steps = {
-        1: lambda: analyze_image(image_path, no_cache=no_cache),
-        2: lambda: generate_language(json_path, no_cache=no_cache),
+        1: lambda: analyze_image(image_path, no_cache=vlm_no_cache),
+        2: lambda: generate_language(json_path, no_cache=llm_no_cache),
         3: lambda: render_all(json_path),
         4: lambda: compose_video(
-            json_path, voice=voice, speed=speed, zoom_target=zoom, no_cache=no_cache
+            json_path, voice=voice, speed=speed, zoom_target=zoom, no_cache=tts_no_cache
         ),
     }
     # 单步模式:step1 需要 image,其余依赖 json;批量入口可能跨目录重名,step1 总是先跑
@@ -103,12 +111,14 @@ def run_pipeline(
         steps[step]()
         return
 
+    t_pipe_start = time.perf_counter()
     json_path = steps[1]()
     steps[2]()
     steps[3]()
     if not no_video:
         steps[4]()
-    print(f"\n全部完成: {stem}")
+    t_pipe_total = time.perf_counter() - t_pipe_start
+    print(f"\n全部完成: {stem} (总耗时 {t_pipe_total:.1f}s)")
 
 
 def main() -> None:
@@ -122,11 +132,30 @@ def main() -> None:
         "--all", action="store_true", help="批处理指定目录(或 input_pics/)下全部图片"
     )
     parser.add_argument("--step", type=int, choices=[1, 2, 3, 4], help="只执行某一步")
-    parser.add_argument("--no-cache", action="store_true", help="强制重新请求 VLM/LLM")
+    parser.add_argument(
+        "--no-cache",
+        action="store_true",
+        help="全流程强制重新生成 (忽略所有缓存: VLM/LLM/TTS 全部重跑)",
+    )
+    parser.add_argument(
+        "--no-cache-vlm",
+        action="store_true",
+        help="仅重新请求 VLM 识别场景及物体坐标 (Step 1)",
+    )
+    parser.add_argument(
+        "--no-cache-llm",
+        action="store_true",
+        help="仅重新请求 LLM 翻译、音标与例句 (Step 2, 保留已有坐标)",
+    )
+    parser.add_argument(
+        "--no-cache-tts",
+        action="store_true",
+        help="仅强制重新合成 TTS 语音 (Step 4, 不请求任何 VLM/LLM API)",
+    )
     parser.add_argument(
         "--force",
         action="store_true",
-        help="批处理时不跳过已有视频的图片,强制重跑 (--no-cache 隐含此行为)",
+        help="强制重跑流水线 (批处理时不跳过已有视频; 仍可复用 VLM/LLM/TTS 缓存)",
     )
     parser.add_argument("--no-video", action="store_true", help="只渲染图片,不合成视频")
     parser.add_argument("--voice", default=config.DEFAULT_VOICE, help="英文 TTS 音色")
@@ -145,7 +174,14 @@ def main() -> None:
     config.ensure_dirs()
     images = collect_images(args.all, args.image)
     skip_existing = (
-        args.all and not args.force and not args.no_cache and not args.step and not args.no_video
+        args.all
+        and not args.force
+        and not args.no_cache
+        and not args.no_cache_vlm
+        and not args.no_cache_llm
+        and not args.no_cache_tts
+        and not args.step
+        and not args.no_video
     )
     failed: list[Path] = []
     done = skipped = 0
@@ -160,6 +196,9 @@ def main() -> None:
                 image_path,
                 step=args.step,
                 no_cache=args.no_cache,
+                no_cache_vlm=args.no_cache_vlm,
+                no_cache_llm=args.no_cache_llm,
+                no_cache_tts=args.no_cache_tts,
                 no_video=args.no_video,
                 voice=args.voice,
                 speed=args.speed,

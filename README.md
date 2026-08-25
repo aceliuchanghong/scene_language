@@ -95,36 +95,71 @@ uv run python -m src.main input_pics/01_居家生活/H01_entrance.png
 支持 `en`，默认英式男声 `bm_george`。示例输入：`input_pics/01_居家生活/H01_entrance.png`，图片与视频输出在 `output/` 下。
 
 
-## 运行
-```bash
-# 对单个图片生成完整视频 (支持 Visual Cue 镜头缩放与聚焦)
-uv run python -m src.main input_pics/01_居家生活/H01_entrance.png
-```
+## 运行与缓存机制详解
 
-### 其他用法
+本项目采用**多阶段分层缓存设计**，避免重复调用高成本的 VLM / LLM API，同时保证音视频调整时的灵活性。
+
+### 流水线各阶段与产物
+
+| 阶段 | 核心任务 | 依赖产物 / 缓存位置 | 是否消耗 API |
+| --- | --- | --- | :---: |
+| **Step 1 (Scene Analyzer)** | 调用 VLM 识别图中 8~12 个核心物品与坐标 `(x, y)` | `output/json/<图片名>.json` 中的 `words[].{zh, x, y}` | **是 (VLM API)** |
+| **Step 2 (Language Generator)** | 调用 LLM 生成地道英文、英式音标与场景例句 | `output/json/<图片名>.json` 中的 `words[].{en, ipa, example_*}` | **是 (LLM API)** |
+| **Step 3 (Visual Renderer)** | 基于 Pillow 渲染中文层、双语层、音标层 3 张标注图 | `output/source_language/`, `target_language/`, `pronunciation/` | 否 (本地渲染, <0.2s) |
+| **Step 4 (Video Composer)** | Kokoro TTS 生成例句配音 + FFmpeg 视觉动效运镜合成 | TTS 缓存: `output/audios/.tts_cache/<md5>.npy`<br>最终视频: `output/videos/<图片名>.mp4` | 否 (本地 ONNX + FFmpeg) |
+
+---
+
+### 参数重跑行为对比表
+
+| 命令参数 | VLM 识别 (Step 1) | LLM 翻译 (Step 2) | 静态标注图 (Step 3) | TTS 语音生成 (Step 4) | 视频合成 (Step 4) | 典型应用场景 |
+| --- | :---: | :---: | :---: | :---: | :---: | --- |
+| **默认运行**<br>`uv run python -m src.main <图片>` | 有 JSON 则复用 | 有翻译则复用 | 自动生成 | 有缓存则复用 | 自动生成 | **最常用**：断点续跑，最大化节省 API 费用与时间 |
+| **`--force`** | 复用缓存 | 复用缓存 | 自动生成 | 有缓存则复用 | **强制重新合成** | 批处理 `--all` 时不跳过已有视频；或重新合成 MP4 |
+| **`--no-cache-tts`** | 复用缓存 | 复用缓存 | 自动生成 | **强制重新合成** | **强制重新合成** | 调整 TTS 音色/语速、测试发音，**零 API 成本** |
+| **`--no-cache-llm`** | 复用缓存 (保留坐标) | **强制重新请求** | 自动生成 | 针对新例句重新合成 | **强制重新合成** | 重新生成英文/音标/例句，但保留已识别的画面物体与坐标 |
+| **`--no-cache-vlm`** | **强制重新请求** | **强制重新请求** | 自动生成 | 针对新例句重新合成 | **强制重新合成** | 重新识别图片物体与坐标 |
+| **`--no-cache`** (全量) | **强制重新请求** | **强制重新请求** | 自动生成 | **强制重新合成** | **强制重新合成** | **全流程彻底推倒重来**，完全忽略所有已有缓存 |
+
+---
+
+### 常见使用示例
+
 ```bash
-# 批量处理 input_pics/ 下的所有场景图片
+# 1. 基础运行（单张图片生成视频，自动使用已有 JSON / TTS 缓存）
+uv run python -m src.main input_pics/01_居家生活/H01_entrance.png
+
+# 2. 批量处理 input_pics/ 下全部图片（默认跳过 output/videos/ 下已有视频的图片）
 uv run python -m src.main --all
 
-# 只批量处理某个子目录 (input_pics 太大时)
+# 3. 批量处理某个子目录
 uv run python -m src.main input_pics/02_饮食与购物 --all
 
-# 强制重新请求 VLM/LLM (不使用中间缓存)
-uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --no-cache
+# 4. 批量强制重跑（即使视频已存在也不跳过，仍复用 VLM/LLM/TTS 缓存，零 API 开销）
+uv run python -m src.main --all --force
 
-# 指定音色、语速与运镜放大倍率 (默认 zoom 1.7)
+# 5. 调整音色、语速或推镜倍率（TTS 根据参数自动更新，不消耗 VLM/LLM API）
 uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --voice bm_george --speed 1.1 --zoom 1.7
 
-# 仅渲染分层图片 (不合成视频)
+# 6. 仅强制重跑 TTS 配音（不重新请求任何 VLM/LLM）
+uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --no-cache-tts
+
+# 7. 仅强制重跑 LLM 翻译与例句（保留 VLM 圈出的坐标点）
+uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --no-cache-llm
+
+# 8. 全流程推倒重来（强制重新调用 VLM + LLM + TTS）
+uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --no-cache
+
+# 9. 仅渲染分层图片（不合成视频）
 uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --no-video
 
-# 也可以单独执行某个步骤 (1=VLM识别, 2=LLM翻译与音标, 3=图片渲染, 4=Visual Cue 视频合成)
+# 10. 单步调试执行 (1=VLM识别, 2=LLM翻译, 3=图片渲染, 4=视频合成)
 uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --step 1 --no-cache
 uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --step 2
 uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --step 3
-uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --step 4 --no-cache
+uv run python -m src.main input_pics/01_居家生活/H01_entrance.png --step 4 --no-cache-tts
 
-# 支持音色
+# 11. 查看本地所有支持的 TTS 音色
 uv run python -m src.main --list-voices
 ```
 

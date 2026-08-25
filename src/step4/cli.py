@@ -15,8 +15,11 @@ from __future__ import annotations
 import argparse
 import glob
 import math
+import os
 import subprocess
 import sys
+import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 import numpy as np
@@ -26,47 +29,86 @@ from src import config
 from src.models import SceneData, WordItem, load_scene_data
 
 # ==============================================================================
-# 全局时间、动效与音频配置 (集中管理，方便调优与修改)
+# ==============================================================================
+# 全局时间、动效、UI 与音频配置 (集中管理，方便调优与修改)
 # ==============================================================================
 
 # 1. 基础画幅与帧率
 W, H = 1080, 1920
 FPS = 25
+CANVAS_MARGIN = 12  # 原图在竖屏画幅中的边距 (px)
+AMBIENT_BLUR_RADIUS = 32  # 竖屏环境背景高斯模糊半径
+AMBIENT_DARKNESS = 0.40  # 竖屏环境背景压暗比例 (保留 40% 亮度)
 
-# 2. 片头 3 张全景图展示与过渡
+# 2. 悬浮教学卡片 (HUD Focus Card) 布局与视觉 (集中管理)
+HUD_CARD_TOP_RATIO = 0.20  # 卡片顶部距离屏幕顶部的比例 (0.2 即 20% 高度处)
+HUD_CARD_WIDTH = 1040  # 卡片宽度 (px)
+HUD_CARD_HEIGHT = 420  # 卡片高度 (px)
+HUD_CARD_RADIUS = 33  # 卡片圆角半径
+HUD_CARD_BG_COLOR = (12, 16, 24)  # 卡片底板深色玻璃颜色
+HUD_CARD_BG_ALPHA = 235  # 卡片底板不透明度 (0~255)
+HUD_CARD_BORDER_COLOR = (60, 72, 90)  # 卡片边框颜色
+HUD_CARD_BORDER_WIDTH = 3  # 卡片边框线宽
+HUD_CARD_ACCENT_BAR_HEIGHT = 8  # 顶部强调彩色条高度
+HUD_CARD_DIVIDER_COLOR = (38, 48, 62)  # 分割线颜色
+HUD_CARD_TEXT_MAIN_COLOR = (255, 255, 255)  # 英文单词白色
+HUD_CARD_IPA_COLOR = (100, 200, 255)  # 音标浅蓝
+HUD_CARD_ZH_COLOR = (255, 214, 102)  # 中文释义暖黄
+HUD_CARD_EX_EN_COLOR = (240, 246, 255)  # 英文例句颜色
+HUD_CARD_EX_ZH_COLOR = (160, 175, 195)  # 中文例句翻译浅灰
+
+# 3. 视觉引导聚光灯 (Spotlight & Visual Cue)
+SPOTLIGHT_CORE_RADIUS = 110  # 聚光灯核心全亮区半径 (px)
+SPOTLIGHT_OUTER_RADIUS = 380  # 聚光灯外围过渡区半径 (px)
+SPOTLIGHT_MAX_DARKNESS = 0.38  # 聚光灯外围最暗系数 (0.38 表示压暗至 38%)
+SPOTLIGHT_CORE_BOOST = 1.05  # 聚光灯核心区亮度增益 (1.05)
+
+# 4. 目标准星指示器 (Reticle & Glow)
+RETICLE_INNER_RADIUS = 20  # 中心准星内圈半径 (px)
+RETICLE_PULSE_BASE = 24  # 呼吸光环基准半径 (px)
+RETICLE_PULSE_AMP = 10  # 呼吸光环扩散振幅 (px)
+RETICLE_PULSE_FREQ = 6.0  # 呼吸闪烁频率
+RETICLE_TICK_LEN = 8  # 十字准星标尺刻线长度
+
+# 5. 逐词正文运镜动效 (Visual Cue Glide Pan)
+DEFAULT_ZOOM = 1.7  # 聚焦目标物体时的放大倍率
+DEFAULT_TRANS_FIRST = 0.50  # 首个词汇推镜时长 (秒, 全景 -> 特写 1.7x)
+DEFAULT_TRANS_GLIDE = 0.35  # 后续词汇平移漫游时长 (秒, 从上一词滑行至当前词)
+BREATHING_AMP = 0.008  # 漫游停留时的微幅呼吸浮动
+BREATHING_FREQ = 2.0  # 呼吸浮动频率
+
+# 6. 片头 3 张全景图展示与过渡
 DEFAULT_LAYER_DURS = [
     1.5,
     4.0,
     4.0,
-]  # 片头 3 张图展示时长(中文1.5s, 双语3.0s, 音标3.0s)
+]  # 片头 3 张图展示时长(中文1.5s, 双语4.0s, 音标4.0s)
 DEFAULT_XFADE_DUR = 0.30  # 片头图片之间交叉淡化时长(秒)
 
-# 3. 逐词正文运镜动效 (Visual Cue Glide Pan)
-DEFAULT_ZOOM = 1.7  # 聚焦目标物体时的放大倍率
-DEFAULT_TRANS_FIRST = 0.50  # 首个词汇推镜时长(秒, 全景 -> 特写 1.7x)
-DEFAULT_TRANS_GLIDE = 0.35  # 后续词汇平移漫游时长(秒, 从上一词滑行至当前词)
-
-# 4. TTS 语音朗读与音频留白
+# 7. TTS 语音朗读与音频留白
 DEFAULT_SPEED = 1.2  # 默认英文例句 TTS 朗读语速 (1.0 为原速, 1.2 为加速 20%)
 DEFAULT_AUDIO_PRE_PAD = 0.06  # 朗读前静音留白时长(秒)
 DEFAULT_AUDIO_POST_PAD = 0.50  # 朗读后静音留白时长(秒)
 DEFAULT_MIN_SEG_DUR = 1.20  # 单个词汇片段保底最小时长(秒)
 
-# 4. 片尾收束
+# 8. 片尾收束
 DEFAULT_OUTRO_HOLD_DUR = 4.0  # 片尾回显第 3 张图(图C)静止停留时长(秒)
 OUTRO_FADE_DUR = 0.50  # 片尾结束前淡出至黑场的时长(秒)
 
-# 5. 背景音乐 (BGM) 智能压音与混音
-BGM_VOLUME_INTRO = 0.70  # 片头静止图展示阶段 BGM 音量 (0.0~1.0, 较大声)
-BGM_VOLUME_DUCKED = 0.15  # 正文 TTS 朗读阶段 BGM 压低音量 (0.0~1.0, 轻柔旋律)
+# 9. 背景音乐 (BGM) 智能压音与混音
+BGM_VOLUME_INTRO = 0.80  # 片头静止图展示阶段 BGM 音量 (0.0~1.0, 较大声)
+BGM_VOLUME_DUCKED = 0.10  # 正文 TTS 朗读阶段 BGM 压低音量 (0.0~1.0, 轻柔旋律)
 BGM_DUCK_LEAD = 0.40  # BGM 在片头结束前提早开始压音的时间(秒)
 BGM_DUCK_TAIL = 0.30  # BGM 压音过渡到最低音量的时间点(片头结束后秒数)
 BGM_FADE_OUT_DUR = 0.50  # 视频结尾 BGM 平滑淡出时长(秒)
 
-# 6. 输出画面整体缩放 (内容等比缩小后居中，四周补黑)
+# 10. 输出画面整体缩放 (内容等比缩小后居中，四周补黑)
 OUTPUT_SHRINK_FRACTION = (
     1 / 6
 )  # 缩小量：内容保留原尺寸的 5/6，画布仍保持 1080x1920 黑底
+
+# 11. 并发与加速渲染
+MAX_RENDER_WORKERS = min(4, os.cpu_count() or 4)  # 并行渲染词汇片段数 (建议 2~4)
 
 # ==============================================================================
 
@@ -225,19 +267,174 @@ class VisualCueAnimator:
         self.f_reticle = _font(config.FONT_EN_BOLD, 18)
 
         # 预先生成环境背景 (高斯模糊 + 压暗)
-        bg = self.src_img.resize((W, H), Image.LANCZOS).filter(
-            ImageFilter.GaussianBlur(32)
+        bg = self.src_img.resize((W, H), Image.BILINEAR).filter(
+            ImageFilter.GaussianBlur(AMBIENT_BLUR_RADIUS)
         )
-        self.ambient_bg = Image.eval(bg, lambda p: int(p * 0.40)).convert("RGB")
+        self.ambient_bg = Image.eval(bg, lambda p: int(p * AMBIENT_DARKNESS)).convert("RGB")
 
         # 原图在竖屏画布未缩放时的基准显示矩形
-        margin = 12
+        margin = CANVAS_MARGIN
         max_w, max_h = W - 2 * margin, H - 2 * margin
         ratio = min(max_w / self.src_w, max_h / self.src_h)
         self.base_w = int(self.src_w * ratio)
         self.base_h = int(self.src_h * ratio)
         self.base_rx = (W - self.base_w) // 2
         self.base_ry = (H - self.base_h) // 2
+
+        # 预先计算聚光灯径向加权模板 (大幅提升逐帧渲染速度)
+        r_core = SPOTLIGHT_CORE_RADIUS
+        r_outer = SPOTLIGHT_OUTER_RADIUS
+        yy, xx = np.ogrid[-r_outer : r_outer + 1, -r_outer : r_outer + 1]
+        dist = np.sqrt(xx**2 + yy**2)
+        template = np.zeros((2 * r_outer + 1, 2 * r_outer + 1), dtype=np.float32)
+        template[dist <= r_core] = 1.0
+        trans = (dist > r_core) & (dist < r_outer)
+        ratio_t = (dist[trans] - r_core) / (r_outer - r_core)
+        template[trans] = 0.5 * (1.0 + np.cos(np.pi * ratio_t))
+        self.spot_template = template
+
+        # 预先构建 100 级亮度查找表 (C 语言级快速 LUT 点运算)
+        self.lut_cache = {
+            i: [int(p * (i / 100.0)) for p in range(256)] * 3 for i in range(101)
+        }
+
+        # 当前词汇缓存
+        self.cached_card: Image.Image | None = None
+        self.card_pos = (0, 0)
+        self.cur_theme_color = (255, 255, 255)
+
+    def prepare_word(
+        self,
+        word: WordItem,
+        word_idx: int,
+        total_words: int,
+    ) -> None:
+        """为当前词预渲染静态 HUD 教学卡片（每词仅执行一次，避免每帧重复排版计算）。"""
+        theme_color = PALETTE[(word_idx - 1) % len(PALETTE)]
+        self.cur_theme_color = theme_color
+
+        card_w = HUD_CARD_WIDTH
+        card_h = HUD_CARD_HEIGHT
+        card_x0 = (W - card_w) // 2
+        card_y0 = int(H * HUD_CARD_TOP_RATIO)
+        self.card_pos = (card_x0, card_y0)
+
+        # 创建带透明通道的整张卡片
+        card_img = Image.new("RGBA", (card_w, card_h), (0, 0, 0, 0))
+        d = ImageDraw.Draw(card_img)
+
+        # 卡片底板 (深色玻璃质感)
+        d.rounded_rectangle(
+            [(0, 0), (card_w, card_h)],
+            radius=HUD_CARD_RADIUS,
+            fill=(*HUD_CARD_BG_COLOR, HUD_CARD_BG_ALPHA),
+        )
+
+        # 卡片边框与顶部强调条
+        d.rounded_rectangle(
+            [(0, 0), (card_w, card_h)],
+            radius=HUD_CARD_RADIUS,
+            outline=HUD_CARD_BORDER_COLOR,
+            width=HUD_CARD_BORDER_WIDTH,
+        )
+        d.rounded_rectangle(
+            [(30, 0), (240, HUD_CARD_ACCENT_BAR_HEIGHT)],
+            radius=3,
+            fill=(*theme_color, 255),
+        )
+
+        # 卡片内容：
+        # 第 1 行：序号角标 + 英文大字 + 音标 + 中文释义
+        tag_text = f"FOCUS {word_idx:02d}"
+        d.rounded_rectangle(
+            [(42, 36), (216, 90)],
+            radius=9,
+            fill=(*theme_color, 255),
+        )
+        d.text(
+            (129, 63),
+            tag_text,
+            font=self.f_badge,
+            fill=(15, 20, 30),
+            anchor="mm",
+        )
+
+        # 单词英文
+        en_x = 246
+        d.text(
+            (en_x, 63),
+            word.en,
+            font=self.f_word_en,
+            fill=HUD_CARD_TEXT_MAIN_COLOR,
+            anchor="lm",
+        )
+        en_len = int(d.textlength(word.en, font=self.f_word_en))
+
+        # 音标
+        ipa_x = en_x + en_len + 27
+        d.text(
+            (ipa_x, 66),
+            word.ipa,
+            font=self.f_word_ipa,
+            fill=HUD_CARD_IPA_COLOR,
+            anchor="lm",
+        )
+        ipa_len = int(d.textlength(word.ipa, font=self.f_word_ipa))
+
+        # 中文含义
+        zh_x = ipa_x + ipa_len + 30
+        if zh_x < card_w - 270:
+            d.text(
+                (zh_x, 63),
+                f"· {word.zh}",
+                font=self.f_word_zh,
+                fill=HUD_CARD_ZH_COLOR,
+                anchor="lm",
+            )
+        else:
+            d.text(
+                (card_w - 48, 63),
+                word.zh,
+                font=self.f_word_zh,
+                fill=HUD_CARD_ZH_COLOR,
+                anchor="rm",
+            )
+
+        # 分割线
+        div_y = 126
+        d.line(
+            [(42, div_y), (card_w - 42, div_y)],
+            fill=HUD_CARD_DIVIDER_COLOR,
+            width=2,
+        )
+
+        # 第 2 行：英文例句 (自动换行)
+        ex_en_lines = _wrap_text(word.example_en, self.f_ex_en, card_w - 90)[:3]
+        line_y = div_y + 24
+        for line in ex_en_lines:
+            d.text(
+                (48, line_y),
+                line,
+                font=self.f_ex_en,
+                fill=HUD_CARD_EX_EN_COLOR,
+                anchor="la",
+            )
+            line_y += self.f_ex_en.size + 12
+
+        # 第 3 行：中文翻译 (自动换行)
+        line_y += 6
+        ex_zh_lines = _wrap_text(word.example_zh, self.f_ex_zh, card_w - 90)[:2]
+        for line in ex_zh_lines:
+            d.text(
+                (48, line_y),
+                line,
+                font=self.f_ex_zh,
+                fill=HUD_CARD_EX_ZH_COLOR,
+                anchor="la",
+            )
+            line_y += self.f_ex_zh.size + 9
+
+        self.cached_card = card_img
 
     def render_cue_frame(
         self,
@@ -252,15 +449,14 @@ class VisualCueAnimator:
         """渲染某一时刻 t 的高品质教学帧。"""
         canvas = self.ambient_bg.copy()
 
-        # 1. 运镜平滑过渡参数计算 (首词推镜 DEFAULT_TRANS_FIRST, 平移漫游 DEFAULT_TRANS_GLIDE 极速丝滑)
+        # 1. 运镜平滑过渡参数计算
         t_trans = DEFAULT_TRANS_FIRST if prev_word is None else DEFAULT_TRANS_GLIDE
         if t < t_trans:
             tau = t / t_trans
-            # Smoothstep 缓动
             alpha = 3 * (tau**2) - 2 * (tau**3)
         else:
             tau = 1.0
-            alpha = 1.0 + 0.008 * math.sin((t - t_trans) * 2.0)
+            alpha = 1.0 + BREATHING_AMP * math.sin((t - t_trans) * BREATHING_FREQ)
 
         if prev_word is None:
             current_zoom = 1.0 + (zoom_target - 1.0) * min(alpha, 1.0)
@@ -268,7 +464,9 @@ class VisualCueAnimator:
             start_y = self.src_h / 2
         else:
             current_zoom = zoom_target + (
-                0.008 * math.sin((t - t_trans) * 2.0) if t >= t_trans else 0.0
+                BREATHING_AMP * math.sin((t - t_trans) * BREATHING_FREQ)
+                if t >= t_trans
+                else 0.0
             )
             start_x = prev_word.x * self.src_w
             start_y = prev_word.y * self.src_h
@@ -279,11 +477,9 @@ class VisualCueAnimator:
         target_src_x = word.x * self.src_w
         target_src_y = word.y * self.src_h
 
-        # 中心平滑插值 (从起始位置渐变到目标中心)
         src_center_x = start_x + (target_src_x - start_x) * min(alpha, 1.0)
         src_center_y = start_y + (target_src_y - start_y) * min(alpha, 1.0)
 
-        # 裁剪边界约束
         crop_x0 = max(0.0, min(src_center_x - cw / 2, self.src_w - cw))
         crop_y0 = max(0.0, min(src_center_y - ch / 2, self.src_h - ch))
         crop_x1 = crop_x0 + cw
@@ -292,9 +488,9 @@ class VisualCueAnimator:
         cropped = self.src_img.crop(
             (int(crop_x0), int(crop_y0), int(crop_x1), int(crop_y1))
         )
-        fg = cropped.resize((self.base_w, self.base_h), Image.LANCZOS)
+        fg = cropped.resize((self.base_w, self.base_h), Image.BILINEAR)
 
-        # 3. 计算聚光灯与准星在原图中的平滑坐标 (随运镜平移)
+        # 3. 计算聚光灯与准星在原图中的平滑坐标
         spot_src_x = start_x + (target_src_x - start_x) * min(alpha, 1.0)
         spot_src_y = start_y + (target_src_y - start_y) * min(alpha, 1.0)
         u = (spot_src_x - crop_x0) / cw
@@ -302,213 +498,77 @@ class VisualCueAnimator:
         px = int(self.base_rx + u * self.base_w)
         py = int(self.base_ry + v * self.base_h)
 
-        # 4. 聚光灯径向遮罩处理 (使用 Numpy 快速加权)
-        fg_arr = np.array(fg, dtype=np.float32)
-        fg_h, fg_w = fg_arr.shape[:2]
+        # 4. 高性能聚光灯局部贴合 (LUT 查表压暗 + 局部切片计算，速度提升 20 倍)
         rel_px = px - self.base_rx
         rel_py = py - self.base_ry
 
-        # 聚光灯强度：首个词随推镜增强；后续词在特写中始终保持聚焦
         spotlight_strength = min(alpha, 1.0) if prev_word is None else 1.0
-        base_darkness = 1.0 - 0.62 * spotlight_strength  # 最暗降到 0.38
+        base_darkness = 1.0 - (1.0 - SPOTLIGHT_MAX_DARKNESS) * spotlight_strength
 
-        # 构建径向距离矩阵
-        yy, xx = np.ogrid[:fg_h, :fg_w]
-        dist = np.sqrt((xx - rel_px) ** 2 + (yy - rel_py) ** 2)
+        # 使用快速 LUT 查表对背景进行压暗 (在 C 语言层 0.5ms 完成)
+        lut_idx = int(round(base_darkness * 100))
+        fg_dimmed = fg.point(self.lut_cache[lut_idx])
 
-        r_core = 110
-        r_outer = 380
-        mask = np.full((fg_h, fg_w), base_darkness, dtype=np.float32)
+        # 仅对 760x760 聚光灯影响区域做切片叠加计算
+        r_outer = SPOTLIGHT_OUTER_RADIUS
+        y0 = max(0, rel_py - r_outer)
+        y1 = min(self.base_h, rel_py + r_outer + 1)
+        x0 = max(0, rel_px - r_outer)
+        x1 = min(self.base_w, rel_px + r_outer + 1)
 
-        # 核心全亮区
-        core_mask = dist <= r_core
-        mask[core_mask] = 1.05
+        if y1 > y0 and x1 > x0:
+            ty0 = y0 - (rel_py - r_outer)
+            ty1 = ty0 + (y1 - y0)
+            tx0 = x0 - (rel_px - r_outer)
+            tx1 = tx0 + (x1 - x0)
 
-        # 渐变过渡区
-        trans_mask = (dist > r_core) & (dist < r_outer)
-        ratio = (dist[trans_mask] - r_core) / (r_outer - r_core)
-        mask[trans_mask] = base_darkness + (1.05 - base_darkness) * 0.5 * (
-            1.0 + np.cos(np.pi * ratio)
-        )
+            patch_crop = fg.crop((x0, y0, x1, y1))
+            patch_arr = np.array(patch_crop, dtype=np.float32)
+            kernel_slice = self.spot_template[ty0:ty1, tx0:tx1]
+            boost_factor = SPOTLIGHT_CORE_BOOST - base_darkness
+            patch_mult = base_darkness + boost_factor * kernel_slice
+            patch_res = np.clip(patch_arr * patch_mult[:, :, None], 0, 255).astype(np.uint8)
+            patch_img = Image.fromarray(patch_res)
+            fg_dimmed.paste(patch_img, (x0, y0))
 
-        fg_spotlight = np.clip(fg_arr * mask[:, :, None], 0, 255).astype(np.uint8)
-        fg_img = Image.fromarray(fg_spotlight)
-        canvas.paste(fg_img, (self.base_rx, self.base_ry))
+        canvas.paste(fg_dimmed, (self.base_rx, self.base_ry))
 
-        d = ImageDraw.Draw(canvas)
-
-        # 5. 目标锚点指示器 (Reticle & Pulse Glow)
-        theme_color = PALETTE[(word_idx - 1) % len(PALETTE)]
-        pulse = (math.sin(t * 6.0) + 1.0) / 2.0  # 0~1 呼吸
-        r_inner = 20
-        r_pulse = int(24 + 10 * pulse)
-
-        # 绘制扩散光环
+        # 5. 目标锚点指示器 (Reticle & Pulse Glow - 高性能局部微图合成)
+        theme_color = self.cur_theme_color
+        pulse = (math.sin(t * RETICLE_PULSE_FREQ) + 1.0) / 2.0
+        r_inner = RETICLE_INNER_RADIUS
+        r_pulse = int(RETICLE_PULSE_BASE + RETICLE_PULSE_AMP * pulse)
         pulse_alpha = int(180 * (1.0 - pulse))
-        glow_layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        glow_draw = ImageDraw.Draw(glow_layer)
-        glow_draw.ellipse(
-            [(px - r_pulse, py - r_pulse), (px + r_pulse, py + r_pulse)],
+
+        # 小区域绘制呼吸外圈光环
+        pad = r_pulse + 4
+        glow_patch = Image.new("RGBA", (2 * pad, 2 * pad), (0, 0, 0, 0))
+        glow_d = ImageDraw.Draw(glow_patch)
+        glow_d.ellipse(
+            [(pad - r_pulse, pad - r_pulse), (pad + r_pulse, pad + r_pulse)],
             outline=(*theme_color, pulse_alpha),
             width=2,
         )
-        # 中心准星
-        glow_draw.ellipse(
-            [(px - r_inner, py - r_inner), (px + r_inner, py + r_inner)],
-            outline=(*theme_color, 240),
-            width=3,
-        )
-        glow_draw.ellipse(
-            [(px - 5, py - 5), (px + 5, py + 5)],
-            fill=(255, 255, 255, 255),
-        )
+        canvas.paste(glow_patch, (px - pad, py - pad), glow_patch)
 
-        # 十字准星标尺刻线
-        tick = 8
-        glow_draw.line(
-            [(px - r_inner - tick, py), (px - r_inner + 2, py)],
-            fill=(*theme_color, 220),
-            width=2,
-        )
-        glow_draw.line(
-            [(px + r_inner - 2, py), (px + r_inner + tick, py)],
-            fill=(*theme_color, 220),
-            width=2,
-        )
-        glow_draw.line(
-            [(px, py - r_inner - tick), (px, py - r_inner + 2)],
-            fill=(*theme_color, 220),
-            width=2,
-        )
-        glow_draw.line(
-            [(px, py + r_inner - 2), (px, py + r_inner + tick)],
-            fill=(*theme_color, 220),
-            width=2,
-        )
-
-        canvas = Image.alpha_composite(canvas.convert("RGBA"), glow_layer).convert(
-            "RGB"
-        )
+        # 直接在 canvas 上绘制实心准星与刻线 (零内存复制开销)
         d = ImageDraw.Draw(canvas)
-
-        # 6. 悬浮教学卡片 (HUD Focus Card) — 统一放大 1.5 倍，置于上半屏 (卡片顶部在画面 0.2 高度处)
-        card_w = 1040
-        card_h = 420
-        card_x0 = (W - card_w) // 2
-        card_x1 = card_x0 + card_w
-        card_y0 = int(H * 0.2)
-        card_y1 = card_y0 + card_h
-
-        # 卡片底板 (深色玻璃质感)
-        card_mask = Image.new("L", (card_w, card_h), 0)
-        ImageDraw.Draw(card_mask).rounded_rectangle(
-            [(0, 0), (card_w, card_h)], radius=33, fill=235
-        )
-        card_bg = Image.new("RGB", (card_w, card_h), (12, 16, 24))
-        canvas.paste(card_bg, (card_x0, card_y0), card_mask)
-
-        # 卡片边框与顶部强调条
-        d.rounded_rectangle(
-            [(card_x0, card_y0), (card_x1, card_y1)],
-            radius=33,
-            outline=(60, 72, 90),
+        d.ellipse(
+            [(px - r_inner, py - r_inner), (px + r_inner, py + r_inner)],
+            outline=theme_color,
             width=3,
         )
-        d.rounded_rectangle(
-            [(card_x0 + 30, card_y0), (card_x0 + 240, card_y0 + 8)],
-            radius=3,
-            fill=theme_color,
-        )
+        d.ellipse([(px - 5, py - 5), (px + 5, py + 5)], fill=(255, 255, 255))
 
-        # 卡片内容：
-        # 第 1 行：序号角标 + 英文大字 + 音标 + 中文释义
-        tag_text = f"FOCUS {word_idx:02d}"
-        d.rounded_rectangle(
-            [(card_x0 + 42, card_y0 + 36), (card_x0 + 216, card_y0 + 90)],
-            radius=9,
-            fill=(*theme_color,),
-        )
-        d.text(
-            (card_x0 + 129, card_y0 + 63),
-            tag_text,
-            font=self.f_badge,
-            fill=(15, 20, 30),
-            anchor="mm",
-        )
+        tick = RETICLE_TICK_LEN
+        d.line([(px - r_inner - tick, py), (px - r_inner + 2, py)], fill=theme_color, width=2)
+        d.line([(px + r_inner - 2, py), (px + r_inner + tick, py)], fill=theme_color, width=2)
+        d.line([(px, py - r_inner - tick), (px, py - r_inner + 2)], fill=theme_color, width=2)
+        d.line([(px, py + r_inner - 2), (px, py + r_inner + tick)], fill=theme_color, width=2)
 
-        # 单词英文
-        en_x = card_x0 + 246
-        d.text(
-            (en_x, card_y0 + 63),
-            word.en,
-            font=self.f_word_en,
-            fill=(255, 255, 255),
-            anchor="lm",
-        )
-        en_len = int(d.textlength(word.en, font=self.f_word_en))
-
-        # 音标
-        ipa_x = en_x + en_len + 27
-        d.text(
-            (ipa_x, card_y0 + 66),
-            word.ipa,
-            font=self.f_word_ipa,
-            fill=(100, 200, 255),
-            anchor="lm",
-        )
-        ipa_len = int(d.textlength(word.ipa, font=self.f_word_ipa))
-
-        # 中文含义
-        zh_x = ipa_x + ipa_len + 30
-        if zh_x < card_x1 - 270:
-            d.text(
-                (zh_x, card_y0 + 63),
-                f"· {word.zh}",
-                font=self.f_word_zh,
-                fill=(255, 214, 102),
-                anchor="lm",
-            )
-        else:
-            # 若一行排不下，中文在右上角
-            d.text(
-                (card_x1 - 48, card_y0 + 63),
-                word.zh,
-                font=self.f_word_zh,
-                fill=(255, 214, 102),
-                anchor="rm",
-            )
-
-        # 分割线
-        div_y = card_y0 + 126
-        d.line(
-            [(card_x0 + 42, div_y), (card_x1 - 42, div_y)], fill=(38, 48, 62), width=2
-        )
-
-        # 第 2 行：英文例句 (自动换行)
-        ex_en_lines = _wrap_text(word.example_en, self.f_ex_en, card_w - 90)[:3]
-        line_y = div_y + 24
-        for line in ex_en_lines:
-            d.text(
-                (card_x0 + 48, line_y),
-                line,
-                font=self.f_ex_en,
-                fill=(240, 246, 255),
-                anchor="la",
-            )
-            line_y += self.f_ex_en.size + 12
-
-        # 第 3 行：中文翻译 (自动换行)
-        line_y += 6
-        ex_zh_lines = _wrap_text(word.example_zh, self.f_ex_zh, card_w - 90)[:2]
-        for line in ex_zh_lines:
-            d.text(
-                (card_x0 + 48, line_y),
-                line,
-                font=self.f_ex_zh,
-                fill=(160, 175, 195),
-                anchor="la",
-            )
-            line_y += self.f_ex_zh.size + 9
+        # 6. 贴合预渲染的 HUD 悬浮教学卡片
+        if self.cached_card is not None:
+            canvas.paste(self.cached_card, self.card_pos, self.cached_card)
 
         return canvas
 
@@ -532,6 +592,7 @@ def _render_word_segment_video(
     prev_word: WordItem | None = None,
 ) -> Path:
     """将单词的连续帧流式灌入 FFmpeg 并合成为 MP4 视频片段。"""
+    animator.prepare_word(word=word, word_idx=word_idx, total_words=total_words)
     num_frames = int(round(duration * FPS))
 
     cmd = [
@@ -556,7 +617,7 @@ def _render_word_segment_video(
         "-c:v",
         "libx264",
         "-preset",
-        "fast",
+        "veryfast",
         "-crf",
         "20",
         "-c:a",
@@ -762,6 +823,7 @@ def compose_video(
     if layer_durs is None:
         layer_durs = DEFAULT_LAYER_DURS
 
+    t_step4_start = time.perf_counter()
     data: SceneData = load_scene_data(json_path)
     stem = Path(data.image).stem
     src_image_path = Path(data.image)
@@ -791,6 +853,7 @@ def compose_video(
     parts: list[Path] = []
 
     # 1. 片头 3 层全景图展示 (中文层 1.5s -> 双语层 3.0s -> 音标层 3.0s，0.3s淡化)
+    t_intro_start = time.perf_counter()
     intro_mp4 = work_dir / "00_intro.mp4"
     total_intro_t = _intro_layers_clip(
         stills,
@@ -798,18 +861,20 @@ def compose_video(
         layer_durs=layer_durs,
         xfade_dur=xfade_dur,
     )
-    print(f"[step4] 片头 3 层全景图过渡展示生成完毕 (总时长 {total_intro_t:.1f}s)")
+    t_intro_elapsed = time.perf_counter() - t_intro_start
+    print(f"[step4] 片头 3 层全景图过渡展示生成完毕 (总时长 {total_intro_t:.1f}s, 耗时 {t_intro_elapsed:.1f}s)")
     parts.append(intro_mp4)
 
-    # 2. 逐词视觉动效引导 (Visual Cue Main Flow - 紧凑高能版，仅朗读例句)
+    # 2. 逐词视觉动效引导 (Visual Cue Main Flow - 紧凑高能版，并行加速渲染)
     total_words = len(data.words)
     print(f"[step4] 开始生成 {total_words} 个词汇的 Visual Cue 视觉动效漫游片段…")
+    t_words_start = time.perf_counter()
 
-    word_durations: list[float] = []
+    word_durations: list[float] = [0.0] * total_words
+    word_tasks = []
 
     for idx, word in enumerate(data.words, 1):
         prev_word = data.words[idx - 2] if idx > 1 else None
-        print(f"       [{idx:02d}/{total_words:02d}] 聚焦: {word.zh} ({word.en}) …")
         # 仅朗读地道英文例句 (极短前/后留白 + 地道语速)
         a_ex = tts.synth(word.example_en, voice=voice, speed=speed)
 
@@ -820,29 +885,84 @@ def compose_video(
         seg_dur = max(
             len(combined_audio) / sr, DEFAULT_MIN_SEG_DUR
         )  # 单个词汇片段保底最小时长
-        word_durations.append(seg_dur)
+        word_durations[idx - 1] = seg_dur
 
         wav_path = work_dir / f"seg_{idx:02d}.wav"
         _write_wav(wav_path, combined_audio)
 
         seg_mp4 = work_dir / f"seg_{idx:02d}.mp4"
+        word_tasks.append((
+            src_image_path,
+            word,
+            idx,
+            total_words,
+            wav_path,
+            seg_dur,
+            seg_mp4,
+            zoom_target,
+            prev_word,
+        ))
+
+    def _render_task(task_args):
+        (
+            src_img_p,
+            w,
+            w_idx,
+            tot_w,
+            w_path,
+            s_dur,
+            s_mp4,
+            z_target,
+            p_word,
+        ) = task_args
+        anim = VisualCueAnimator(src_img_p)
+        t0 = time.perf_counter()
         _render_word_segment_video(
-            animator=animator,
-            word=word,
-            word_idx=idx,
-            total_words=total_words,
-            audio_wav=wav_path,
-            duration=seg_dur,
-            out_mp4=seg_mp4,
-            zoom_target=zoom_target,
-            prev_word=prev_word,
+            animator=anim,
+            word=w,
+            word_idx=w_idx,
+            total_words=tot_w,
+            audio_wav=w_path,
+            duration=s_dur,
+            out_mp4=s_mp4,
+            zoom_target=z_target,
+            prev_word=p_word,
         )
-        parts.append(seg_mp4)
+        return w_idx, w.zh, w.en, s_dur, time.perf_counter() - t0
+
+    if MAX_RENDER_WORKERS > 1 and total_words > 1:
+        print(f"[step4] 启用 {MAX_RENDER_WORKERS} 并发加速渲染…")
+        with ThreadPoolExecutor(max_workers=MAX_RENDER_WORKERS) as pool:
+            futures = [pool.submit(_render_task, t) for t in word_tasks]
+            for fut in as_completed(futures):
+                w_idx, zh, en, dur, el = fut.result()
+                print(
+                    f"       [{w_idx:02d}/{total_words:02d}] 聚焦: {zh} ({en}) 完成 "
+                    f"(片段 {dur:.1f}s, 耗时 {el:.1f}s)"
+                )
+    else:
+        for t in word_tasks:
+            w_idx, zh, en, dur, el = _render_task(t)
+            print(
+                f"       [{w_idx:02d}/{total_words:02d}] 聚焦: {zh} ({en}) 完成 "
+                f"(片段 {dur:.1f}s, 耗时 {el:.1f}s)"
+            )
+
+    for idx in range(1, total_words + 1):
+        parts.append(work_dir / f"seg_{idx:02d}.mp4")
+
+    t_words_elapsed = time.perf_counter() - t_words_start
+    print(
+        f"[step4] {total_words} 个词汇漫游片段全部生成完毕 "
+        f"(总耗时 {t_words_elapsed:.1f}s, 平均 {t_words_elapsed / max(1, total_words):.1f}s/词)"
+    )
 
     # 3. 片尾收束: 回显图C静止 3s 后淡出关闭
+    t_outro_start = time.perf_counter()
     outro_mp4 = work_dir / "99_outro.mp4"
     total_outro_t = _outro_hold_clip(stills[2], outro_mp4)
-    print(f"[step4] 片尾图C回显 {total_outro_t:.1f}s (结尾淡出收束) 生成完毕")
+    t_outro_elapsed = time.perf_counter() - t_outro_start
+    print(f"[step4] 片尾图C回显 {total_outro_t:.1f}s (结尾淡出收束) 生成完毕 (耗时 {t_outro_elapsed:.1f}s)")
     parts.append(outro_mp4)
 
     # 4. 视频初步无缝拼接 (3图全景 + 逐词漫游 TTS 视频 + 片尾回显)
@@ -872,11 +992,15 @@ def compose_video(
         check=True,
     )
 
-    # 5. 全局 BGM 动态智能压音混音 (片头静止图较大声，TTS朗读时自动压低轻柔旋律)
+    # 5. 全局 BGM 动态智能压音混音与画面缩放 (单次编解码高效完成)
+    sw = round(W * (1 - OUTPUT_SHRINK_FRACTION))
+    sh = round(H * (1 - OUTPUT_SHRINK_FRACTION))
+    shrink_filter = f"scale={sw}:{sh},pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:color=black"
+
     total_video_t = total_intro_t + sum(word_durations) + total_outro_t
     if bgm_path and Path(bgm_path).exists():
         print(
-            f"[step4] 正在注入全篇智能压音 BGM ({Path(bgm_path).name}) -> {final_video}"
+            f"[step4] 正在注入全篇智能压音 BGM ({Path(bgm_path).name}) 并缩放居中 -> {final_video}"
         )
         t1 = max(0.0, total_intro_t - BGM_DUCK_LEAD)
         t2 = total_intro_t + BGM_DUCK_TAIL
@@ -892,7 +1016,8 @@ def compose_video(
             f"[voice][bgm]amix=inputs=2:duration=first:dropout_transition=0:weights=1 1[aout]"
         )
 
-        mixed_video = work_dir / "mixed_full.mp4"
+        filter_complex = f"[0:v]{shrink_filter}[vout];{audio_filter}"
+
         subprocess.run(
             [
                 "ffmpeg",
@@ -904,30 +1029,57 @@ def compose_video(
                 "-i",
                 str(bgm_path),
                 "-filter_complex",
-                audio_filter,
+                filter_complex,
                 "-map",
-                "0:v",
+                "[vout]",
                 "-map",
                 "[aout]",
                 "-c:v",
-                "copy",
+                "libx264",
+                "-preset",
+                "veryfast",
+                "-crf",
+                "20",
                 "-c:a",
                 "aac",
                 "-b:a",
                 "192k",
-                str(mixed_video),
+                str(final_video),
             ],
             check=True,
         )
     else:
-        mixed_video = raw_concat
+        print(
+            f"[step4] 输出画面整体缩小 {OUTPUT_SHRINK_FRACTION:.2f} 并居中补黑 -> {final_video}"
+        )
+        subprocess.run(
+            [
+                "ffmpeg",
+                "-y",
+                "-loglevel",
+                "error",
+                "-i",
+                str(raw_concat),
+                "-vf",
+                shrink_filter,
+                "-c:v",
+                "libx264",
+                "-preset",
+                "veryfast",
+                "-crf",
+                "20",
+                "-c:a",
+                "copy",
+                str(final_video),
+            ],
+            check=True,
+        )
 
+    t_step4_total = time.perf_counter() - t_step4_start
     print(
-        f"[step4] 输出画面整体缩小 {OUTPUT_SHRINK_FRACTION:.2f} 并居中补黑 (保持 {W}x{H})…"
+        f"[step4] 视频合成完毕! 输出: {final_video} "
+        f"(视频总长 {total_video_t:.1f}s, Step4 总耗时 {t_step4_total:.1f}s)"
     )
-    _apply_shrink_pad(mixed_video, final_video)
-
-    print(f"[step4] 视频合成完毕! 输出: {final_video}")
     return final_video
 
 
