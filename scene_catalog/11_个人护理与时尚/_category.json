@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "P",
+    "order": 11,
+    "zh": "个人护理与时尚",
+    "en": "Personal care and fashion",
+    "batch": "D"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "P01_hair_salon.json",
+    "P02_clothing_boutique.json",
+    "P03_beauty_salon_and_spa.json",
+    "P04_shoe_and_bag_shop.json",
+    "P05_cosmetics_counter.json",
+    "P06_jewellery_and_watch_shop.json"
+  ]
+}

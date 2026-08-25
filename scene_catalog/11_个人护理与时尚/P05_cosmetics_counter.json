@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "P05",
+  "slug": "P05_cosmetics_counter",
+  "batch": "D",
+  "category": {
+    "id": "P",
+    "order": 11,
+    "zh": "个人护理与时尚",
+    "en": "Personal care and fashion"
+  },
+  "scene": {
+    "zh": "美妆护肤专柜",
+    "en": "cosmetics counter"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "口红唇膏",
+      "en": "tube of lipstick"
+    },
+    {
+      "order": 2,
+      "zh": "粉底液瓶",
+      "en": "liquid foundation bottle"
+    },
+    {
+      "order": 3,
+      "zh": "多色眼影盘",
+      "en": "eyeshadow palette"
+    },
+    {
+      "order": 4,
+      "zh": "蓬松化妆刷",
+      "en": "fluffy makeup brush"
+    },
+    {
+      "order": 5,
+      "zh": "玻璃香水喷雾瓶",
+      "en": "glass perfume spray"
+    },
+    {
+      "order": 6,
+      "zh": "专柜试用装",
+      "en": "cosmetic tester bottle"
+    },
+    {
+      "order": 7,
+      "zh": "LED补光梳妆镜",
+      "en": "lighted vanity mirror"
+    },
+    {
+      "order": 8,
+      "zh": "洗面奶软管",
+      "en": "tube of facial cleanser"
+    },
+    {
+      "order": 9,
+      "zh": "化妆棉片",
+      "en": "cotton wool pad"
+    },
+    {
+      "order": 10,
+      "zh": "光泽唇釉",
+      "en": "sparkling lip gloss"
+    }
+  ],
+  "image": {
+    "filename": "P05_cosmetics_counter.png",
+    "path": "input_pics/11_个人护理与时尚/P05_cosmetics_counter.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of cosmetics counter (美妆护肤专柜).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: tube of lipstick, liquid foundation bottle, eyeshadow palette, fluffy makeup brush, glass perfume spray, cosmetic tester bottle, lighted vanity mirror, tube of facial cleanser, cotton wool pad, sparkling lip gloss.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "a41f1289923e511b990d72f59844b751d3f03d3ea4c6acacdde1d1497a9ddd3b"
+}

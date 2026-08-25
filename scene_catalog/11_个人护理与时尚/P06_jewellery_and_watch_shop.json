@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "P06",
+  "slug": "P06_jewellery_and_watch_shop",
+  "batch": "D",
+  "category": {
+    "id": "P",
+    "order": 11,
+    "zh": "个人护理与时尚",
+    "en": "Personal care and fashion"
+  },
+  "scene": {
+    "zh": "珠宝首饰与腕表店",
+    "en": "jewellery and watch shop"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "玻璃首饰柜",
+      "en": "glass jewellery display case"
+    },
+    {
+      "order": 2,
+      "zh": "奢华腕表",
+      "en": "luxury wristwatch"
+    },
+    {
+      "order": 3,
+      "zh": "单钻戒指",
+      "en": "diamond solitaire ring"
+    },
+    {
+      "order": 4,
+      "zh": "金吊坠项链",
+      "en": "gold pendant necklace"
+    },
+    {
+      "order": 5,
+      "zh": "水晶耳环",
+      "en": "pair of crystal earrings"
+    },
+    {
+      "order": 6,
+      "zh": "黑色天鹅绒展垫",
+      "en": "black velvet display cushion"
+    },
+    {
+      "order": 7,
+      "zh": "珠宝目镜放大镜",
+      "en": "jeweller magnifying loupe"
+    },
+    {
+      "order": 8,
+      "zh": "纯银手镯",
+      "en": "silver bangle bracelet"
+    },
+    {
+      "order": 9,
+      "zh": "珍珠胸针",
+      "en": "pearl brooch"
+    },
+    {
+      "order": 10,
+      "zh": "柜台聚焦顶灯",
+      "en": "overhead counter spotlight"
+    }
+  ],
+  "image": {
+    "filename": "P06_jewellery_and_watch_shop.png",
+    "path": "input_pics/11_个人护理与时尚/P06_jewellery_and_watch_shop.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of jewellery and watch shop (珠宝首饰与腕表店).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: glass jewellery display case, luxury wristwatch, diamond solitaire ring, gold pendant necklace, pair of crystal earrings, black velvet display cushion, jeweller magnifying loupe, silver bangle bracelet, pearl brooch, overhead counter spotlight.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "c31e0e9cf2ba6a6f99e0f5f42781ed139201dd6720b99974c45550d4b1b51825"
+}

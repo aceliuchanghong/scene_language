@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "A05",
+  "slug": "A05_theme_park",
+  "batch": "D",
+  "category": {
+    "id": "A",
+    "order": 9,
+    "zh": "文化与艺术",
+    "en": "Arts and culture"
+  },
+  "scene": {
+    "zh": "主题乐园",
+    "en": "theme park"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "过山车轨道",
+      "en": "roller coaster"
+    },
+    {
+      "order": 2,
+      "zh": "旋转木马",
+      "en": "carousel"
+    },
+    {
+      "order": 3,
+      "zh": "入园检票闸机",
+      "en": "ticket turnstile"
+    },
+    {
+      "order": 4,
+      "zh": "纪念品售货亭",
+      "en": "souvenir kiosk"
+    },
+    {
+      "order": 5,
+      "zh": "排队隔离带",
+      "en": "queue stanchion"
+    },
+    {
+      "order": 6,
+      "zh": "气球束",
+      "en": "bunch of balloons"
+    },
+    {
+      "order": 7,
+      "zh": "园区路标指示牌",
+      "en": "park directional sign"
+    },
+    {
+      "order": 8,
+      "zh": "小吃餐车",
+      "en": "food stall"
+    },
+    {
+      "order": 9,
+      "zh": "摩天轮",
+      "en": "giant wheel"
+    },
+    {
+      "order": 10,
+      "zh": "人偶吉祥物",
+      "en": "costume character"
+    }
+  ],
+  "image": {
+    "filename": "A05_theme_park.png",
+    "path": "input_pics/09_文化与艺术/A05_theme_park.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of theme park (主题乐园).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: roller coaster, carousel, ticket turnstile, souvenir kiosk, queue stanchion, bunch of balloons, park directional sign, food stall, giant wheel, costume character.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "744e2771f0bb4d949281ceb89d5ad8322e6cdfbaf659c9af855ef31d4eced231"
+}

@@ -46,12 +46,15 @@ EXPECTED_CATEGORY_COUNTS = {
     "L": 6,
     "R": 6,
     "D": 6,
+    "A": 6,
+    "E": 6,
+    "P": 6,
 }
-EXPECTED_SCENES = 64
+EXPECTED_SCENES = 82
 EXPECTED_TARGETS_PER_SCENE = 10
-EXPECTED_LEARNING_SLOTS = 640
-EXPECTED_UNIQUE_ENGLISH_TARGETS = 633
-SCENE_ID_RE = re.compile(r"^[HFTWSLRD]\d{2}$")
+EXPECTED_LEARNING_SLOTS = 820
+EXPECTED_UNIQUE_ENGLISH_TARGETS = 813
+SCENE_ID_RE = re.compile(r"^[HFTWSLRDAEP]\d{2}$")
 STATUS_FLOW = [
     "planned",
     "generated",
@@ -149,8 +152,8 @@ def normalise_scene(path: Path, raw: dict[str, Any]) -> dict[str, Any]:
     require_text(category.get("en"), "category.en", path)
 
     batch = require_text(scene.get("batch"), "batch", path)
-    if batch not in {"A", "B", "C"}:
-        raise ValueError(f"{path.relative_to(ROOT)}: batch must be A, B, or C")
+    if batch not in {"A", "B", "C", "D"}:
+        raise ValueError(f"{path.relative_to(ROOT)}: batch must be A, B, C, or D")
 
     scene_name = scene.get("scene")
     if not isinstance(scene_name, dict):

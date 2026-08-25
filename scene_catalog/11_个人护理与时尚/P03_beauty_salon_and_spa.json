@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "P03",
+  "slug": "P03_beauty_salon_and_spa",
+  "batch": "D",
+  "category": {
+    "id": "P",
+    "order": 11,
+    "zh": "个人护理与时尚",
+    "en": "Personal care and fashion"
+  },
+  "scene": {
+    "zh": "美容与水疗",
+    "en": "beauty salon and spa"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "软垫按摩床",
+      "en": "cushioned massage table"
+    },
+    {
+      "order": 2,
+      "zh": "卷叠面巾",
+      "en": "rolled face towel"
+    },
+    {
+      "order": 3,
+      "zh": "精油滴管瓶",
+      "en": "essential oil bottle"
+    },
+    {
+      "order": 4,
+      "zh": "贴片面膜",
+      "en": "sheet face mask"
+    },
+    {
+      "order": 5,
+      "zh": "热疗火山石",
+      "en": "volcanic hot stone"
+    },
+    {
+      "order": 6,
+      "zh": "香薰蜡烛",
+      "en": "scented aromatherapy candle"
+    },
+    {
+      "order": 7,
+      "zh": "华夫格水疗浴袍",
+      "en": "waffle spa robe"
+    },
+    {
+      "order": 8,
+      "zh": "美容发带",
+      "en": "cosmetic headband"
+    },
+    {
+      "order": 9,
+      "zh": "面霜广口罐",
+      "en": "facial cream jar"
+    },
+    {
+      "order": 10,
+      "zh": "面部离子蒸脸仪",
+      "en": "facial steamer device"
+    }
+  ],
+  "image": {
+    "filename": "P03_beauty_salon_and_spa.png",
+    "path": "input_pics/11_个人护理与时尚/P03_beauty_salon_and_spa.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of beauty salon and spa (美容与水疗).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: cushioned massage table, rolled face towel, essential oil bottle, sheet face mask, volcanic hot stone, scented aromatherapy candle, waffle spa robe, cosmetic headband, facial cream jar, facial steamer device.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "bcb70fcd844de4eb2b2b8f27a2b39229050d03a006d77ab3b3b24af0b9f1cce3"
+}

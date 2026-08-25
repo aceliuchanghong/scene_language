@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "E01",
+  "slug": "E01_football_pitch",
+  "batch": "D",
+  "category": {
+    "id": "E",
+    "order": 10,
+    "zh": "运动与竞技",
+    "en": "Sports and fitness"
+  },
+  "scene": {
+    "zh": "足球场",
+    "en": "football pitch"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "球门立柱",
+      "en": "goalpost"
+    },
+    {
+      "order": 2,
+      "zh": "比赛用足球",
+      "en": "match ball"
+    },
+    {
+      "order": 3,
+      "zh": "球门网",
+      "en": "goal net"
+    },
+    {
+      "order": 4,
+      "zh": "角旗",
+      "en": "corner flag"
+    },
+    {
+      "order": 5,
+      "zh": "裁判哨子",
+      "en": "referee whistle"
+    },
+    {
+      "order": 6,
+      "zh": "替补席座椅",
+      "en": "substitute bench"
+    },
+    {
+      "order": 7,
+      "zh": "中圈白线",
+      "en": "centre circle line"
+    },
+    {
+      "order": 8,
+      "zh": "点球点",
+      "en": "penalty spot"
+    },
+    {
+      "order": 9,
+      "zh": "球场照明大灯",
+      "en": "stadium floodlight"
+    },
+    {
+      "order": 10,
+      "zh": "电子记分牌",
+      "en": "electronic scoreboard"
+    }
+  ],
+  "image": {
+    "filename": "E01_football_pitch.png",
+    "path": "input_pics/10_运动与竞技/E01_football_pitch.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of football pitch (足球场).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: goalpost, match ball, goal net, corner flag, referee whistle, substitute bench, centre circle line, penalty spot, stadium floodlight, electronic scoreboard.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "7262ac252dade389809aef72b1b53efadaba21a4c74daf14e8da86bd7ca25993"
+}

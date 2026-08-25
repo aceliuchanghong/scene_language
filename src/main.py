@@ -79,35 +79,46 @@ def collect_images(all_pics: bool, image: str | None) -> list[Path]:
 
 def run_pipeline(
     image_path: Path,
+    lang: str = config.DEFAULT_LANG,
     step: int | None = None,
     no_cache: bool = False,
     no_cache_vlm: bool = False,
     no_cache_llm: bool = False,
     no_cache_tts: bool = False,
     no_video: bool = False,
-    voice: str = config.DEFAULT_VOICE,
+    voice: str | None = None,
+    voice_pt: str | None = None,
+    seed: int = config.DEFAULT_SEED,
     speed: float = 1.2,
     zoom: float = 1.7,
 ) -> None:
+    lang = lang.lower()
     stem = image_path.stem
-    json_path = config.JSON_DIR / f"{stem}.json"
+    json_path = config.get_json_path(stem, lang)
 
     vlm_no_cache = no_cache or no_cache_vlm
     llm_no_cache = no_cache or no_cache_llm
     tts_no_cache = no_cache or no_cache_tts
 
     steps = {
-        1: lambda: analyze_image(image_path, no_cache=vlm_no_cache),
-        2: lambda: generate_language(json_path, no_cache=llm_no_cache),
-        3: lambda: render_all(json_path),
+        1: lambda: analyze_image(image_path, lang=lang, no_cache=vlm_no_cache),
+        2: lambda: generate_language(json_path, lang=lang, no_cache=llm_no_cache),
+        3: lambda: render_all(json_path, lang=lang),
         4: lambda: compose_video(
-            json_path, voice=voice, speed=speed, zoom_target=zoom, no_cache=tts_no_cache
+            json_path,
+            lang=lang,
+            voice=voice,
+            voice_pt=voice_pt,
+            speed=speed,
+            zoom_target=zoom,
+            seed=seed,
+            no_cache=tts_no_cache,
         ),
     }
     # 单步模式:step1 需要 image,其余依赖 json;批量入口可能跨目录重名,step1 总是先跑
     if step:
         if step != 1 and not json_path.exists():
-            raise SystemExit(f"缺少 {json_path},先运行 step1")
+            raise SystemExit(f"缺少 {json_path},先运行 step1 --lang {lang}")
         steps[step]()
         return
 
@@ -118,7 +129,7 @@ def run_pipeline(
     if not no_video:
         steps[4]()
     t_pipe_total = time.perf_counter() - t_pipe_start
-    print(f"\n全部完成: {stem} (总耗时 {t_pipe_total:.1f}s)")
+    print(f"\n全部完成: {stem} [{lang}] (总耗时 {t_pipe_total:.1f}s)")
 
 
 def main() -> None:
@@ -127,6 +138,14 @@ def main() -> None:
         "image",
         nargs="?",
         help="单张图片路径;配合 --all 时为要批处理的子目录 (默认整个 input_pics/)",
+    )
+    parser.add_argument(
+        "--lang",
+        "--language",
+        dest="lang",
+        default=config.DEFAULT_LANG,
+        choices=config.SUPPORTED_LANGUAGES,
+        help="目标语言 (en=英语, ja=日语, ko=韩语, 默认 en)",
     )
     parser.add_argument(
         "--all", action="store_true", help="批处理指定目录(或 input_pics/)下全部图片"
@@ -158,9 +177,26 @@ def main() -> None:
         help="强制重跑流水线 (批处理时不跳过已有视频; 仍可复用 VLM/LLM/TTS 缓存)",
     )
     parser.add_argument("--no-video", action="store_true", help="只渲染图片,不合成视频")
-    parser.add_argument("--voice", default=config.DEFAULT_VOICE, help="英文 TTS 音色")
-    parser.add_argument("--speed", type=float, default=1.2, help="英文语速 (默认 1.2)")
-    parser.add_argument("--zoom", type=float, default=1.7, help="推镜缩放倍率 (默认 1.7)")
+    parser.add_argument(
+        "--voice",
+        default=None,
+        help="TTS 音色描述/名称 (若指定 .pt 文件路径亦可自动识别加载)",
+    )
+    parser.add_argument(
+        "--voice-pt",
+        default=None,
+        help="指定已保存的 OmniVoice .pt 音色 Prompt 凭据文件 (默认优先使用 src/voices/ 对应专属 .pt)",
+    )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=config.DEFAULT_SEED,
+        help=f"随机种子 (用于 OmniVoice 固定音色, 默认 {config.DEFAULT_SEED})",
+    )
+    parser.add_argument("--speed", type=float, default=1.2, help="朗读语速 (默认 1.2)")
+    parser.add_argument(
+        "--zoom", type=float, default=1.7, help="推镜缩放倍率 (默认 1.7)"
+    )
     parser.add_argument(
         "--list-voices", action="store_true", help="列出可用 TTS 音色后退出"
     )
@@ -186,14 +222,16 @@ def main() -> None:
     failed: list[Path] = []
     done = skipped = 0
     for image_path in images:
-        print(f"\n===== {image_path} =====")
-        if skip_existing and (config.VIDEO_DIR / f"{image_path.stem}.mp4").exists():
-            print(f"[main] 视频已存在,跳过: {image_path.stem}.mp4")
+        print(f"\n===== {image_path} [{args.lang}] =====")
+        video_path = config.get_video_path(image_path.stem, args.lang)
+        if skip_existing and video_path.exists():
+            print(f"[main] 视频已存在,跳过: {video_path.name}")
             skipped += 1
             continue
         try:
             run_pipeline(
                 image_path,
+                lang=args.lang,
                 step=args.step,
                 no_cache=args.no_cache,
                 no_cache_vlm=args.no_cache_vlm,
@@ -201,6 +239,8 @@ def main() -> None:
                 no_cache_tts=args.no_cache_tts,
                 no_video=args.no_video,
                 voice=args.voice,
+                voice_pt=args.voice_pt,
+                seed=args.seed,
                 speed=args.speed,
                 zoom=args.zoom,
             )
@@ -216,7 +256,9 @@ def main() -> None:
 
     if args.all:
         total = len(images)
-        print(f"\n===== 批量完成: 共 {total} | 成功 {done} | 跳过 {skipped} | 失败 {len(failed)} =====")
+        print(
+            f"\n===== 批量完成 [{args.lang}]: 共 {total} | 成功 {done} | 跳过 {skipped} | 失败 {len(failed)} ====="
+        )
         if failed:
             print("失败列表:")
             for p in failed:

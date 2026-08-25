@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "E04",
+  "slug": "E04_yoga_and_pilates_studio",
+  "batch": "D",
+  "category": {
+    "id": "E",
+    "order": 10,
+    "zh": "运动与竞技",
+    "en": "Sports and fitness"
+  },
+  "scene": {
+    "zh": "瑜伽与普拉提馆",
+    "en": "yoga and pilates studio"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "防滑瑜伽垫",
+      "en": "non-slip yoga mat"
+    },
+    {
+      "order": 2,
+      "zh": "高密度瑜伽砖",
+      "en": "foam yoga block"
+    },
+    {
+      "order": 3,
+      "zh": "普拉提核心床",
+      "en": "pilates reformer"
+    },
+    {
+      "order": 4,
+      "zh": "弹力阻力带",
+      "en": "elastic resistance band"
+    },
+    {
+      "order": 5,
+      "zh": "健身大球",
+      "en": "swiss exercise ball"
+    },
+    {
+      "order": 6,
+      "zh": "瑜伽抱枕",
+      "en": "yoga bolster cushion"
+    },
+    {
+      "order": 7,
+      "zh": "通体镜面墙",
+      "en": "studio wall mirror"
+    },
+    {
+      "order": 8,
+      "zh": "香薰加湿器",
+      "en": "aroma diffuser"
+    },
+    {
+      "order": 9,
+      "zh": "保温运动水壶",
+      "en": "thermal water flask"
+    },
+    {
+      "order": 10,
+      "zh": "原木瑜伽地板",
+      "en": "wooden studio flooring"
+    }
+  ],
+  "image": {
+    "filename": "E04_yoga_and_pilates_studio.png",
+    "path": "input_pics/10_运动与竞技/E04_yoga_and_pilates_studio.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of yoga and pilates studio (瑜伽与普拉提馆).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: non-slip yoga mat, foam yoga block, pilates reformer, elastic resistance band, swiss exercise ball, yoga bolster cushion, studio wall mirror, aroma diffuser, thermal water flask, wooden studio flooring.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "3dd23166e27e4a1340b8ff6e134de37e4408174f7ab67b2e95a77def01ea870b"
+}

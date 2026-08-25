@@ -1,12 +1,13 @@
 """Step 3 · Visual Renderer — 基于 Pillow 的 3 层标注图。
 
 输出(统一 1080x1920 竖版,竖屏短视频友好):
-    output/source_language/<stem>.png   中文层
-    output/target_language/<stem>.png   中英双语层
-    output/pronunciation/<stem>.png     双语+音标层
+    output/source_language/<stem>.png           中文层
+    output/target_language/<stem>[_<lang>].png   双语对照层
+    output/pronunciation/<stem>[_<lang>].png     双语+注音层
 
 单独运行:
     uv run python -m src.step3.cli --image input_pics/生活场景/carriage.png
+    uv run python -m src.step3.cli --image ... --lang ja
 """
 
 from __future__ import annotations
@@ -42,22 +43,25 @@ def _font(path: str, size: int) -> ImageFont.FreeTypeFont:
 
 
 class Renderer:
-    def __init__(self, image_path: Path):
+    def __init__(self, image_path: Path, lang: str = "en"):
+        self.lang = lang.lower()
         self.src = Image.open(image_path).convert("RGB")
-        self.f_zh = _font(config.FONT_ZH, 34)
-        self.f_zh_big = _font(config.FONT_ZH, 58)
-        self.f_en = _font(config.FONT_EN, 36)
-        self.f_en_big = _font(config.FONT_EN, 72)
-        self.f_ipa = _font(config.FONT_EN, 30)
-        self.f_ipa_big = _font(config.FONT_EN, 40)
-        self.f_title = _font(config.FONT_ZH, 44)
-        self.f_small = _font(config.FONT_ZH, 26)
-        self.f_badge = _font(config.FONT_EN, 26)
-        # 标注小卡字体:英文大、中文中、音标小灰
-        self.f_label_en = _font(config.FONT_EN_BOLD, 34)
-        self.f_label_zh = _font(config.FONT_ZH_BOLD, 28)
-        self.f_label_ipa = _font(config.FONT_EN, 23)
-        self.f_index = _font(config.FONT_EN_BOLD, 18)
+        fonts = config.get_lang_fonts(self.lang)
+
+        self.f_zh = _font(fonts["zh"], 34)
+        self.f_zh_big = _font(fonts["zh"], 58)
+        self.f_target = _font(fonts["regular"], 36)
+        self.f_target_big = _font(fonts["regular"], 72)
+        self.f_pron = _font(fonts["regular"], 30)
+        self.f_pron_big = _font(fonts["regular"], 40)
+        self.f_title = _font(fonts["zh"], 44)
+        self.f_small = _font(fonts["zh"], 26)
+        self.f_badge = _font(fonts["bold"], 26)
+        # 标注小卡字体:外文大、中文中、音标/注音小灰
+        self.f_label_target = _font(fonts["bold"], 34)
+        self.f_label_zh = _font(fonts["zh_bold"], 28)
+        self.f_label_pron = _font(fonts["regular"], 23)
+        self.f_index = _font(fonts["bold"], 18)
 
     # ---------- 基础画布:原图尽量占满,仅留极窄边距,无装饰 ----------
 
@@ -99,15 +103,16 @@ class Renderer:
             )
         return canvas, rect
 
-    # ---------- 发音层:与中英标注统一的深色玻璃卡 ----------
+    # ---------- 发音层:与双语标注统一的深色玻璃卡 ----------
 
     def render_pronunciation(self, data: SceneData) -> Path:
-        canvas, rect = self.canvas("发音音标", data.scene)
+        title = "发音音标" if self.lang == "en" else "发音注音"
+        canvas, rect = self.canvas(title, data.scene)
         lines_per_word = [
             [
-                (w.en, self.f_label_en),
+                (w.target or w.en, self.f_label_target),
                 (w.zh, self.f_label_zh),
-                (w.ipa, self.f_label_ipa),
+                (w.pron or w.ipa, self.f_label_pron),
             ]
             for w in data.words
         ]
@@ -122,10 +127,12 @@ class Renderer:
                 canvas, box, anchor, i + 1, lines, PALETTE[i % len(PALETTE)]
             )
 
-        out = config.PRON_DIR / f"{Path(data.image).stem}.png"
-        config.PRON_DIR.mkdir(parents=True, exist_ok=True)
+        stem = Path(data.image).stem
+        layer_paths = config.get_layer_paths(stem, self.lang)
+        out = layer_paths["pronunciation"]
+        out.parent.mkdir(parents=True, exist_ok=True)
         canvas.save(out)
-        print(f"[step3] 发音音标 -> {out}")
+        print(f"[step3] [{self.lang}] {title} -> {out}")
         return out
 
     # ---------- 标签排版(抗重叠) ----------
@@ -220,7 +227,7 @@ class Renderer:
         ImageDraw.Draw(mask).rounded_rectangle([(0, 0), (w, h)], radius=12, fill=220)
         canvas.paste(Image.new("RGB", (w, h), (16, 19, 24)), (x, y), mask)
         d = ImageDraw.Draw(canvas)
-        # 文本:首行白色(英文/中文),其后浅灰
+        # 文本:首行白色(外文/中文),其后浅灰
         d.rounded_rectangle([(x, y), (x + 5, y + h)], radius=2, fill=color)
         ty = y + 12
         for i, (text, font) in enumerate(lines):
@@ -235,17 +242,34 @@ class Renderer:
     # ---------- 三层标注图 ----------
 
     def render_layers(self, data: SceneData) -> list[Path]:
+        stem = Path(data.image).stem
+        layer_paths = config.get_layer_paths(stem, self.lang)
+        bilingual_title = {
+            "en": "中英对照",
+            "ja": "中日对照",
+            "ko": "中韩对照",
+        }.get(self.lang, "双语对照")
+
         layers = [
-            ("source_language", "中文场景", [lambda w: (w.zh, self.f_label_zh)]),
             (
-                "target_language",
-                "中英对照",
-                [lambda w: (w.en, self.f_label_en), lambda w: (w.zh, self.f_label_zh)],
+                "source",
+                "中文场景",
+                [lambda w: (w.zh, self.f_label_zh)],
+                layer_paths["source"],
+            ),
+            (
+                "target",
+                bilingual_title,
+                [
+                    lambda w: (w.target or w.en, self.f_label_target),
+                    lambda w: (w.zh, self.f_label_zh),
+                ],
+                layer_paths["target"],
             ),
         ]
         rect = None
         outputs = []
-        for dirname, stage, getters in layers:
+        for key, stage, getters, out_file in layers:
             canvas, rect = self.canvas(
                 stage, data.scene, extra=f"共 {len(data.words)} 个词汇"
             )
@@ -265,29 +289,24 @@ class Renderer:
                 self._draw_card(
                     canvas, box, anchor, i, lines, PALETTE[(i - 1) % len(PALETTE)]
                 )
-            out_dir = getattr(
-                config,
-                {
-                    "source_language": "SOURCE_LANG_DIR",
-                    "target_language": "TARGET_LANG_DIR",
-                    "pronunciation": "PRON_DIR",
-                }[dirname],
-            )
-            out_dir.mkdir(parents=True, exist_ok=True)
-            out = out_dir / f"{Path(data.image).stem}.png"
-            canvas.save(out)
-            outputs.append(out)
-            print(f"[step3] {stage} -> {out}")
+            out_file.parent.mkdir(parents=True, exist_ok=True)
+            canvas.save(out_file)
+            outputs.append(out_file)
+            print(f"[step3] [{self.lang}] {stage} -> {out_file}")
         return outputs
 
 
-def render_all(json_path: Path) -> dict:
+def render_all(json_path: Path, lang: str = "en") -> dict:
     data: SceneData = load_scene_data(json_path)
-    if not all(w.en and w.ipa for w in data.words):
-        raise SystemExit("[step3] JSON 缺少 en/ipa,先运行 step2")
-    if not all(w.example_en and w.example_zh for w in data.words):
-        raise SystemExit("[step3] JSON 缺少例句,先运行 step2(可加 --no-cache)")
-    r = Renderer(Path(data.image))
+    lang = (data.lang or lang).lower()
+
+    if not all((w.target or w.en) and (w.pron or w.ipa) for w in data.words):
+        raise SystemExit(f"[step3] JSON 缺少外语词汇或注音,先运行 step2 --lang {lang}")
+    if not all((w.example_target or w.example_en) and w.example_zh for w in data.words):
+        raise SystemExit(
+            f"[step3] JSON 缺少例句,先运行 step2 --lang {lang}(可加 --no-cache)"
+        )
+    r = Renderer(Path(data.image), lang=lang)
     layers = r.render_layers(data)
     pronunciation = r.render_pronunciation(data)
     return {
@@ -299,7 +318,13 @@ def render_all(json_path: Path) -> dict:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Step3 · 图片渲染")
     parser.add_argument(
-        "--image", required=True, help="输入图片(定位 output/json 下同名 JSON)"
+        "--image", required=True, help="输入图片(定位 output/json 下对应 JSON)"
+    )
+    parser.add_argument(
+        "--lang",
+        default=config.DEFAULT_LANG,
+        choices=config.SUPPORTED_LANGUAGES,
+        help="目标语言 (默认 en)",
     )
     parser.add_argument("--json", default=None, help="直接指定 JSON 路径")
     args = parser.parse_args()
@@ -307,11 +332,11 @@ def main() -> None:
     json_path = (
         Path(args.json)
         if args.json
-        else config.JSON_DIR / f"{Path(args.image).stem}.json"
+        else config.get_json_path(Path(args.image).stem, args.lang)
     )
     if not json_path.exists():
-        raise SystemExit(f"找不到 {json_path},先运行 step1/step2")
-    render_all(json_path)
+        raise SystemExit(f"找不到 {json_path},先运行 step1/step2 --lang {args.lang}")
+    render_all(json_path, lang=args.lang)
 
 
 if __name__ == "__main__":

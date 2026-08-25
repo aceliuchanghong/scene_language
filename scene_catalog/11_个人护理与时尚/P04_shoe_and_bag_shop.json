@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "P04",
+  "slug": "P04_shoe_and_bag_shop",
+  "batch": "D",
+  "category": {
+    "id": "P",
+    "order": 11,
+    "zh": "个人护理与时尚",
+    "en": "Personal care and fashion"
+  },
+  "scene": {
+    "zh": "鞋履与箱包店",
+    "en": "shoe and bag shop"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "多层鞋架",
+      "en": "tiered shoe shelf"
+    },
+    {
+      "order": 2,
+      "zh": "真皮手提包",
+      "en": "leather handbag"
+    },
+    {
+      "order": 3,
+      "zh": "细跟高跟鞋",
+      "en": "stiletto high heels"
+    },
+    {
+      "order": 4,
+      "zh": "小白鞋",
+      "en": "casual white trainers"
+    },
+    {
+      "order": 5,
+      "zh": "长柄鞋拔",
+      "en": "shoe horn"
+    },
+    {
+      "order": 6,
+      "zh": "皮带陈列挂架",
+      "en": "leather belt display"
+    },
+    {
+      "order": 7,
+      "zh": "手拿零钱包",
+      "en": "women coin purse"
+    },
+    {
+      "order": 8,
+      "zh": "旅行双肩包",
+      "en": "travel backpack"
+    },
+    {
+      "order": 9,
+      "zh": "试鞋软凳",
+      "en": "customer fitting stool"
+    },
+    {
+      "order": 10,
+      "zh": "倾角试鞋镜",
+      "en": "low angled shoe mirror"
+    }
+  ],
+  "image": {
+    "filename": "P04_shoe_and_bag_shop.png",
+    "path": "input_pics/11_个人护理与时尚/P04_shoe_and_bag_shop.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of shoe and bag shop (鞋履与箱包店).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: tiered shoe shelf, leather handbag, stiletto high heels, casual white trainers, shoe horn, leather belt display, women coin purse, travel backpack, customer fitting stool, low angled shoe mirror.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "77a8e31cd69b2ce33c64ac0f2528d099e1ea99cb83aaa0c61c2da866ff4af5c6"
+}

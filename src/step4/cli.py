@@ -43,7 +43,7 @@ AMBIENT_DARKNESS = 0.40  # 竖屏环境背景压暗比例 (保留 40% 亮度)
 # 2. 悬浮教学卡片 (HUD Focus Card) 布局与视觉 (集中管理)
 HUD_CARD_TOP_RATIO = 0.20  # 卡片顶部距离屏幕顶部的比例 (0.2 即 20% 高度处)
 HUD_CARD_WIDTH = 1040  # 卡片宽度 (px)
-HUD_CARD_HEIGHT = 420  # 卡片高度 (px)
+HUD_CARD_HEIGHT = 440  # 卡片高度 (px, 舒适容纳独立注音行与例句)
 HUD_CARD_RADIUS = 33  # 卡片圆角半径
 HUD_CARD_BG_COLOR = (12, 16, 24)  # 卡片底板深色玻璃颜色
 HUD_CARD_BG_ALPHA = 235  # 卡片底板不透明度 (0~255)
@@ -87,17 +87,18 @@ DEFAULT_XFADE_DUR = 0.30  # 片头图片之间交叉淡化时长(秒)
 
 # 7. TTS 语音朗读与音频留白
 DEFAULT_SPEED = 1.2  # 默认英文例句 TTS 朗读语速 (1.0 为原速, 1.2 为加速 20%)
-DEFAULT_AUDIO_PRE_PAD = 0.06  # 朗读前静音留白时长(秒)
-DEFAULT_AUDIO_POST_PAD = 0.50  # 朗读后静音留白时长(秒)
-DEFAULT_MIN_SEG_DUR = 1.20  # 单个词汇片段保底最小时长(秒)
+DEFAULT_AUDIO_PRE_PAD = 0.08  # 朗读前静音留白时长(秒)
+DEFAULT_AUDIO_POST_PAD = 0.80  # 朗读后自然呼吸留白时长(秒, 保证语音余音与停顿完全呈现)
+DEFAULT_MIN_SEG_DUR = 1.80  # 单个词汇片段保底最小时长(秒)
+
 
 # 8. 片尾收束
 DEFAULT_OUTRO_HOLD_DUR = 4.0  # 片尾回显第 3 张图(图C)静止停留时长(秒)
 OUTRO_FADE_DUR = 0.50  # 片尾结束前淡出至黑场的时长(秒)
 
 # 9. 背景音乐 (BGM) 智能压音与混音
-BGM_VOLUME_INTRO = 0.80  # 片头静止图展示阶段 BGM 音量 (0.0~1.0, 较大声)
-BGM_VOLUME_DUCKED = 0.10  # 正文 TTS 朗读阶段 BGM 压低音量 (0.0~1.0, 轻柔旋律)
+BGM_VOLUME_INTRO = 0.84  # 片头静止图展示阶段 BGM 音量 (0.0~1.0, 较大声)
+BGM_VOLUME_DUCKED = 0.16  # 正文 TTS 朗读阶段 BGM 压低音量 (0.0~1.0, 轻柔旋律)
 BGM_DUCK_LEAD = 0.40  # BGM 在片头结束前提早开始压音的时间(秒)
 BGM_DUCK_TAIL = 0.30  # BGM 压音过渡到最低音量的时间点(片头结束后秒数)
 BGM_FADE_OUT_DUR = 0.50  # 视频结尾 BGM 平滑淡出时长(秒)
@@ -170,28 +171,34 @@ def _build_voices_npz() -> str:
 
 class TTS:
     def __init__(self, no_cache: bool = False):
-        from kokoro_onnx import Kokoro
-
-        self.kokoro = Kokoro(
-            model_path=str(config.KOKORO_ONNX), voices_path=_build_voices_npz()
-        )
         self.no_cache = no_cache
         self.cache_dir = config.AUDIO_DIR / ".tts_cache"
         self.cache_dir.mkdir(parents=True, exist_ok=True)
+        self._kokoro = None
 
-    def synth(self, text: str, voice: str, speed: float = 1.0) -> np.ndarray:
+    def _get_kokoro(self):
+        if self._kokoro is None:
+            from kokoro_onnx import Kokoro
+
+            self._kokoro = Kokoro(
+                model_path=str(config.KOKORO_ONNX), voices_path=_build_voices_npz()
+            )
+        return self._kokoro
+
+    def synth_kokoro(self, text: str, voice: str, speed: float = 1.0) -> np.ndarray:
         import hashlib
 
         text = text.strip()
         if not text:
             return np.zeros(1, dtype=np.float32)
-        key = f"{text}|{voice}|{speed:.2f}"
-        cache = self.cache_dir / f"{hashlib.md5(key.encode()).hexdigest()}.npy"
+        key = f"kokoro|{text}|{voice}|{speed:.2f}"
+        cache = self.cache_dir / f"{hashlib.md5(key.encode('utf-8')).hexdigest()}.npy"
         if cache.exists() and not self.no_cache:
             return np.load(cache)
+        kokoro_engine = self._get_kokoro()
         lang = _VOICE_LANG.get(voice[:2], "en-us")
-        phonemes = self.kokoro.tokenizer.phonemize(text, lang)
-        voice_style = self.kokoro.get_voice_style(voice)
+        phonemes = kokoro_engine.tokenizer.phonemize(text, lang)
+        voice_style = kokoro_engine.get_voice_style(voice)
         parts = []
         cur, cur_len, chunks = [], 0, []
         for w in phonemes.split():
@@ -203,10 +210,10 @@ class TTS:
         if cur:
             chunks.append(" ".join(cur))
         for chunk in chunks or [phonemes]:
-            tokens = self.kokoro.tokenizer.tokenize(chunk)
+            tokens = kokoro_engine.tokenizer.tokenize(chunk)
             style = np.asarray(voice_style[len(tokens)], dtype=np.float32)
             ids = np.array([[0, *tokens, 0]], dtype=np.int64)
-            audio = self.kokoro.sess.run(
+            audio = kokoro_engine.sess.run(
                 None,
                 {
                     "input_ids": ids,
@@ -218,6 +225,124 @@ class TTS:
         out = np.concatenate(parts) if parts else np.zeros(1, dtype=np.float32)
         np.save(cache, out)
         return out
+
+    def synth_omnivoice(
+        self,
+        text: str,
+        lang: str = "ja",
+        voice: str | None = None,
+        voice_pt: Path | str | None = None,
+        speed: float = 1.0,
+        seed: int = 42,
+        steps: int = 16,
+    ) -> np.ndarray:
+        import hashlib
+        import uuid
+        import soundfile as sf
+
+        text = text.strip()
+        if not text:
+            return np.zeros(1, dtype=np.float32)
+
+        # 优先使用 .pt 提示词音色文件 (秒级克隆免种子复现)
+        pt_path: Path | None = None
+        if voice_pt:
+            pt_path = Path(voice_pt)
+        elif voice and (str(voice).endswith(".pt") or Path(voice).exists()):
+            pt_path = Path(voice)
+        elif not voice and lang in config.DEFAULT_VOICE_PTS:
+            default_pt = config.DEFAULT_VOICE_PTS[lang]
+            if default_pt.exists():
+                pt_path = default_pt
+
+        if pt_path and pt_path.exists():
+            pt_mtime = pt_path.stat().st_mtime
+            key = f"omnivoice|{text}|{lang}|pt_{pt_path.name}_{pt_mtime}|{speed:.2f}|{steps}"
+        else:
+            v_desc = voice or config.DEFAULT_VOICES.get(
+                lang, "female, young adult, moderate pitch"
+            )
+            key = f"omnivoice|{text}|{lang}|{v_desc}|{speed:.2f}|{seed}|{steps}"
+
+        cache = self.cache_dir / f"{hashlib.md5(key.encode('utf-8')).hexdigest()}.npy"
+        if cache.exists() and not self.no_cache:
+            return np.load(cache)
+
+        if not config.OMNIVOICE_PYTHON.exists() or not config.OMNIVOICE_CLI.exists():
+            raise RuntimeError(
+                f"未找到 OmniVoice 环境: 请检查 {config.OMNIVOICE_PYTHON} 与 {config.OMNIVOICE_CLI}"
+            )
+
+        tmp_out = self.cache_dir / f"tmp_{uuid.uuid4().hex}.wav"
+        cmd = [
+            str(config.OMNIVOICE_PYTHON),
+            str(config.OMNIVOICE_CLI),
+            text,
+            "--language",
+            lang,
+            "--speed",
+            str(speed),
+            "--steps",
+            str(steps),
+            "-o",
+            str(tmp_out),
+        ]
+
+        if pt_path and pt_path.exists():
+            cmd.extend(["--prompt-load", str(pt_path.resolve())])
+        else:
+            v_desc = voice or config.DEFAULT_VOICES.get(
+                lang, "female, young adult, moderate pitch"
+            )
+            cmd.extend(["--voice", v_desc])
+            if seed is not None:
+                cmd.extend(["--seed", str(seed)])
+
+        res = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        if res.returncode != 0 or not tmp_out.exists():
+            raise RuntimeError(f"OmniVoice 合成失败: {res.stderr or res.stdout}")
+
+        try:
+            data, sr = sf.read(str(tmp_out), dtype="float32")
+            if data.ndim > 1:
+                data = data.mean(axis=1)
+            np.save(cache, data)
+            return data
+        finally:
+            if tmp_out.exists():
+                try:
+                    tmp_out.unlink()
+                except Exception:
+                    pass
+
+    def synth(
+        self,
+        text: str,
+        lang: str = "en",
+        voice: str | None = None,
+        voice_pt: Path | str | None = None,
+        speed: float = 1.0,
+        seed: int = 42,
+    ) -> np.ndarray:
+        lang = lang.lower()
+        if lang == "en":
+            v = voice or config.DEFAULT_VOICE
+            return self.synth_kokoro(text, voice=v, speed=speed)
+        else:
+            return self.synth_omnivoice(
+                text,
+                lang=lang,
+                voice=voice,
+                voice_pt=voice_pt,
+                speed=speed,
+                seed=seed,
+            )
 
 
 def _font(path: str, size: int) -> ImageFont.FreeTypeFont:
@@ -252,25 +377,29 @@ def _wrap_text(text: str, font: ImageFont.FreeTypeFont, max_w: int) -> list[str]
 class VisualCueAnimator:
     """负责单帧渲染：Ken Burns 运镜、聚光灯遮罩、目标锚点指示器与悬浮教学卡片。"""
 
-    def __init__(self, image_path: Path):
+    def __init__(self, image_path: Path, lang: str = "en"):
+        self.lang = lang.lower()
         self.src_img = Image.open(image_path).convert("RGB")
         self.src_w, self.src_h = self.src_img.size
 
-        # 字体加载 (教学卡片字体统一放大 1.5 倍)
-        self.f_sub = _font(config.FONT_ZH, 24)
-        self.f_word_en = _font(config.FONT_EN_BOLD, 69)
-        self.f_word_ipa = _font(config.FONT_EN, 42)
-        self.f_word_zh = _font(config.FONT_ZH_BOLD, 48)
-        self.f_ex_en = _font(config.FONT_EN, 42)
-        self.f_ex_zh = _font(config.FONT_ZH, 36)
-        self.f_badge = _font(config.FONT_EN_BOLD, 33)
-        self.f_reticle = _font(config.FONT_EN_BOLD, 18)
+        fonts = config.get_lang_fonts(self.lang)
+        # 字体加载 (精致层级排版: 标签/外文/中文/注音/例句独立分行)
+        self.f_sub = _font(fonts["zh"], 24)
+        self.f_badge = _font(fonts["bold"], 30)
+        self.f_word_target = _font(fonts["bold"], 54)
+        self.f_word_zh = _font(fonts["zh_bold"], 44)
+        self.f_word_pron = _font(fonts["regular"], 34)
+        self.f_ex_target = _font(fonts["regular"], 38)
+        self.f_ex_zh = _font(fonts["zh"], 32)
+        self.f_reticle = _font(fonts["bold"], 18)
 
         # 预先生成环境背景 (高斯模糊 + 压暗)
         bg = self.src_img.resize((W, H), Image.BILINEAR).filter(
             ImageFilter.GaussianBlur(AMBIENT_BLUR_RADIUS)
         )
-        self.ambient_bg = Image.eval(bg, lambda p: int(p * AMBIENT_DARKNESS)).convert("RGB")
+        self.ambient_bg = Image.eval(bg, lambda p: int(p * AMBIENT_DARKNESS)).convert(
+            "RGB"
+        )
 
         # 原图在竖屏画布未缩放时的基准显示矩形
         margin = CANVAS_MARGIN
@@ -343,87 +472,78 @@ class VisualCueAnimator:
             fill=(*theme_color, 255),
         )
 
+        target_text = str(word.target or word.en or "").strip()
+        pron_text = str(word.pron or word.ipa or "").strip()
+        ex_target_text = str(word.example_target or word.example_en or "").strip()
+        ex_zh_text = str(word.example_zh or "").strip()
+
         # 卡片内容：
-        # 第 1 行：序号角标 + 英文大字 + 音标 + 中文释义
+        # 第 1 行 (y=56)：序号角标 + 目标外语大字 (居左) + 中文核心释义 (居右)
         tag_text = f"FOCUS {word_idx:02d}"
         d.rounded_rectangle(
-            [(42, 36), (216, 90)],
-            radius=9,
+            [(42, 32), (200, 80)],
+            radius=8,
             fill=(*theme_color, 255),
         )
         d.text(
-            (129, 63),
+            (121, 56),
             tag_text,
             font=self.f_badge,
             fill=(15, 20, 30),
             anchor="mm",
         )
 
-        # 单词英文
-        en_x = 246
+        # 单词外文 (左起 x=220)
         d.text(
-            (en_x, 63),
-            word.en,
-            font=self.f_word_en,
+            (220, 56),
+            target_text,
+            font=self.f_word_target,
             fill=HUD_CARD_TEXT_MAIN_COLOR,
             anchor="lm",
         )
-        en_len = int(d.textlength(word.en, font=self.f_word_en))
 
-        # 音标
-        ipa_x = en_x + en_len + 27
+        # 中文含义 (右侧对齐，预留边距 48px，绝不与音标产生重叠冲突)
         d.text(
-            (ipa_x, 66),
-            word.ipa,
-            font=self.f_word_ipa,
+            (card_w - 48, 56),
+            word.zh,
+            font=self.f_word_zh,
+            fill=HUD_CARD_ZH_COLOR,
+            anchor="rm",
+        )
+
+        # 第 2 行 (y=108)：发音注音 / 音标 (独占整行，从 x=220 延伸至右侧，空间充裕)
+        d.text(
+            (220, 108),
+            pron_text,
+            font=self.f_word_pron,
             fill=HUD_CARD_IPA_COLOR,
             anchor="lm",
         )
-        ipa_len = int(d.textlength(word.ipa, font=self.f_word_ipa))
-
-        # 中文含义
-        zh_x = ipa_x + ipa_len + 30
-        if zh_x < card_w - 270:
-            d.text(
-                (zh_x, 63),
-                f"· {word.zh}",
-                font=self.f_word_zh,
-                fill=HUD_CARD_ZH_COLOR,
-                anchor="lm",
-            )
-        else:
-            d.text(
-                (card_w - 48, 63),
-                word.zh,
-                font=self.f_word_zh,
-                fill=HUD_CARD_ZH_COLOR,
-                anchor="rm",
-            )
 
         # 分割线
-        div_y = 126
+        div_y = 142
         d.line(
             [(42, div_y), (card_w - 42, div_y)],
             fill=HUD_CARD_DIVIDER_COLOR,
             width=2,
         )
 
-        # 第 2 行：英文例句 (自动换行)
-        ex_en_lines = _wrap_text(word.example_en, self.f_ex_en, card_w - 90)[:3]
-        line_y = div_y + 24
-        for line in ex_en_lines:
+        # 第 3 行：外文例句 (自动换行，最多 2 行)
+        ex_lines = _wrap_text(ex_target_text, self.f_ex_target, card_w - 96)[:2]
+        line_y = div_y + 18
+        for line in ex_lines:
             d.text(
                 (48, line_y),
                 line,
-                font=self.f_ex_en,
+                font=self.f_ex_target,
                 fill=HUD_CARD_EX_EN_COLOR,
                 anchor="la",
             )
-            line_y += self.f_ex_en.size + 12
+            line_y += self.f_ex_target.size + 10
 
-        # 第 3 行：中文翻译 (自动换行)
+        # 第 4 行：中文翻译 (自动换行，最多 2 行)
         line_y += 6
-        ex_zh_lines = _wrap_text(word.example_zh, self.f_ex_zh, card_w - 90)[:2]
+        ex_zh_lines = _wrap_text(ex_zh_text, self.f_ex_zh, card_w - 96)[:2]
         for line in ex_zh_lines:
             d.text(
                 (48, line_y),
@@ -432,7 +552,7 @@ class VisualCueAnimator:
                 fill=HUD_CARD_EX_ZH_COLOR,
                 anchor="la",
             )
-            line_y += self.f_ex_zh.size + 9
+            line_y += self.f_ex_zh.size + 8
 
         self.cached_card = card_img
 
@@ -527,7 +647,9 @@ class VisualCueAnimator:
             kernel_slice = self.spot_template[ty0:ty1, tx0:tx1]
             boost_factor = SPOTLIGHT_CORE_BOOST - base_darkness
             patch_mult = base_darkness + boost_factor * kernel_slice
-            patch_res = np.clip(patch_arr * patch_mult[:, :, None], 0, 255).astype(np.uint8)
+            patch_res = np.clip(patch_arr * patch_mult[:, :, None], 0, 255).astype(
+                np.uint8
+            )
             patch_img = Image.fromarray(patch_res)
             fg_dimmed.paste(patch_img, (x0, y0))
 
@@ -561,10 +683,26 @@ class VisualCueAnimator:
         d.ellipse([(px - 5, py - 5), (px + 5, py + 5)], fill=(255, 255, 255))
 
         tick = RETICLE_TICK_LEN
-        d.line([(px - r_inner - tick, py), (px - r_inner + 2, py)], fill=theme_color, width=2)
-        d.line([(px + r_inner - 2, py), (px + r_inner + tick, py)], fill=theme_color, width=2)
-        d.line([(px, py - r_inner - tick), (px, py - r_inner + 2)], fill=theme_color, width=2)
-        d.line([(px, py + r_inner - 2), (px, py + r_inner + tick)], fill=theme_color, width=2)
+        d.line(
+            [(px - r_inner - tick, py), (px - r_inner + 2, py)],
+            fill=theme_color,
+            width=2,
+        )
+        d.line(
+            [(px + r_inner - 2, py), (px + r_inner + tick, py)],
+            fill=theme_color,
+            width=2,
+        )
+        d.line(
+            [(px, py - r_inner - tick), (px, py - r_inner + 2)],
+            fill=theme_color,
+            width=2,
+        )
+        d.line(
+            [(px, py + r_inner - 2), (px, py + r_inner + tick)],
+            fill=theme_color,
+            width=2,
+        )
 
         # 6. 贴合预渲染的 HUD 悬浮教学卡片
         if self.cached_card is not None:
@@ -593,7 +731,7 @@ def _render_word_segment_video(
 ) -> Path:
     """将单词的连续帧流式灌入 FFmpeg 并合成为 MP4 视频片段。"""
     animator.prepare_word(word=word, word_idx=word_idx, total_words=total_words)
-    num_frames = int(round(duration * FPS))
+    num_frames = int(math.ceil(duration * FPS))
 
     cmd = [
         "ffmpeg",
@@ -623,12 +761,11 @@ def _render_word_segment_video(
         "-c:a",
         "aac",
         "-b:a",
-        "160k",
+        "192k",
         "-ar",
         "44100",
         "-ac",
         "2",
-        "-shortest",
         str(out_mp4),
     ]
 
@@ -812,9 +949,12 @@ def _apply_shrink_pad(src: Path, dst: Path) -> None:
 
 def compose_video(
     json_path: Path,
-    voice: str = config.DEFAULT_VOICE,
+    lang: str = "en",
+    voice: str | None = None,
+    voice_pt: Path | str | None = None,
     speed: float = DEFAULT_SPEED,
     zoom_target: float = DEFAULT_ZOOM,
+    seed: int = config.DEFAULT_SEED,
     layer_durs: list[float] | None = None,
     xfade_dur: float = DEFAULT_XFADE_DUR,
     bgm_path: Path | None = config.DEFAULT_BGM,
@@ -825,34 +965,53 @@ def compose_video(
 
     t_step4_start = time.perf_counter()
     data: SceneData = load_scene_data(json_path)
+    lang = (data.lang or lang).lower()
+
     stem = Path(data.image).stem
     src_image_path = Path(data.image)
     if not src_image_path.exists():
         src_image_path = config.INPUT_DIR / data.image
 
+    layer_paths = config.get_layer_paths(stem, lang)
     stills = [
-        config.SOURCE_LANG_DIR / f"{stem}.png",
-        config.TARGET_LANG_DIR / f"{stem}.png",
-        config.PRON_DIR / f"{stem}.png",
+        layer_paths["source"],
+        layer_paths["target"],
+        layer_paths["pronunciation"],
     ]
     missing = [str(p) for p in stills if not p.exists()]
     if missing:
-        raise SystemExit(f"[step4] 缺少渲染产物 {missing}, 请先执行 step3")
+        raise SystemExit(
+            f"[step4] 缺少渲染产物 {missing}, 请先执行 step3 --lang {lang}"
+        )
 
-    print("[step4] 初始化 Kokoro TTS 模型…")
+    # 确定音色描述与 prompt 文件
+    active_pt = voice_pt or (
+        Path(voice)
+        if voice and str(voice).endswith(".pt")
+        else config.DEFAULT_VOICE_PTS.get(lang)
+    )
+    if lang == "en":
+        tts_desc = f"Kokoro ONNX (音色: {voice or config.DEFAULT_VOICE})"
+    elif active_pt and Path(active_pt).exists():
+        tts_desc = f"OmniVoice (专属音色 Prompt: {Path(active_pt).name})"
+    else:
+        tts_desc = f"OmniVoice (音色设计: {voice or config.DEFAULT_VOICES.get(lang)})"
+
+    print(f"[step4] [{lang}] 初始化 TTS 引擎 -> {tts_desc}…")
     tts = TTS(no_cache=no_cache)
 
-    work_dir = config.VIDEO_DIR / f".work_{stem}"
+    work_dir = config.VIDEO_DIR / (
+        f".work_{stem}" if lang == "en" else f".work_{stem}_{lang}"
+    )
     work_dir.mkdir(parents=True, exist_ok=True)
     raw_concat = work_dir / "raw_concat.mp4"
-    final_video = config.VIDEO_DIR / f"{stem}.mp4"
+    final_video = config.get_video_path(stem, lang)
 
-    animator = VisualCueAnimator(src_image_path)
     sr = config.TTS_SAMPLE_RATE
 
     parts: list[Path] = []
 
-    # 1. 片头 3 层全景图展示 (中文层 1.5s -> 双语层 3.0s -> 音标层 3.0s，0.3s淡化)
+    # 1. 片头 3 层全景图展示 (中文层 1.5s -> 双语层 3.0s -> 音标/注音层 3.0s，0.3s淡化)
     t_intro_start = time.perf_counter()
     intro_mp4 = work_dir / "00_intro.mp4"
     total_intro_t = _intro_layers_clip(
@@ -862,21 +1021,38 @@ def compose_video(
         xfade_dur=xfade_dur,
     )
     t_intro_elapsed = time.perf_counter() - t_intro_start
-    print(f"[step4] 片头 3 层全景图过渡展示生成完毕 (总时长 {total_intro_t:.1f}s, 耗时 {t_intro_elapsed:.1f}s)")
+    print(
+        f"[step4] [{lang}] 片头 3 层全景图过渡展示生成完毕 (总时长 {total_intro_t:.1f}s, 耗时 {t_intro_elapsed:.1f}s)"
+    )
     parts.append(intro_mp4)
 
     # 2. 逐词视觉动效引导 (Visual Cue Main Flow - 紧凑高能版，并行加速渲染)
     total_words = len(data.words)
-    print(f"[step4] 开始生成 {total_words} 个词汇的 Visual Cue 视觉动效漫游片段…")
+    print(
+        f"[step4] [{lang}] 开始生成 {total_words} 个词汇的 Visual Cue 视觉动效漫游片段…"
+    )
     t_words_start = time.perf_counter()
 
     word_durations: list[float] = [0.0] * total_words
     word_tasks = []
 
+    # 动态根据语言选择最合适语速 (英语默认 1.2, 日韩默认 1.0 以免 OmniVoice 切词)
+    actual_speed = (
+        speed if speed != DEFAULT_SPEED else config.DEFAULT_SPEECH_SPEEDS.get(lang, 1.0)
+    )
+
     for idx, word in enumerate(data.words, 1):
         prev_word = data.words[idx - 2] if idx > 1 else None
-        # 仅朗读地道英文例句 (极短前/后留白 + 地道语速)
-        a_ex = tts.synth(word.example_en, voice=voice, speed=speed)
+        target_ex = str(word.example_target or word.example_en or "").strip()
+        # 朗读地道外文例句 (极短前/后留白 + 地道语速)
+        a_ex = tts.synth(
+            target_ex,
+            lang=lang,
+            voice=voice,
+            voice_pt=active_pt,
+            speed=actual_speed,
+            seed=seed,
+        )
 
         pre_pad = np.zeros(int(DEFAULT_AUDIO_PRE_PAD * sr), dtype=np.float32)
         post_pad = np.zeros(int(DEFAULT_AUDIO_POST_PAD * sr), dtype=np.float32)
@@ -891,17 +1067,20 @@ def compose_video(
         _write_wav(wav_path, combined_audio)
 
         seg_mp4 = work_dir / f"seg_{idx:02d}.mp4"
-        word_tasks.append((
-            src_image_path,
-            word,
-            idx,
-            total_words,
-            wav_path,
-            seg_dur,
-            seg_mp4,
-            zoom_target,
-            prev_word,
-        ))
+        word_tasks.append(
+            (
+                src_image_path,
+                word,
+                idx,
+                total_words,
+                wav_path,
+                seg_dur,
+                seg_mp4,
+                zoom_target,
+                prev_word,
+                lang,
+            )
+        )
 
     def _render_task(task_args):
         (
@@ -914,8 +1093,9 @@ def compose_video(
             s_mp4,
             z_target,
             p_word,
+            task_lang,
         ) = task_args
-        anim = VisualCueAnimator(src_img_p)
+        anim = VisualCueAnimator(src_img_p, lang=task_lang)
         t0 = time.perf_counter()
         _render_word_segment_video(
             animator=anim,
@@ -928,23 +1108,24 @@ def compose_video(
             zoom_target=z_target,
             prev_word=p_word,
         )
-        return w_idx, w.zh, w.en, s_dur, time.perf_counter() - t0
+        display_word = w.target or w.en
+        return w_idx, w.zh, display_word, s_dur, time.perf_counter() - t0
 
     if MAX_RENDER_WORKERS > 1 and total_words > 1:
-        print(f"[step4] 启用 {MAX_RENDER_WORKERS} 并发加速渲染…")
+        print(f"[step4] [{lang}] 启用 {MAX_RENDER_WORKERS} 并发加速渲染…")
         with ThreadPoolExecutor(max_workers=MAX_RENDER_WORKERS) as pool:
             futures = [pool.submit(_render_task, t) for t in word_tasks]
             for fut in as_completed(futures):
-                w_idx, zh, en, dur, el = fut.result()
+                w_idx, zh, foreign, dur, el = fut.result()
                 print(
-                    f"       [{w_idx:02d}/{total_words:02d}] 聚焦: {zh} ({en}) 完成 "
+                    f"       [{w_idx:02d}/{total_words:02d}] 聚焦: {zh} ({foreign}) 完成 "
                     f"(片段 {dur:.1f}s, 耗时 {el:.1f}s)"
                 )
     else:
         for t in word_tasks:
-            w_idx, zh, en, dur, el = _render_task(t)
+            w_idx, zh, foreign, dur, el = _render_task(t)
             print(
-                f"       [{w_idx:02d}/{total_words:02d}] 聚焦: {zh} ({en}) 完成 "
+                f"       [{w_idx:02d}/{total_words:02d}] 聚焦: {zh} ({foreign}) 完成 "
                 f"(片段 {dur:.1f}s, 耗时 {el:.1f}s)"
             )
 
@@ -953,7 +1134,7 @@ def compose_video(
 
     t_words_elapsed = time.perf_counter() - t_words_start
     print(
-        f"[step4] {total_words} 个词汇漫游片段全部生成完毕 "
+        f"[step4] [{lang}] {total_words} 个词汇漫游片段全部生成完毕 "
         f"(总耗时 {t_words_elapsed:.1f}s, 平均 {t_words_elapsed / max(1, total_words):.1f}s/词)"
     )
 
@@ -962,7 +1143,9 @@ def compose_video(
     outro_mp4 = work_dir / "99_outro.mp4"
     total_outro_t = _outro_hold_clip(stills[2], outro_mp4)
     t_outro_elapsed = time.perf_counter() - t_outro_start
-    print(f"[step4] 片尾图C回显 {total_outro_t:.1f}s (结尾淡出收束) 生成完毕 (耗时 {t_outro_elapsed:.1f}s)")
+    print(
+        f"[step4] [{lang}] 片尾图C回显 {total_outro_t:.1f}s (结尾淡出收束) 生成完毕 (耗时 {t_outro_elapsed:.1f}s)"
+    )
     parts.append(outro_mp4)
 
     # 4. 视频初步无缝拼接 (3图全景 + 逐词漫游 TTS 视频 + 片尾回显)
@@ -972,7 +1155,7 @@ def compose_video(
         encoding="utf-8",
     )
 
-    print(f"[step4] 正在拼接基础音视频序列 -> {raw_concat}")
+    print(f"[step4] [{lang}] 正在拼接基础音视频序列 -> {raw_concat}")
     subprocess.run(
         [
             "ffmpeg",
@@ -1000,7 +1183,7 @@ def compose_video(
     total_video_t = total_intro_t + sum(word_durations) + total_outro_t
     if bgm_path and Path(bgm_path).exists():
         print(
-            f"[step4] 正在注入全篇智能压音 BGM ({Path(bgm_path).name}) 并缩放居中 -> {final_video}"
+            f"[step4] [{lang}] 正在注入全篇智能压音 BGM ({Path(bgm_path).name}) 并缩放居中 -> {final_video}"
         )
         t1 = max(0.0, total_intro_t - BGM_DUCK_LEAD)
         t2 = total_intro_t + BGM_DUCK_TAIL
@@ -1050,7 +1233,7 @@ def compose_video(
         )
     else:
         print(
-            f"[step4] 输出画面整体缩小 {OUTPUT_SHRINK_FRACTION:.2f} 并居中补黑 -> {final_video}"
+            f"[step4] [{lang}] 输出画面整体缩小 {OUTPUT_SHRINK_FRACTION:.2f} 并居中补黑 -> {final_video}"
         )
         subprocess.run(
             [
@@ -1077,7 +1260,7 @@ def compose_video(
 
     t_step4_total = time.perf_counter() - t_step4_start
     print(
-        f"[step4] 视频合成完毕! 输出: {final_video} "
+        f"[step4] [{lang}] 视频合成完毕! 输出: {final_video} "
         f"(视频总长 {total_video_t:.1f}s, Step4 总耗时 {t_step4_total:.1f}s)"
     )
     return final_video
@@ -1086,11 +1269,28 @@ def compose_video(
 def main() -> None:
     parser = argparse.ArgumentParser(description="Step4 · Visual Cue 场景视频合成")
     parser.add_argument("--image", required=True, help="输入图片路径")
+    parser.add_argument(
+        "--lang",
+        default=config.DEFAULT_LANG,
+        choices=config.SUPPORTED_LANGUAGES,
+        help="目标语言 (默认 en)",
+    )
     parser.add_argument("--json", default=None, help="指定 JSON 路径")
     parser.add_argument(
         "--voice",
-        default=config.DEFAULT_VOICE,
-        help=f"英文音色 (默认 {config.DEFAULT_VOICE})",
+        default=None,
+        help="TTS 音色描述/名称 (若指定 .pt 文件路径亦可自动识别加载)",
+    )
+    parser.add_argument(
+        "--voice-pt",
+        default=None,
+        help="指定已保存的 OmniVoice .pt 音色 Prompt 凭据文件 (默认优先使用 src/voices/ 对应专属 .pt)",
+    )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=config.DEFAULT_SEED,
+        help=f"随机种子 (用于 OmniVoice 固定音色, 默认 {config.DEFAULT_SEED})",
     )
     parser.add_argument(
         "--speed",
@@ -1124,16 +1324,21 @@ def main() -> None:
     json_path = (
         Path(args.json)
         if args.json
-        else config.JSON_DIR / f"{Path(args.image).stem}.json"
+        else config.get_json_path(Path(args.image).stem, args.lang)
     )
     if not json_path.exists():
-        raise SystemExit(f"找不到 {json_path}, 请先运行 step1 / step2 / step3")
+        raise SystemExit(
+            f"找不到 {json_path}, 请先运行 step1 / step2 / step3 --lang {args.lang}"
+        )
     bgm_path = Path(args.bgm) if args.bgm else None
     compose_video(
         json_path,
+        lang=args.lang,
         voice=args.voice,
+        voice_pt=args.voice_pt,
         speed=args.speed,
         zoom_target=args.zoom,
+        seed=args.seed,
         layer_durs=args.layer_durs,
         bgm_path=bgm_path,
         no_cache=args.no_cache,

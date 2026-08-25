@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "A",
+    "order": 9,
+    "zh": "文化与艺术",
+    "en": "Arts and culture",
+    "batch": "D"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "A01_museum_hall.json",
+    "A02_art_gallery.json",
+    "A03_theatre_and_concert_hall.json",
+    "A04_zoo_and_aquarium.json",
+    "A05_theme_park.json",
+    "A06_independent_bookshop.json"
+  ]
+}

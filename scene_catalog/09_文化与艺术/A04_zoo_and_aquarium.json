@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "A04",
+  "slug": "A04_zoo_and_aquarium",
+  "batch": "D",
+  "category": {
+    "id": "A",
+    "order": 9,
+    "zh": "文化与艺术",
+    "en": "Arts and culture"
+  },
+  "scene": {
+    "zh": "动物园与水族馆",
+    "en": "zoo and aquarium"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "大型水族展缸",
+      "en": "glass aquarium tank"
+    },
+    {
+      "order": 2,
+      "zh": "珊瑚礁造景",
+      "en": "coral reef display"
+    },
+    {
+      "order": 3,
+      "zh": "动物围栏",
+      "en": "animal enclosure"
+    },
+    {
+      "order": 4,
+      "zh": "生态科普牌",
+      "en": "habitat information board"
+    },
+    {
+      "order": 5,
+      "zh": "饲料喂食槽",
+      "en": "feeding trough"
+    },
+    {
+      "order": 6,
+      "zh": "观景栈道平台",
+      "en": "viewing deck"
+    },
+    {
+      "order": 7,
+      "zh": "安全护栏",
+      "en": "safety railing"
+    },
+    {
+      "order": 8,
+      "zh": "饲养员手推车",
+      "en": "keeper trolley"
+    },
+    {
+      "order": 9,
+      "zh": "园区导览图",
+      "en": "guide map"
+    },
+    {
+      "order": 10,
+      "zh": "动物饲养员",
+      "en": "zoo keeper"
+    }
+  ],
+  "image": {
+    "filename": "A04_zoo_and_aquarium.png",
+    "path": "input_pics/09_文化与艺术/A04_zoo_and_aquarium.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of zoo and aquarium (动物园与水族馆).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: glass aquarium tank, coral reef display, animal enclosure, habitat information board, feeding trough, viewing deck, safety railing, keeper trolley, guide map, zoo keeper.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "e3ed8dd4c4a7ac7f5d45f1f056d60ee2dbfd6f3612fa5a33dd59131f36f49f67"
+}

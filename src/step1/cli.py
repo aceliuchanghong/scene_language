@@ -21,7 +21,7 @@ from pathlib import Path
 from openai import OpenAI
 
 from src import config
-from src.models import SceneData, load_scene_data, parse_scene_data
+from src.models import SceneData, WordItem, load_scene_data, parse_scene_data
 
 PROMPT_FREE = """你是场景外语学习助手。仔细观察这张真实场景照片。
 
@@ -76,13 +76,31 @@ def load_catalog_targets(image_path: Path) -> list[str]:
         return []
 
 
-def analyze_image(image_path: Path, no_cache: bool = False) -> Path:
-    """返回场景 JSON 路径(output/json/<stem>.json)。"""
+def analyze_image(image_path: Path, lang: str = "en", no_cache: bool = False) -> Path:
+    """返回场景 JSON 路径(如 output/json/<stem>.json 或 output/json/<stem>_ja.json)。"""
     config.ensure_dirs()
-    out_path = config.JSON_DIR / f"{image_path.stem}.json"
+    out_path = config.get_json_path(image_path.stem, lang)
     if out_path.exists() and not no_cache:
         print(f"[step1] 使用缓存 {out_path}")
         return out_path
+
+    # 跨语言复用: 如果已有其他语言的 JSON(如默认 en 版本), 直接复用其识别好的物体与坐标
+    base_en_path = config.get_json_path(image_path.stem, "en")
+    if lang != "en" and base_en_path.exists() and not no_cache:
+        try:
+            base_data = load_scene_data(base_en_path)
+            new_words = [WordItem(zh=w.zh, x=w.x, y=w.y) for w in base_data.words]
+            new_data = SceneData(
+                image=str(image_path),
+                scene=base_data.scene,
+                lang=lang,
+                words=new_words,
+            )
+            out_path.write_text(new_data.model_dump_json(indent=2), encoding="utf-8")
+            print(f"[step1] 复用已有场景坐标 ({base_en_path}) -> {out_path}")
+            return out_path
+        except Exception as e:  # noqa: BLE001
+            print(f"[step1] 读取已有坐标缓存失败, 重新调用 VLM: {e}")
 
     mime = mimetypes.guess_type(str(image_path))[0] or "image/png"
     b64 = base64.b64encode(image_path.read_bytes()).decode()
@@ -118,19 +136,18 @@ def analyze_image(image_path: Path, no_cache: bool = False) -> Path:
                 ],
             )
             raw = resp.choices[0].message.content or ""
-            data: SceneData = parse_scene_data(raw, image_path)
+            data: SceneData = parse_scene_data(raw, image_path, lang=lang)
             import re
 
             m = re.search(r'"scene"\s*:\s*"([^"]+)"', raw)
             data.scene = m.group(1) if m else ""
+            data.lang = lang
             if targets:
                 got = {w.zh for w in data.words}
                 missing = [t for t in targets if t not in got]
                 extra = sorted(got - set(targets))
                 if missing or extra:
-                    raise ValueError(
-                        f"词表校验失败 缺少: {missing} 多余: {extra}"
-                    )
+                    raise ValueError(f"词表校验失败 缺少: {missing} 多余: {extra}")
                 data.words.sort(key=lambda w: targets.index(w.zh))
             out_path.write_text(data.model_dump_json(indent=2), encoding="utf-8")
             print(f"[step1] 识别到 {len(data.words)} 个词汇 -> {out_path}")
@@ -147,12 +164,18 @@ def analyze_image(image_path: Path, no_cache: bool = False) -> Path:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Step1 · VLM 场景分析")
     parser.add_argument("--image", required=True, help="输入图片路径")
+    parser.add_argument(
+        "--lang",
+        default=config.DEFAULT_LANG,
+        choices=config.SUPPORTED_LANGUAGES,
+        help="目标语言 (默认 en)",
+    )
     parser.add_argument("--no-cache", action="store_true", help="忽略缓存重新请求")
     args = parser.parse_args()
     path = Path(args.image)
     if not path.exists():
         raise SystemExit(f"图片不存在: {path}")
-    json_path = analyze_image(path, no_cache=args.no_cache)
+    json_path = analyze_image(path, lang=args.lang, no_cache=args.no_cache)
     data = load_scene_data(json_path)
     print(f"\n场景: {data.scene}")
 

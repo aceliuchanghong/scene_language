@@ -2,11 +2,11 @@
   "schema_version": 1,
   "source_of_truth": "scene_json",
   "summary": {
-    "category_count": 8,
-    "scene_count": 64,
+    "category_count": 11,
+    "scene_count": 82,
     "targets_per_scene": 10,
-    "learning_slots": 640,
-    "unique_english_targets": 633
+    "learning_slots": 820,
+    "unique_english_targets": 813
   },
   "status_flow": [
     "planned",
@@ -30,6 +30,11 @@
     "C": [
       "R",
       "D"
+    ],
+    "D": [
+      "A",
+      "E",
+      "P"
     ]
   },
   "categories": [
@@ -120,6 +125,39 @@
       "learning_slots": 60,
       "directory": "08_数字生活",
       "index": "08_数字生活/_category.json"
+    },
+    {
+      "id": "A",
+      "order": 9,
+      "zh": "文化与艺术",
+      "en": "Arts and culture",
+      "batch": "D",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "09_文化与艺术",
+      "index": "09_文化与艺术/_category.json"
+    },
+    {
+      "id": "E",
+      "order": 10,
+      "zh": "运动与竞技",
+      "en": "Sports and fitness",
+      "batch": "D",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "10_运动与竞技",
+      "index": "10_运动与竞技/_category.json"
+    },
+    {
+      "id": "P",
+      "order": 11,
+      "zh": "个人护理与时尚",
+      "en": "Personal care and fashion",
+      "batch": "D",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "11_个人护理与时尚",
+      "index": "11_个人护理与时尚/_category.json"
     }
   ]
 }

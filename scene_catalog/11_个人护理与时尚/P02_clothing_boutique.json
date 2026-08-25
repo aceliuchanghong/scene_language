@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "P02",
+  "slug": "P02_clothing_boutique",
+  "batch": "D",
+  "category": {
+    "id": "P",
+    "order": 11,
+    "zh": "个人护理与时尚",
+    "en": "Personal care and fashion"
+  },
+  "scene": {
+    "zh": "服装精品店",
+    "en": "clothing boutique"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "金属挂衣架",
+      "en": "metal clothes rack"
+    },
+    {
+      "order": 2,
+      "zh": "木质衣架",
+      "en": "wooden clothes hanger"
+    },
+    {
+      "order": 3,
+      "zh": "橱窗人体模特",
+      "en": "window mannequin"
+    },
+    {
+      "order": 4,
+      "zh": "更衣试衣间",
+      "en": "fitting room cubicle"
+    },
+    {
+      "order": 5,
+      "zh": "服装吊牌",
+      "en": "garment swing tag"
+    },
+    {
+      "order": 6,
+      "zh": "落地穿衣镜",
+      "en": "full length dressing mirror"
+    },
+    {
+      "order": 7,
+      "zh": "叠衣展示架",
+      "en": "folded clothes shelf"
+    },
+    {
+      "order": 8,
+      "zh": "精品店收银台",
+      "en": "boutique checkout desk"
+    },
+    {
+      "order": 9,
+      "zh": "品牌手提纸袋",
+      "en": "branded paper bag"
+    },
+    {
+      "order": 10,
+      "zh": "立式挂烫机",
+      "en": "vertical garment steamer"
+    }
+  ],
+  "image": {
+    "filename": "P02_clothing_boutique.png",
+    "path": "input_pics/11_个人护理与时尚/P02_clothing_boutique.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of clothing boutique (服装精品店).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: metal clothes rack, wooden clothes hanger, window mannequin, fitting room cubicle, garment swing tag, full length dressing mirror, folded clothes shelf, boutique checkout desk, branded paper bag, vertical garment steamer.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "91e85b3e07161fcecc6eab1e285f7cecf1c17c48954d89eeb4290487e8092526"
+}

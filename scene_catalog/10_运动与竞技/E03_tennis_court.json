@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "E03",
+  "slug": "E03_tennis_court",
+  "batch": "D",
+  "category": {
+    "id": "E",
+    "order": 10,
+    "zh": "运动与竞技",
+    "en": "Sports and fitness"
+  },
+  "scene": {
+    "zh": "网球场",
+    "en": "tennis court"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "网球拍",
+      "en": "tennis racket"
+    },
+    {
+      "order": 2,
+      "zh": "荧光网球",
+      "en": "fluorescent tennis ball"
+    },
+    {
+      "order": 3,
+      "zh": "网球球网",
+      "en": "tennis net"
+    },
+    {
+      "order": 4,
+      "zh": "裁判高椅",
+      "en": "umpire chair"
+    },
+    {
+      "order": 5,
+      "zh": "球场底线",
+      "en": "court baseline"
+    },
+    {
+      "order": 6,
+      "zh": "拾球框",
+      "en": "ball hopper basket"
+    },
+    {
+      "order": 7,
+      "zh": "网球拍包",
+      "en": "tennis racket bag"
+    },
+    {
+      "order": 8,
+      "zh": "吸汗护腕",
+      "en": "sweat wristband"
+    },
+    {
+      "order": 9,
+      "zh": "场地推水器",
+      "en": "court roller squeegee"
+    },
+    {
+      "order": 10,
+      "zh": "球员休息凳",
+      "en": "players bench"
+    }
+  ],
+  "image": {
+    "filename": "E03_tennis_court.png",
+    "path": "input_pics/10_运动与竞技/E03_tennis_court.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of tennis court (网球场).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: tennis racket, fluorescent tennis ball, tennis net, umpire chair, court baseline, ball hopper basket, tennis racket bag, sweat wristband, court roller squeegee, players bench.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "257841ea8e2e6c0804820eefd6b6a5f686cc68b5d3352445d967c6a0e75393b3"
+}

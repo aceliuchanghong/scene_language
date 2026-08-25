@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "E02",
+  "slug": "E02_basketball_court",
+  "batch": "D",
+  "category": {
+    "id": "E",
+    "order": 10,
+    "zh": "运动与竞技",
+    "en": "Sports and fitness"
+  },
+  "scene": {
+    "zh": "篮球场",
+    "en": "basketball court"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "篮球框",
+      "en": "basketball hoop"
+    },
+    {
+      "order": 2,
+      "zh": "透明篮板",
+      "en": "backboard"
+    },
+    {
+      "order": 3,
+      "zh": "篮球",
+      "en": "basketball"
+    },
+    {
+      "order": 4,
+      "zh": "木地板场地",
+      "en": "hardwood court floor"
+    },
+    {
+      "order": 5,
+      "zh": "罚球线",
+      "en": "free throw line"
+    },
+    {
+      "order": 6,
+      "zh": "球队长凳",
+      "en": "team bench"
+    },
+    {
+      "order": 7,
+      "zh": "训练标志锥",
+      "en": "training marker cone"
+    },
+    {
+      "order": 8,
+      "zh": "运动水壶",
+      "en": "gym water bottle"
+    },
+    {
+      "order": 9,
+      "zh": "24秒进攻计时器",
+      "en": "shot clock"
+    },
+    {
+      "order": 10,
+      "zh": "篮网",
+      "en": "basketball net"
+    }
+  ],
+  "image": {
+    "filename": "E02_basketball_court.png",
+    "path": "input_pics/10_运动与竞技/E02_basketball_court.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of basketball court (篮球场).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: basketball hoop, backboard, basketball, hardwood court floor, free throw line, team bench, training marker cone, gym water bottle, shot clock, basketball net.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "8270378dec7ad028f00a0679d9013a82e75ccaf7ab9b578225de1418326f16ec"
+}

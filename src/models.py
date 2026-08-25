@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
-from pydantic import BaseModel, Field, ValidationError, field_validator
+from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
 
 _PUNCT = ".,!?;:'\"“”‘’()[]{}<>《》…—-·,。!?:;、~〜·"
 
@@ -21,14 +22,61 @@ class WordItem(BaseModel):
     """场景中一个可学习词汇。x/y 为归一化坐标(0~1)。"""
 
     zh: str
+    target: str = ""  # 目标外语词汇(en/ja/ko)
+    pron: str = ""  # 发音注音(英语IPA / 日语假名+罗马音 / 韩语罗马音)
+    example_target: str = ""  # 目标外语例句
+    example_zh: str = ""  # 例句中文翻译
+
+    # 兼容旧版英文属性
     en: str = ""
     ipa: str = ""
-    example_en: str = ""  # 英文例句
-    example_zh: str = ""  # 例句中文翻译
+    example_en: str = ""
+
     x: float = Field(ge=0.0, le=1.0)
     y: float = Field(ge=0.0, le=1.0)
 
-    @field_validator("example_en", "example_zh", mode="after")
+    @model_validator(mode="before")
+    @classmethod
+    def _sync_fields(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            # target <-> en 互相同步
+            t = str(
+                data.get("target")
+                or data.get("en")
+                or data.get("ja")
+                or data.get("ko")
+                or data.get("word")
+                or ""
+            ).strip()
+            if t:
+                data.setdefault("target", t)
+                data.setdefault("en", t)
+
+            # pron <-> ipa 互相同步
+            p = str(
+                data.get("pron")
+                or data.get("ipa")
+                or data.get("kana")
+                or data.get("romaji")
+                or ""
+            ).strip()
+            if p:
+                data.setdefault("pron", p)
+                data.setdefault("ipa", p)
+
+            # example_target <-> example_en 互相同步
+            ex = str(
+                data.get("example_target")
+                or data.get("example_en")
+                or data.get("example")
+                or ""
+            ).strip()
+            if ex:
+                data.setdefault("example_target", ex)
+                data.setdefault("example_en", ex)
+        return data
+
+    @field_validator("example_target", "example_en", "example_zh", mode="after")
     @classmethod
     def _no_punct(cls, v: str) -> str:
         return strip_punct(v)
@@ -37,6 +85,7 @@ class WordItem(BaseModel):
 class SceneData(BaseModel):
     image: str  # 源图片路径
     scene: str = ""  # VLM 对场景的一句话概括
+    lang: str = "en"  # 目标语言 (en/ja/ko)
     words: list[WordItem]
 
 
@@ -80,7 +129,7 @@ def _normalize_coords(items: list[dict], image_path: Path) -> list[dict]:
     return items
 
 
-def parse_scene_data(raw: str, image_path: Path) -> SceneData:
+def parse_scene_data(raw: str, image_path: Path, lang: str = "en") -> SceneData:
     """从 LLM/VLM 返回的文本中抠出 JSON 并解析为 SceneData。"""
     data = _extract_json(raw)
     if isinstance(data, dict):
@@ -99,12 +148,28 @@ def parse_scene_data(raw: str, image_path: Path) -> SceneData:
     words = [
         WordItem(
             zh=str(it.get("zh") or it.get("chinese") or it.get("zh_word") or ""),
-            en=str(it.get("en") or it.get("english") or it.get("en_word") or ""),
-            ipa=str(it.get("ipa") or ""),
-            example_en=str(it.get("example_en") or it.get("example") or ""),
-            example_zh=str(
-                it.get("example_zh") or it.get("example_translation") or ""
+            target=str(
+                it.get("target")
+                or it.get("en")
+                or it.get("ja")
+                or it.get("ko")
+                or it.get("word")
+                or ""
             ),
+            pron=str(
+                it.get("pron")
+                or it.get("ipa")
+                or it.get("kana")
+                or it.get("romaji")
+                or ""
+            ),
+            example_target=str(
+                it.get("example_target")
+                or it.get("example_en")
+                or it.get("example")
+                or ""
+            ),
+            example_zh=str(it.get("example_zh") or it.get("example_translation") or ""),
             x=float(it.get("x", 0.5)),
             y=float(it.get("y", 0.5)),
         )
@@ -116,7 +181,7 @@ def parse_scene_data(raw: str, image_path: Path) -> SceneData:
     for w in words:
         w.x = min(max(w.x, 0.02), 0.98)
         w.y = min(max(w.y, 0.02), 0.98)
-    return SceneData(image=str(image_path), words=words)
+    return SceneData(image=str(image_path), lang=lang, words=words)
 
 
 def load_scene_data(path: Path) -> SceneData:

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "E",
+    "order": 10,
+    "zh": "运动与竞技",
+    "en": "Sports and fitness",
+    "batch": "D"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "E01_football_pitch.json",
+    "E02_basketball_court.json",
+    "E03_tennis_court.json",
+    "E04_yoga_and_pilates_studio.json",
+    "E05_athletics_track.json",
+    "E06_ski_resort.json"
+  ]
+}

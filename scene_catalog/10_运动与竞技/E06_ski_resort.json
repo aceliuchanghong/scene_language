@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "E06",
+  "slug": "E06_ski_resort",
+  "batch": "D",
+  "category": {
+    "id": "E",
+    "order": 10,
+    "zh": "运动与竞技",
+    "en": "Sports and fitness"
+  },
+  "scene": {
+    "zh": "滑雪场",
+    "en": "ski resort"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "雪道",
+      "en": "snow ski slope"
+    },
+    {
+      "order": 2,
+      "zh": "滑雪护目镜",
+      "en": "ski goggles"
+    },
+    {
+      "order": 3,
+      "zh": "滑雪杖",
+      "en": "ski poles"
+    },
+    {
+      "order": 4,
+      "zh": "双板滑雪板",
+      "en": "pair of skis"
+    },
+    {
+      "order": 5,
+      "zh": "缆车吊椅",
+      "en": "chairlift"
+    },
+    {
+      "order": 6,
+      "zh": "滑雪头盔",
+      "en": "ski safety helmet"
+    },
+    {
+      "order": 7,
+      "zh": "滑雪硬靴",
+      "en": "ski boots"
+    },
+    {
+      "order": 8,
+      "zh": "羽绒防风滑雪服",
+      "en": "warm puffer jacket"
+    },
+    {
+      "order": 9,
+      "zh": "单板滑雪板",
+      "en": "snowboard"
+    },
+    {
+      "order": 10,
+      "zh": "橙色安全防护网",
+      "en": "orange safety netting"
+    }
+  ],
+  "image": {
+    "filename": "E06_ski_resort.png",
+    "path": "input_pics/10_运动与竞技/E06_ski_resort.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of ski resort (滑雪场).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: snow ski slope, ski goggles, ski poles, pair of skis, chairlift, ski safety helmet, ski boots, warm puffer jacket, snowboard, orange safety netting.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "695a68b1814cc51316d6570d6c18b64e07e4fd934220a0608ea1e05cc4f352d7"
+}

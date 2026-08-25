@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "id": "A02",
+  "slug": "A02_art_gallery",
+  "batch": "D",
+  "category": {
+    "id": "A",
+    "order": 9,
+    "zh": "文化与艺术",
+    "en": "Arts and culture"
+  },
+  "scene": {
+    "zh": "美术馆与画廊",
+    "en": "art gallery"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "油画",
+      "en": "oil painting"
+    },
+    {
+      "order": 2,
+      "zh": "精装画框",
+      "en": "ornate picture frame"
+    },
+    {
+      "order": 3,
+      "zh": "木质画架",
+      "en": "wooden easel"
+    },
+    {
+      "order": 4,
+      "zh": "大理石雕塑",
+      "en": "marble sculpture"
+    },
+    {
+      "order": 5,
+      "zh": "轨道射灯",
+      "en": "track lighting"
+    },
+    {
+      "order": 6,
+      "zh": "画廊展墙",
+      "en": "gallery wall"
+    },
+    {
+      "order": 7,
+      "zh": "作品标签牌",
+      "en": "artwork label"
+    },
+    {
+      "order": 8,
+      "zh": "展览画册",
+      "en": "exhibition catalogue"
+    },
+    {
+      "order": 9,
+      "zh": "速写素描本",
+      "en": "sketchpad"
+    },
+    {
+      "order": 10,
+      "zh": "看展游客",
+      "en": "visitor"
+    }
+  ],
+  "image": {
+    "filename": "A02_art_gallery.png",
+    "path": "input_pics/09_文化与艺术/A02_art_gallery.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of art gallery (美术馆与画廊).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: oil painting, ornate picture frame, wooden easel, marble sculpture, track lighting, gallery wall, artwork label, exhibition catalogue, sketchpad, visitor.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": []
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "b6c5266386f9bb8a079d5f3a39e334bb18040acc5e687529abba3ac8f0e192e5"
+}
