@@ -1,0 +1,243 @@
+# 01 居家生活（日语版）：抖音、小红书与视频号上传命令
+
+说明：以下命令均在 `sau` 项目目录中执行。视频路径和封面路径沿用现有目录结构；可逐条复制执行。
+
+## H01 玄关
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H01_entrance_ja.mp4 --title "第一集-居家生活-玄关场景" --desc "居家生活-玄关场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H01_entrance_ja.png --declaration "内容为个人观点或见解"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H01_entrance_ja.mp4 --title "第一集-居家生活-玄关场景" --desc "居家生活-玄关场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H01_entrance_ja.mp4 --title "第一集-居家生活-玄关场景" --desc "居家生活-玄关场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H01_entrance_ja.png
+```
+
+## H02 客厅
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H02_living_room_ja.mp4 --title "第二集-居家生活-客厅场景" --desc "居家生活-客厅场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H02_living_room_ja.png --declaration "内容为个人观点或见解"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H02_living_room_ja.mp4 --title "第二集-居家生活-客厅场景" --desc "居家生活-客厅场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H02_living_room_ja.mp4 --title "第二集-居家生活-客厅场景" --desc "居家生活-客厅场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H02_living_room_ja.png
+```
+
+## H03 餐厅
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H03_dining_room_ja.mp4 --title "第三集-居家生活-餐厅场景" --desc "居家生活-餐厅场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H03_dining_room_ja.png --declaration "内容为个人观点或见解"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H03_dining_room_ja.mp4 --title "第三集-居家生活-餐厅场景" --desc "居家生活-餐厅场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H03_dining_room_ja.mp4 --title "第三集-居家生活-餐厅场景" --desc "居家生活-餐厅场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H03_dining_room_ja.png
+```
+
+## H04 厨房操作台
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H04_kitchen_counter_ja.mp4 --title "第四集-居家生活-厨房操作台场景" --desc "居家生活-厨房操作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H04_kitchen_counter_ja.png --declaration "内容为个人观点或见解"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H04_kitchen_counter_ja.mp4 --title "第四集-居家生活-厨房操作台场景" --desc "居家生活-厨房操作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H04_kitchen_counter_ja.mp4 --title "第四集-居家生活-厨房操作台场景" --desc "居家生活-厨房操作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H04_kitchen_counter_ja.png
+```
+
+## H05 冰箱与储物柜
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H05_fridge_and_pantry_ja.mp4 --title "第五集-居家生活-冰箱与储物柜场景" --desc "居家生活-冰箱与储物柜场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H05_fridge_and_pantry_ja.png --declaration "内容为个人观点或见解"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H05_fridge_and_pantry_ja.mp4 --title "第五集-居家生活-冰箱与储物柜场景" --desc "居家生活-冰箱与储物柜场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H05_fridge_and_pantry_ja.mp4 --title "第五集-居家生活-冰箱与储物柜场景" --desc "居家生活-冰箱与储物柜场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H05_fridge_and_pantry_ja.png
+```
+
+## H06 卧室
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H06_bedroom_ja.mp4 --title "第六集-居家生活-卧室场景" --desc "居家生活-卧室场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H06_bedroom_ja.png --declaration "内容为个人观点或见解"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H06_bedroom_ja.mp4 --title "第六集-居家生活-卧室场景" --desc "居家生活-卧室场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H06_bedroom_ja.mp4 --title "第六集-居家生活-卧室场景" --desc "居家生活-卧室场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H06_bedroom_ja.png
+```
+
+## H07 浴室
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H07_bathroom_ja.mp4 --title "第七集-居家生活-浴室场景" --desc "居家生活-浴室场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H07_bathroom_ja.png --declaration "内容为个人观点或见解"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H07_bathroom_ja.mp4 --title "第七集-居家生活-浴室场景" --desc "居家生活-浴室场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H07_bathroom_ja.mp4 --title "第七集-居家生活-浴室场景" --desc "居家生活-浴室场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H07_bathroom_ja.png
+```
+
+## H08 洗衣区
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H08_laundry_area_ja.mp4 --title "第八集-居家生活-洗衣区场景" --desc "居家生活-洗衣区场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H08_laundry_area_ja.png --declaration "内容为个人观点或见解" --schedule "2026-08-28 09:00"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H08_laundry_area_ja.mp4 --title "第八集-居家生活-洗衣区场景" --desc "居家生活-洗衣区场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-08-28 09:00"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H08_laundry_area_ja.mp4 --title "第八集-居家生活-洗衣区场景" --desc "居家生活-洗衣区场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H08_laundry_area_ja.png --schedule "2026-08-28 09:00"
+```
+
+## H09 家庭清洁
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H09_home_cleaning_ja.mp4 --title "第九集-居家生活-家庭清洁场景" --desc "居家生活-家庭清洁场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H09_home_cleaning_ja.png --declaration "内容为个人观点或见解" --schedule "2026-08-28 09:01"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H09_home_cleaning_ja.mp4 --title "第九集-居家生活-家庭清洁场景" --desc "居家生活-家庭清洁场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-08-28 09:01"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H09_home_cleaning_ja.mp4 --title "第九集-居家生活-家庭清洁场景" --desc "居家生活-家庭清洁场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H09_home_cleaning_ja.png --schedule "2026-08-28 09:01"
+```
+
+## H10 家庭办公桌
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H10_home_office_ja.mp4 --title "第十集-居家生活-家庭办公桌场景" --desc "居家生活-家庭办公桌场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H10_home_office_ja.png --declaration "内容为个人观点或见解" --schedule "2026-08-29 09:00"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H10_home_office_ja.mp4 --title "第十集-居家生活-家庭办公桌场景" --desc "居家生活-家庭办公桌场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-08-29 09:00"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H10_home_office_ja.mp4 --title "第十集-居家生活-家庭办公桌场景" --desc "居家生活-家庭办公桌场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H10_home_office_ja.png --schedule "2026-08-29 09:00"
+```
+
+## H11 阳台与小花园
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H11_balcony_garden_ja.mp4 --title "第十一集-居家生活-阳台与小花园场景" --desc "居家生活-阳台与小花园场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H11_balcony_garden_ja.png --declaration "内容为个人观点或见解" --schedule "2026-08-29 09:01"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H11_balcony_garden_ja.mp4 --title "第十一集-居家生活-阳台与小花园场景" --desc "居家生活-阳台与小花园场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-08-29 09:01"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H11_balcony_garden_ja.mp4 --title "第十一集-居家生活-阳台与小花园场景" --desc "居家生活-阳台与小花园场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H11_balcony_garden_ja.png --schedule "2026-08-29 09:01"
+```
+
+## H12 婴儿房
+
+### 抖音
+
+```powershell
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/H12_nursery_ja.mp4 --title "第十二集-居家生活-婴儿房场景" --desc "居家生活-婴儿房场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H12_nursery_ja.png --declaration "内容为个人观点或见解" --schedule "2026-08-30 09:00"
+```
+
+### 小红书
+
+```powershell
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/H12_nursery_ja.mp4 --title "第十二集-居家生活-婴儿房场景" --desc "居家生活-婴儿房场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-08-30 09:00"
+```
+
+### 视频号
+
+```powershell
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/H12_nursery_ja.mp4 --title "第十二集-居家生活-婴儿房场景" --desc "居家生活-婴儿房场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/H12_nursery_ja.png --schedule "2026-08-30 09:00"
+```
