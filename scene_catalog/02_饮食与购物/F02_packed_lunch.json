@@ -10,59 +10,59 @@
     "en": "Food and shopping"
   },
   "scene": {
-    "zh": "午餐盒",
-    "en": "packed lunch"
+    "zh": "日本学校便当",
+    "en": "Japanese school bento"
   },
   "targets": [
     {
       "order": 1,
-      "zh": "午餐盒",
-      "en": "lunch box"
+      "zh": "双层便当盒",
+      "en": "two-tier bento box"
     },
     {
       "order": 2,
-      "zh": "三明治",
-      "en": "sandwich"
+      "zh": "三角饭团",
+      "en": "onigiri"
     },
     {
       "order": 3,
-      "zh": "沙拉",
-      "en": "salad"
+      "zh": "日式炸鸡块",
+      "en": "karaage chicken"
     },
     {
       "order": 4,
-      "zh": "汤",
-      "en": "soup"
+      "zh": "章鱼造型小香肠",
+      "en": "octopus-cut sausage"
     },
     {
       "order": 5,
-      "zh": "苹果",
-      "en": "apple"
+      "zh": "玉子烧",
+      "en": "tamagoyaki slices"
     },
     {
       "order": 6,
-      "zh": "香蕉",
-      "en": "banana"
+      "zh": "圣女果",
+      "en": "cherry tomato"
     },
     {
       "order": 7,
-      "zh": "饼干",
-      "en": "biscuit"
+      "zh": "西兰花",
+      "en": "broccoli"
     },
     {
       "order": 8,
-      "zh": "水瓶",
-      "en": "water bottle"
+      "zh": "便当包袱巾",
+      "en": "furoshiki wrapping cloth"
     },
     {
       "order": 9,
-      "zh": "叉子",
-      "en": "fork"
+      "zh": "筷子盒",
+      "en": "chopstick case"
     },
     {
       "order": 10,
-      "zh": "保温杯",
-      "en": "thermos"
+      "zh": "日式保温水瓶",
+      "en": "Japanese thermos bottle"
     }
   ],
   "image": {
@@ -74,7 +74,7 @@
   },
   "generation": {
     "asset_strategy": "ai_image",
-    "prompt": "Create a photorealistic vertical 9:16 educational scene of packed lunch (午餐盒).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: lunch box, sandwich, salad, soup, apple, banana, biscuit, water bottle, fork, thermos.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of Japanese school bento (日本学校便当).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: two-tier bento box, onigiri, karaage chicken, octopus-cut sausage, tamagoyaki slices, cherry tomato, broccoli, furoshiki wrapping cloth, chopstick case, Japanese thermos bottle.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
   },
   "requirements": {
     "target_count": 10,
@@ -102,5 +102,5 @@
     "missing_target_ids": [],
     "ambiguous_target_ids": []
   },
-  "content_signature": "a1138b8a16797d4cbdd691efa12797a0deb65b63f9f0b1b275f37b6a76990874"
+  "content_signature": "4191252bf7967039437e9a5f9f9e6fbd97b1c6812b78e9383b20d2e95261227d"
 }

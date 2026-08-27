@@ -10,59 +10,59 @@
     "en": "Food and shopping"
   },
   "scene": {
-    "zh": "露天市场",
-    "en": "street market"
+    "zh": "日本夏祭屋台",
+    "en": "Japanese summer festival yatai food stall"
   },
   "targets": [
     {
       "order": 1,
-      "zh": "摊位",
-      "en": "stall"
+      "zh": "屋台摊位",
+      "en": "yatai food stall"
     },
     {
       "order": 2,
-      "zh": "摊主",
-      "en": "vendor"
+      "zh": "系头巾的摊主",
+      "en": "vendor wearing a hachimaki"
     },
     {
       "order": 3,
-      "zh": "遮篷",
-      "en": "canopy"
+      "zh": "条纹屋台顶棚",
+      "en": "striped yatai canopy"
     },
     {
       "order": 4,
-      "zh": "板条箱",
-      "en": "crate"
+      "zh": "章鱼烧",
+      "en": "takoyaki balls"
     },
     {
       "order": 5,
-      "zh": "葡萄",
-      "en": "grapes"
+      "zh": "日式炒面",
+      "en": "yakisoba noodles"
     },
     {
       "order": 6,
-      "zh": "草莓",
-      "en": "strawberry"
+      "zh": "鲷鱼烧",
+      "en": "taiyaki"
     },
     {
       "order": 7,
-      "zh": "黄瓜",
-      "en": "cucumber"
+      "zh": "团扇",
+      "en": "uchiwa fan"
     },
     {
       "order": 8,
-      "zh": "甜椒",
-      "en": "pepper"
+      "zh": "红灯笼",
+      "en": "red paper lantern"
     },
     {
       "order": 9,
-      "zh": "蘑菇",
-      "en": "mushrooms"
+      "zh": "日元硬币",
+      "en": "yen coins"
     },
     {
       "order": 10,
-      "zh": "现金",
-      "en": "cash"
+      "zh": "祭典幟旗",
+      "en": "festival nobori flag"
     }
   ],
   "image": {
@@ -74,7 +74,7 @@
   },
   "generation": {
     "asset_strategy": "ai_image",
-    "prompt": "Create a photorealistic vertical 9:16 educational scene of street market (露天市场).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: stall, vendor, canopy, crate, grapes, strawberry, cucumber, pepper, mushrooms, cash.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of Japanese summer festival yatai food stall (日本夏祭屋台).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: yatai food stall, vendor wearing a hachimaki, striped yatai canopy, takoyaki balls, yakisoba noodles, taiyaki, uchiwa fan, red paper lantern, yen coins, festival nobori flag.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
   },
   "requirements": {
     "target_count": 10,
@@ -102,5 +102,5 @@
     "missing_target_ids": [],
     "ambiguous_target_ids": []
   },
-  "content_signature": "575c6c80bf441e64fed5879c485e22eb3cb1a57e38175c43c85c50ba8614a93f"
+  "content_signature": "70cba613c4cdfb4d9ae4e90451f3cec2b306a73b24e4bc2a31b8413ab2e37b8d"
 }

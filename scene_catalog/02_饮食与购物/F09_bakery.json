@@ -10,58 +10,58 @@
     "en": "Food and shopping"
   },
   "scene": {
-    "zh": "面包店",
-    "en": "bakery"
+    "zh": "日本自助式面包店",
+    "en": "Japanese self-service bakery"
   },
   "targets": [
     {
       "order": 1,
-      "zh": "面包师",
-      "en": "baker"
+      "zh": "面包店店员",
+      "en": "Japanese bakery staff"
     },
     {
       "order": 2,
-      "zh": "面包架",
-      "en": "bread rack"
+      "zh": "木质面包展示架",
+      "en": "wooden bread display"
     },
     {
       "order": 3,
-      "zh": "法棍",
-      "en": "baguette"
+      "zh": "蜜瓜包",
+      "en": "melonpan"
     },
     {
       "order": 4,
-      "zh": "小圆面包",
-      "en": "bread roll"
+      "zh": "豆沙面包",
+      "en": "anpan"
     },
     {
       "order": 5,
-      "zh": "甜甜圈",
-      "en": "doughnut"
+      "zh": "日式咖喱面包",
+      "en": "Japanese curry bread"
     },
     {
       "order": 6,
-      "zh": "松饼",
-      "en": "muffin"
+      "zh": "卡仕达奶油面包",
+      "en": "cream pan"
     },
     {
       "order": 7,
-      "zh": "馅饼",
-      "en": "pie"
+      "zh": "日式生吐司整条",
+      "en": "shokupan loaf"
     },
     {
       "order": 8,
-      "zh": "糕点",
-      "en": "pastry"
+      "zh": "自助选购托盘",
+      "en": "self-service bakery tray"
     },
     {
       "order": 9,
-      "zh": "夹子",
-      "en": "tongs"
+      "zh": "面包夹",
+      "en": "bread tongs"
     },
     {
       "order": 10,
-      "zh": "纸袋",
+      "zh": "外带纸袋",
       "en": "paper bag"
     }
   ],
@@ -74,7 +74,7 @@
   },
   "generation": {
     "asset_strategy": "ai_image",
-    "prompt": "Create a photorealistic vertical 9:16 educational scene of bakery (面包店).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: baker, bread rack, baguette, bread roll, doughnut, muffin, pie, pastry, tongs, paper bag.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of Japanese self-service bakery (日本自助式面包店).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: Japanese bakery staff, wooden bread display, melonpan, anpan, Japanese curry bread, cream pan, shokupan loaf, self-service bakery tray, bread tongs, paper bag.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
   },
   "requirements": {
     "target_count": 10,
@@ -102,5 +102,5 @@
     "missing_target_ids": [],
     "ambiguous_target_ids": []
   },
-  "content_signature": "4642499cbabe2ef8a681c8ba17bef038da38b73d01f3ff57088368b9359fe62c"
+  "content_signature": "074ec8b08534b304b8f8064d0b1af587aef085f0e46e34bb6bb84de969c3fa24"
 }

@@ -10,59 +10,59 @@
     "en": "Food and shopping"
   },
   "scene": {
-    "zh": "超市果蔬区",
-    "en": "supermarket produce"
+    "zh": "日本社区超市果蔬区",
+    "en": "produce aisle in a Japanese neighborhood supermarket"
   },
   "targets": [
     {
       "order": 1,
-      "zh": "购物车",
-      "en": "trolley"
+      "zh": "日式小型购物车",
+      "en": "small Japanese shopping cart"
     },
     {
       "order": 2,
-      "zh": "购物篮",
-      "en": "basket"
+      "zh": "红色购物篮",
+      "en": "red shopping basket"
     },
     {
       "order": 3,
-      "zh": "过道",
-      "en": "aisle"
+      "zh": "货架通道",
+      "en": "supermarket aisle"
     },
     {
       "order": 4,
-      "zh": "价签",
-      "en": "price tag"
+      "zh": "日元价格牌",
+      "en": "yen price card"
     },
     {
       "order": 5,
-      "zh": "秤",
-      "en": "scales"
+      "zh": "日本白萝卜",
+      "en": "daikon radish"
     },
     {
       "order": 6,
-      "zh": "番茄",
-      "en": "tomato"
+      "zh": "日本白菜",
+      "en": "hakusai cabbage"
     },
     {
       "order": 7,
-      "zh": "土豆",
-      "en": "potato"
+      "zh": "香菇",
+      "en": "shiitake mushrooms"
     },
     {
       "order": 8,
-      "zh": "胡萝卜",
-      "en": "carrot"
+      "zh": "富士苹果",
+      "en": "Fuji apples"
     },
     {
       "order": 9,
-      "zh": "洋葱",
-      "en": "onion"
+      "zh": "日本蜜柑",
+      "en": "mikan oranges"
     },
     {
       "order": 10,
-      "zh": "生菜",
-      "en": "lettuce"
+      "zh": "果蔬连卷袋",
+      "en": "roll of produce bags"
     }
   ],
   "image": {
@@ -74,7 +74,7 @@
   },
   "generation": {
     "asset_strategy": "ai_image",
-    "prompt": "Create a photorealistic vertical 9:16 educational scene of supermarket produce (超市果蔬区).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: trolley, basket, aisle, price tag, scales, tomato, potato, carrot, onion, lettuce.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of produce aisle in a Japanese neighborhood supermarket (日本社区超市果蔬区).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: small Japanese shopping cart, red shopping basket, supermarket aisle, yen price card, daikon radish, hakusai cabbage, shiitake mushrooms, Fuji apples, mikan oranges, roll of produce bags.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
   },
   "requirements": {
     "target_count": 10,
@@ -102,5 +102,5 @@
     "missing_target_ids": [],
     "ambiguous_target_ids": []
   },
-  "content_signature": "39de4cac3f43ef420f1ac74d64cd8bc16abedea54d625d96d0811755117c5d09"
+  "content_signature": "8a85852b5ad9a2ddd21d2a3f51d5d971940ae2361260e098fcd249c3826fceff"
 }

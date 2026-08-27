@@ -10,59 +10,59 @@
     "en": "Food and shopping"
   },
   "scene": {
-    "zh": "肉铺与海鲜柜",
-    "en": "butcher and fish counter"
+    "zh": "日本超市鲜鱼柜台",
+    "en": "fresh seafood counter in a Japanese supermarket"
   },
   "targets": [
     {
       "order": 1,
-      "zh": "肉贩",
-      "en": "butcher"
+      "zh": "鲜鱼柜台师傅",
+      "en": "Japanese seafood clerk"
     },
     {
       "order": 2,
-      "zh": "围裙",
-      "en": "apron"
+      "zh": "金枪鱼刺身块",
+      "en": "tuna sashimi block"
     },
     {
       "order": 3,
-      "zh": "牛肉",
-      "en": "beef"
+      "zh": "鲑鱼切身",
+      "en": "salmon fillet"
     },
     {
       "order": 4,
-      "zh": "鸡肉",
-      "en": "chicken"
+      "zh": "竹荚鱼",
+      "en": "whole horse mackerel"
     },
     {
       "order": 5,
-      "zh": "香肠",
-      "en": "sausage"
+      "zh": "鰤鱼切身",
+      "en": "yellowtail fillet"
     },
     {
       "order": 6,
-      "zh": "鱼",
-      "en": "fish"
+      "zh": "车海老",
+      "en": "kuruma prawns"
     },
     {
       "order": 7,
-      "zh": "大虾",
-      "en": "prawns"
+      "zh": "整只鱿鱼",
+      "en": "whole squid"
     },
     {
       "order": 8,
-      "zh": "切肉墩",
-      "en": "chopping block"
+      "zh": "带壳扇贝",
+      "en": "scallops in shell"
     },
     {
       "order": 9,
-      "zh": "砍刀",
-      "en": "cleaver"
+      "zh": "碎冰展示台",
+      "en": "crushed ice display"
     },
     {
       "order": 10,
-      "zh": "展示柜",
-      "en": "display counter"
+      "zh": "柳刃刺身刀",
+      "en": "yanagiba sashimi knife"
     }
   ],
   "image": {
@@ -74,7 +74,7 @@
   },
   "generation": {
     "asset_strategy": "ai_image",
-    "prompt": "Create a photorealistic vertical 9:16 educational scene of butcher and fish counter (肉铺与海鲜柜).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: butcher, apron, beef, chicken, sausage, fish, prawns, chopping block, cleaver, display counter.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of fresh seafood counter in a Japanese supermarket (日本超市鲜鱼柜台).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: Japanese seafood clerk, tuna sashimi block, salmon fillet, whole horse mackerel, yellowtail fillet, kuruma prawns, whole squid, scallops in shell, crushed ice display, yanagiba sashimi knife.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
   },
   "requirements": {
     "target_count": 10,
@@ -102,5 +102,5 @@
     "missing_target_ids": [],
     "ambiguous_target_ids": []
   },
-  "content_signature": "877021ff7e1ea6a7d6102692e84d35854f7b61162275af5c92a3eac7f17929f8"
+  "content_signature": "80f1796340f7fbc3e687af3afeee22b5b73456cf37f50ceb9e84deab5024af36"
 }

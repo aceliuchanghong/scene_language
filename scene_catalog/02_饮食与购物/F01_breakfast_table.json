@@ -10,59 +10,59 @@
     "en": "Food and shopping"
   },
   "scene": {
-    "zh": "早餐桌",
-    "en": "breakfast table"
+    "zh": "日本家庭的一汁三菜早餐",
+    "en": "traditional Japanese ichiju-sansai breakfast"
   },
   "targets": [
     {
       "order": 1,
-      "zh": "麦片",
-      "en": "cereal"
+      "zh": "白米饭",
+      "en": "steamed rice"
     },
     {
       "order": 2,
-      "zh": "燕麦粥",
-      "en": "porridge"
+      "zh": "味噌汤",
+      "en": "miso soup"
     },
     {
       "order": 3,
-      "zh": "烤面包",
-      "en": "toast"
+      "zh": "盐烤鲑鱼",
+      "en": "grilled salted salmon"
     },
     {
       "order": 4,
-      "zh": "果酱",
-      "en": "jam"
+      "zh": "纳豆",
+      "en": "natto"
     },
     {
       "order": 5,
-      "zh": "煎蛋",
-      "en": "fried egg"
+      "zh": "玉子烧",
+      "en": "tamagoyaki"
     },
     {
       "order": 6,
-      "zh": "培根",
-      "en": "bacon"
+      "zh": "日式腌菜",
+      "en": "tsukemono pickles"
     },
     {
       "order": 7,
-      "zh": "酸奶",
-      "en": "yoghurt"
+      "zh": "烤海苔片",
+      "en": "nori seaweed sheets"
     },
     {
       "order": 8,
-      "zh": "橙汁",
-      "en": "orange juice"
+      "zh": "煎茶",
+      "en": "sencha green tea"
     },
     {
       "order": 9,
-      "zh": "马克杯",
-      "en": "mug"
+      "zh": "漆器饭碗",
+      "en": "lacquered rice bowl"
     },
     {
       "order": 10,
-      "zh": "茶匙",
-      "en": "teaspoon"
+      "zh": "筷子与筷架",
+      "en": "chopsticks on a chopstick rest"
     }
   ],
   "image": {
@@ -74,7 +74,7 @@
   },
   "generation": {
     "asset_strategy": "ai_image",
-    "prompt": "Create a photorealistic vertical 9:16 educational scene of breakfast table (早餐桌).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: cereal, porridge, toast, jam, fried egg, bacon, yoghurt, orange juice, mug, teaspoon.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of traditional Japanese ichiju-sansai breakfast (日本家庭的一汁三菜早餐).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: steamed rice, miso soup, grilled salted salmon, natto, tamagoyaki, tsukemono pickles, nori seaweed sheets, sencha green tea, lacquered rice bowl, chopsticks on a chopstick rest.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
   },
   "requirements": {
     "target_count": 10,
@@ -102,5 +102,5 @@
     "missing_target_ids": [],
     "ambiguous_target_ids": []
   },
-  "content_signature": "a23be963b9daf0a2b50784cf5472030629f57365e701ab413574e8bf9ed87181"
+  "content_signature": "b7740009f9980f7a8f8bf62e1982a348008fe0d807d1ddacf55300b26c95d1b7"
 }

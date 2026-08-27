@@ -10,59 +10,59 @@
     "en": "Food and shopping"
   },
   "scene": {
-    "zh": "餐厅用餐",
-    "en": "restaurant"
+    "zh": "日本街坊居酒屋",
+    "en": "neighborhood Japanese izakaya"
   },
   "targets": [
     {
       "order": 1,
-      "zh": "服务员",
-      "en": "waiter"
+      "zh": "暖帘",
+      "en": "noren curtain"
     },
     {
       "order": 2,
-      "zh": "顾客",
-      "en": "customer"
+      "zh": "居酒屋店员",
+      "en": "izakaya server"
     },
     {
       "order": 3,
-      "zh": "菜单",
-      "en": "menu"
+      "zh": "烤鸡肉串",
+      "en": "yakitori skewers"
     },
     {
       "order": 4,
-      "zh": "前菜",
-      "en": "starter"
+      "zh": "刺身拼盘",
+      "en": "sashimi platter"
     },
     {
       "order": 5,
-      "zh": "主菜",
-      "en": "main course"
+      "zh": "德利清酒壶",
+      "en": "tokkuri sake flask"
     },
     {
       "order": 6,
-      "zh": "甜点",
-      "en": "dessert"
+      "zh": "猪口清酒杯",
+      "en": "ochoko sake cup"
     },
     {
       "order": 7,
-      "zh": "葡萄酒杯",
-      "en": "wine glass"
+      "zh": "湿毛巾",
+      "en": "oshibori wet towel"
     },
     {
       "order": 8,
-      "zh": "蜡烛",
-      "en": "candle"
+      "zh": "毛豆",
+      "en": "edamame"
     },
     {
       "order": 9,
-      "zh": "账单",
-      "en": "bill"
+      "zh": "桌面点餐铃",
+      "en": "table call button"
     },
     {
       "order": 10,
-      "zh": "托盘",
-      "en": "tray"
+      "zh": "账单夹",
+      "en": "bill holder"
     }
   ],
   "image": {
@@ -74,7 +74,7 @@
   },
   "generation": {
     "asset_strategy": "ai_image",
-    "prompt": "Create a photorealistic vertical 9:16 educational scene of restaurant (餐厅用餐).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: waiter, customer, menu, starter, main course, dessert, wine glass, candle, bill, tray.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of neighborhood Japanese izakaya (日本街坊居酒屋).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: noren curtain, izakaya server, yakitori skewers, sashimi platter, tokkuri sake flask, ochoko sake cup, oshibori wet towel, edamame, table call button, bill holder.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
   },
   "requirements": {
     "target_count": 10,
@@ -102,5 +102,5 @@
     "missing_target_ids": [],
     "ambiguous_target_ids": []
   },
-  "content_signature": "49916b8d5b674ebc2ee1f91dde6adf4d27e238bbc7111f99352698301ba1ae10"
+  "content_signature": "b6fa0559e236bf5e6a02ddb015a3182f169546918bdcb581d09c5dfb457a71cc"
 }

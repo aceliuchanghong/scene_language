@@ -10,59 +10,59 @@
     "en": "Food and shopping"
   },
   "scene": {
-    "zh": "家庭烘焙",
-    "en": "home baking"
+    "zh": "日本家庭制作抹茶戚风蛋糕",
+    "en": "matcha chiffon cake baking in a Japanese home kitchen"
   },
   "targets": [
     {
       "order": 1,
-      "zh": "面粉",
-      "en": "flour"
+      "zh": "抹茶粉",
+      "en": "matcha powder"
     },
     {
       "order": 2,
-      "zh": "糖",
-      "en": "sugar"
+      "zh": "日式低筋面粉",
+      "en": "Japanese cake flour"
     },
     {
       "order": 3,
-      "zh": "搅拌碗",
-      "en": "mixing bowl"
+      "zh": "球形打蛋器",
+      "en": "balloon whisk"
     },
     {
       "order": 4,
-      "zh": "打蛋器",
-      "en": "whisk"
+      "zh": "不锈钢搅拌碗",
+      "en": "stainless steel mixing bowl"
     },
     {
       "order": 5,
-      "zh": "擀面杖",
-      "en": "rolling pin"
+      "zh": "硅胶刮刀",
+      "en": "spatula"
     },
     {
       "order": 6,
-      "zh": "烤盘",
-      "en": "baking tray"
+      "zh": "戚风蛋糕模具",
+      "en": "chiffon cake pan"
     },
     {
       "order": 7,
-      "zh": "烤箱",
-      "en": "oven"
+      "zh": "小型台式烤箱",
+      "en": "compact countertop oven"
     },
     {
       "order": 8,
-      "zh": "隔热手套",
-      "en": "oven glove"
+      "zh": "隔热烤箱手套",
+      "en": "oven mitt"
     },
     {
       "order": 9,
-      "zh": "量杯",
-      "en": "measuring jug"
+      "zh": "厨房电子秤",
+      "en": "digital kitchen scale"
     },
     {
       "order": 10,
-      "zh": "蛋糕",
-      "en": "cake"
+      "zh": "抹茶戚风蛋糕",
+      "en": "matcha chiffon cake"
     }
   ],
   "image": {
@@ -74,7 +74,7 @@
   },
   "generation": {
     "asset_strategy": "ai_image",
-    "prompt": "Create a photorealistic vertical 9:16 educational scene of home baking (家庭烘焙).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: flour, sugar, mixing bowl, whisk, rolling pin, baking tray, oven, oven glove, measuring jug, cake.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
+    "prompt": "Create a photorealistic vertical 9:16 educational scene of matcha chiffon cake baking in a Japanese home kitchen (日本家庭制作抹茶戚风蛋糕).\n\nThe following ten learning targets must each appear once, clearly visible and easy to point to: matcha powder, Japanese cake flour, balloon whisk, stainless steel mixing bowl, spatula, chiffon cake pan, compact countertop oven, oven mitt, digital kitchen scale, matcha chiffon cake.\n\nArrange the targets naturally in one coherent real-life scene. Distribute them across the upper, middle and lower parts of the frame. Keep every target large enough to recognise, unobstructed, and visually separated from the others. Use realistic scale, lighting and spatial relationships. Background details may exist but should be subdued. Do not add captions, labels, subtitles, watermarks, logos, gibberish text, collages or duplicate copies of the target objects."
   },
   "requirements": {
     "target_count": 10,
@@ -102,5 +102,5 @@
     "missing_target_ids": [],
     "ambiguous_target_ids": []
   },
-  "content_signature": "7771a108ac0529350af955a2a59cbeb6219e786a8383de398d83e5476f838414"
+  "content_signature": "b25334f31de99cb3e863b5e0a93724768984b0a8ec02cab036c8463c0bd48b3a"
 }
