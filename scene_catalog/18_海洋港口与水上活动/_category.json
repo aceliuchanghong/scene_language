@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "M",
+    "order": 18,
+    "zh": "海洋、港口与水上活动",
+    "en": "Marine, harbour and water activities",
+    "batch": "F"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "M01_fishing_harbour.json",
+    "M02_passenger_ferry_deck.json",
+    "M03_sailing_marina.json",
+    "M04_working_fishing_boat.json",
+    "M05_scuba_diving_entry.json",
+    "M06_kayaking_and_paddleboarding.json"
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "N06",
+  "slug": "N06_vegetable_garden_and_greenhouse",
+  "batch": "E",
+  "category": {
+    "id": "N",
+    "order": 14,
+    "zh": "自然、天气与乡野",
+    "en": "Nature, weather and countryside"
+  },
+  "scene": {
+    "zh": "菜园与温室",
+    "en": "vegetable garden and greenhouse"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "玻璃温室",
+      "en": "glass greenhouse"
+    },
+    {
+      "order": 2,
+      "zh": "高架菜床",
+      "en": "raised vegetable bed"
+    },
+    {
+      "order": 3,
+      "zh": "番茄藤",
+      "en": "tomato vine"
+    },
+    {
+      "order": 4,
+      "zh": "黄瓜植株",
+      "en": "cucumber plant"
+    },
+    {
+      "order": 5,
+      "zh": "育苗盘",
+      "en": "seedling tray"
+    },
+    {
+      "order": 6,
+      "zh": "堆肥箱",
+      "en": "compost bin"
+    },
+    {
+      "order": 7,
+      "zh": "园艺叉",
+      "en": "garden fork"
+    },
+    {
+      "order": 8,
+      "zh": "修枝剪",
+      "en": "secateurs"
+    },
+    {
+      "order": 9,
+      "zh": "植物支撑杆",
+      "en": "plant support cane"
+    },
+    {
+      "order": 10,
+      "zh": "园艺跪垫",
+      "en": "garden kneeler"
+    }
+  ],
+  "image": {
+    "filename": "N06_vegetable_garden_and_greenhouse.png",
+    "path": "input_pics/14_自然天气与乡野/N06_vegetable_garden_and_greenhouse.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Show a productive allotment garden from the open doorway of one glass greenhouse. The greenhouse structure fills the upper frame while one raised bed leads through the middle. Train a tomato vine and a cucumber plant on separate supports, making their fruit and leaves visually distinct. Place the seedling tray on a potting bench and the compost bin outside at the rear. In the clean foreground, separate the garden fork, closed secateurs and kneeler; one support cane remains visibly attached to the tomato vine. Warm morning sun, realistic soil and glass reflections, no baskets of loose vegetables and no repeated hand tools.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of vegetable garden and greenhouse (菜园与温室). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nShow a productive allotment garden from the open doorway of one glass greenhouse. The greenhouse structure fills the upper frame while one raised bed leads through the middle. Train a tomato vine and a cucumber plant on separate supports, making their fruit and leaves visually distinct. Place the seedling tray on a potting bench and the compost bin outside at the rear. In the clean foreground, separate the garden fork, closed secateurs and kneeler; one support cane remains visibly attached to the tomato vine. Warm morning sun, realistic soil and glass reflections, no baskets of loose vegetables and no repeated hand tools.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: glass greenhouse, raised vegetable bed, tomato vine, cucumber plant, seedling tray, compost bin, garden fork, secateurs, plant support cane, garden kneeler.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "5d3f6ae56fc846bedd4b080461366fb89373cae8e0b97b031a968039bd5496bf"
+}

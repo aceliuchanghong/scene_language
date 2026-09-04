@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "V01",
+  "slug": "V01_wedding_ceremony",
+  "batch": "E",
+  "category": {
+    "id": "V",
+    "order": 16,
+    "zh": "节庆与人生事件",
+    "en": "Celebrations and life events"
+  },
+  "scene": {
+    "zh": "婚礼仪式",
+    "en": "wedding ceremony"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "新娘",
+      "en": "bride"
+    },
+    {
+      "order": 2,
+      "zh": "新郎",
+      "en": "groom"
+    },
+    {
+      "order": 3,
+      "zh": "婚礼拱门",
+      "en": "wedding arch"
+    },
+    {
+      "order": 4,
+      "zh": "新娘捧花",
+      "en": "bridal bouquet"
+    },
+    {
+      "order": 5,
+      "zh": "一对婚戒",
+      "en": "pair of wedding rings"
+    },
+    {
+      "order": 6,
+      "zh": "头纱",
+      "en": "bridal veil"
+    },
+    {
+      "order": 7,
+      "zh": "婚礼通道地毯",
+      "en": "ceremony aisle runner"
+    },
+    {
+      "order": 8,
+      "zh": "花童篮",
+      "en": "flower-girl basket"
+    },
+    {
+      "order": 9,
+      "zh": "婚礼蛋糕",
+      "en": "wedding cake"
+    },
+    {
+      "order": 10,
+      "zh": "香槟杯",
+      "en": "champagne flute"
+    }
+  ],
+  "image": {
+    "filename": "V01_wedding_ceremony.png",
+    "path": "input_pics/16_节庆与人生事件/V01_wedding_ceremony.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph an intimate outdoor garden wedding from the end of the aisle, using a symmetrical but natural composition. The bride and groom stand side by side beneath one floral arch, faces believable and hands clearly separated; the bride holds the bouquet and wears the veil. The aisle runner leads from the lower foreground to them. Place a flower-girl basket on one aisle chair, a single champagne flute on a small side table, and the wedding cake farther back at the opposite side. Show the pair of rings together in an open ring box in the near foreground, large enough to identify. Soft late-afternoon light, restrained guests out of focus, no signage or duplicated ceremonial objects.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of wedding ceremony (婚礼仪式). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph an intimate outdoor garden wedding from the end of the aisle, using a symmetrical but natural composition. The bride and groom stand side by side beneath one floral arch, faces believable and hands clearly separated; the bride holds the bouquet and wears the veil. The aisle runner leads from the lower foreground to them. Place a flower-girl basket on one aisle chair, a single champagne flute on a small side table, and the wedding cake farther back at the opposite side. Show the pair of rings together in an open ring box in the near foreground, large enough to identify. Soft late-afternoon light, restrained guests out of focus, no signage or duplicated ceremonial objects.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: bride, groom, wedding arch, bridal bouquet, pair of wedding rings, bridal veil, ceremony aisle runner, flower-girl basket, wedding cake, champagne flute.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "84fddd019602efd1baeb1aa873dc82b5402e4156ddf2e7847dc7aedcedf8e93d"
+}

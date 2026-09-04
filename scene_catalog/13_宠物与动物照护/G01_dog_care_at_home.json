@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "G01",
+  "slug": "G01_dog_care_at_home",
+  "batch": "E",
+  "category": {
+    "id": "G",
+    "order": 13,
+    "zh": "宠物与动物照护",
+    "en": "Pet and animal care"
+  },
+  "scene": {
+    "zh": "家庭养狗",
+    "en": "dog care at home"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "宠物狗",
+      "en": "pet dog"
+    },
+    {
+      "order": 2,
+      "zh": "牵狗绳",
+      "en": "dog lead"
+    },
+    {
+      "order": 3,
+      "zh": "狗项圈",
+      "en": "dog collar"
+    },
+    {
+      "order": 4,
+      "zh": "胸背带",
+      "en": "dog harness"
+    },
+    {
+      "order": 5,
+      "zh": "狗窝",
+      "en": "dog bed"
+    },
+    {
+      "order": 6,
+      "zh": "狗粮碗",
+      "en": "dog food bowl"
+    },
+    {
+      "order": 7,
+      "zh": "狗饮水碗",
+      "en": "dog water bowl"
+    },
+    {
+      "order": 8,
+      "zh": "磨牙玩具",
+      "en": "chew toy"
+    },
+    {
+      "order": 9,
+      "zh": "零食袋",
+      "en": "treat pouch"
+    },
+    {
+      "order": 10,
+      "zh": "拾便袋盒",
+      "en": "waste-bag dispenser"
+    }
+  ],
+  "image": {
+    "filename": "G01_dog_care_at_home.png",
+    "path": "input_pics/13_宠物与动物照护/G01_dog_care_at_home.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Show a sunlit home entrance opening into a modest living room. One calm medium-sized dog sits on its bed in the lower-middle frame wearing the collar but not the harness. Hang the lead and harness separately on low wall hooks, with the treat pouch and waste-bag dispenser beside them. Place the food and water bowls several inches apart on a washable mat, and one chew toy in the foreground. Eye-level domestic photography, warm natural light, anatomically correct dog, no second animal and no repeated bowls or toys.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of dog care at home (家庭养狗). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nShow a sunlit home entrance opening into a modest living room. One calm medium-sized dog sits on its bed in the lower-middle frame wearing the collar but not the harness. Hang the lead and harness separately on low wall hooks, with the treat pouch and waste-bag dispenser beside them. Place the food and water bowls several inches apart on a washable mat, and one chew toy in the foreground. Eye-level domestic photography, warm natural light, anatomically correct dog, no second animal and no repeated bowls or toys.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: pet dog, dog lead, dog collar, dog harness, dog bed, dog food bowl, dog water bowl, chew toy, treat pouch, waste-bag dispenser.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "ad7aa75a8cbce6b3e33e459adc4d9638a9a923ddc6eb93dcd0427de332b8f518"
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "U04",
+  "slug": "U04_home_electrical_repair",
+  "batch": "F",
+  "category": {
+    "id": "U",
+    "order": 20,
+    "zh": "家装、维修与 DIY",
+    "en": "Home improvement, repair and DIY"
+  },
+  "scene": {
+    "zh": "家庭电路维修",
+    "en": "Home electrical repair"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "家用配电箱",
+      "en": "domestic consumer unit"
+    },
+    {
+      "order": 2,
+      "zh": "微型断路器",
+      "en": "miniature circuit breaker"
+    },
+    {
+      "order": 3,
+      "zh": "绝缘剥线钳",
+      "en": "insulated wire stripper"
+    },
+    {
+      "order": 4,
+      "zh": "插座电压检测器",
+      "en": "socket voltage tester"
+    },
+    {
+      "order": 5,
+      "zh": "绝缘电工螺丝刀",
+      "en": "insulated electrician screwdriver"
+    },
+    {
+      "order": 6,
+      "zh": "替换墙壁插座",
+      "en": "replacement wall socket"
+    },
+    {
+      "order": 7,
+      "zh": "护套电缆卷",
+      "en": "sheathed electrical cable coil"
+    },
+    {
+      "order": 8,
+      "zh": "漏电保护器",
+      "en": "residual-current safety device"
+    },
+    {
+      "order": 9,
+      "zh": "电缆接线端子",
+      "en": "electrical connector block"
+    },
+    {
+      "order": 10,
+      "zh": "断电锁扣",
+      "en": "electrical lockout clasp"
+    }
+  ],
+  "image": {
+    "filename": "U04_home_electrical_repair.png",
+    "path": "input_pics/20_家装维修与DIY/U04_home_electrical_repair.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Stage a safe domestic electrical-maintenance scene in a utility hallway, with all power visibly isolated but without readable warning text. Mount the open consumer unit high enough to show one miniature breaker and one residual-current device as distinct components. Place the lockout clasp on the main isolator. On an insulated foreground work mat, arrange the wire stripper, voltage tester, electrician screwdriver, replacement socket, cable coil and connector block with ample spacing. One qualified electrician may kneel beside the mat, hands resting away from components. Use clean neutral task lighting and accurate wire scale, with cable ends safely capped. No sparks, bare live copper, scorched walls, DIY homeowner working live, readable circuit labels, duplicated sockets or impossible wiring paths.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Home electrical repair (家庭电路维修). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nStage a safe domestic electrical-maintenance scene in a utility hallway, with all power visibly isolated but without readable warning text. Mount the open consumer unit high enough to show one miniature breaker and one residual-current device as distinct components. Place the lockout clasp on the main isolator. On an insulated foreground work mat, arrange the wire stripper, voltage tester, electrician screwdriver, replacement socket, cable coil and connector block with ample spacing. One qualified electrician may kneel beside the mat, hands resting away from components. Use clean neutral task lighting and accurate wire scale, with cable ends safely capped. No sparks, bare live copper, scorched walls, DIY homeowner working live, readable circuit labels, duplicated sockets or impossible wiring paths.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: domestic consumer unit, miniature circuit breaker, insulated wire stripper, socket voltage tester, insulated electrician screwdriver, replacement wall socket, sheathed electrical cable coil, residual-current safety device, electrical connector block, electrical lockout clasp.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "6ca461c7e802a180d8519a548d33708491c85ae301ad90d1c463ef68b0276f68"
+}

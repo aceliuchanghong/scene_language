@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "V",
+    "order": 16,
+    "zh": "节庆与人生事件",
+    "en": "Celebrations and life events",
+    "batch": "E"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "V01_wedding_ceremony.json",
+    "V02_graduation_ceremony.json",
+    "V03_moving_house.json",
+    "V04_newborn_visit.json",
+    "V05_lunar_new_year_reunion.json",
+    "V06_christmas_market.json"
+  ]
+}

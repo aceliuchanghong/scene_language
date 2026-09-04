@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "C06",
+  "slug": "C06_motorcycles_and_scooters",
+  "batch": "E",
+  "category": {
+    "id": "C",
+    "order": 12,
+    "zh": "驾驶与车辆",
+    "en": "Driving and vehicles"
+  },
+  "scene": {
+    "zh": "摩托车与踏板车",
+    "en": "motorcycles and scooters"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "摩托车",
+      "en": "motorcycle"
+    },
+    {
+      "order": 2,
+      "zh": "踏板摩托车",
+      "en": "motor scooter"
+    },
+    {
+      "order": 3,
+      "zh": "全盔",
+      "en": "full-face helmet"
+    },
+    {
+      "order": 4,
+      "zh": "头盔面罩",
+      "en": "helmet visor"
+    },
+    {
+      "order": 5,
+      "zh": "骑行手套",
+      "en": "riding gloves"
+    },
+    {
+      "order": 6,
+      "zh": "摩托车骑行夹克",
+      "en": "motorcycle jacket"
+    },
+    {
+      "order": 7,
+      "zh": "中央支架",
+      "en": "centre stand"
+    },
+    {
+      "order": 8,
+      "zh": "排气消声器",
+      "en": "exhaust silencer"
+    },
+    {
+      "order": 9,
+      "zh": "油门握把",
+      "en": "throttle grip"
+    },
+    {
+      "order": 10,
+      "zh": "碟式刹车",
+      "en": "disc brake"
+    }
+  ],
+  "image": {
+    "filename": "C06_motorcycles_and_scooters.png",
+    "path": "input_pics/12_驾驶与车辆/C06_motorcycles_and_scooters.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph a tidy urban motorcycle workshop forecourt with exactly one motorcycle and one motor scooter parked at different depths. Feature the motorcycle in three-quarter side view so its centre stand, exhaust silencer, throttle grip and front disc brake are structurally correct and visible. Place one full-face helmet with its visor raised on a waist-high bench; lay the gloves beside it and hang one riding jacket above. The scooter remains secondary but unobstructed. Warm late-afternoon daylight, realistic metal and rubber textures, no riders, no duplicated wheels beyond those physically belonging to the two vehicles.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of motorcycles and scooters (摩托车与踏板车). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph a tidy urban motorcycle workshop forecourt with exactly one motorcycle and one motor scooter parked at different depths. Feature the motorcycle in three-quarter side view so its centre stand, exhaust silencer, throttle grip and front disc brake are structurally correct and visible. Place one full-face helmet with its visor raised on a waist-high bench; lay the gloves beside it and hang one riding jacket above. The scooter remains secondary but unobstructed. Warm late-afternoon daylight, realistic metal and rubber textures, no riders, no duplicated wheels beyond those physically belonging to the two vehicles.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: motorcycle, motor scooter, full-face helmet, helmet visor, riding gloves, motorcycle jacket, centre stand, exhaust silencer, throttle grip, disc brake.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "0f92c217c1c01c66fdf22ae39a60ea9fe52a35c5c38cc2b980524d2c18e6afe5"
+}

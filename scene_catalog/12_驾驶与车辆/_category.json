@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "C",
+    "order": 12,
+    "zh": "驾驶与车辆",
+    "en": "Driving and vehicles",
+    "batch": "E"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "C01_car_cockpit.json",
+    "C02_driving_practice_area.json",
+    "C03_car_repair_garage.json",
+    "C04_self_service_car_wash.json",
+    "C05_roadside_breakdown.json",
+    "C06_motorcycles_and_scooters.json"
+  ]
+}

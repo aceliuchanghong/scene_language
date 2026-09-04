@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "I01",
+  "slug": "I01_factory_assembly_line",
+  "batch": "F",
+  "category": {
+    "id": "I",
+    "order": 19,
+    "zh": "工业、能源与环保",
+    "en": "Industry, energy and environmental services"
+  },
+  "scene": {
+    "zh": "工厂生产线",
+    "en": "Factory assembly line"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "工业传送带",
+      "en": "industrial belt conveyor"
+    },
+    {
+      "order": 2,
+      "zh": "零件振动盘",
+      "en": "parts feeder bowl"
+    },
+    {
+      "order": 3,
+      "zh": "气动装配螺丝刀",
+      "en": "pneumatic assembly screwdriver"
+    },
+    {
+      "order": 4,
+      "zh": "工件定位夹具",
+      "en": "workpiece assembly jig"
+    },
+    {
+      "order": 5,
+      "zh": "红色急停按钮",
+      "en": "red emergency-stop button"
+    },
+    {
+      "order": 6,
+      "zh": "透明安全护板",
+      "en": "transparent machine guard panel"
+    },
+    {
+      "order": 7,
+      "zh": "质检照明灯",
+      "en": "quality-inspection task lamp"
+    },
+    {
+      "order": 8,
+      "zh": "周转零件箱",
+      "en": "factory component tote"
+    },
+    {
+      "order": 9,
+      "zh": "工厂安全帽",
+      "en": "factory safety helmet"
+    },
+    {
+      "order": 10,
+      "zh": "手动托盘搬运车",
+      "en": "manual factory pallet truck"
+    }
+  ],
+  "image": {
+    "filename": "I01_factory_assembly_line.png",
+    "path": "input_pics/19_工业能源与环保/I01_factory_assembly_line.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Show a modern light-manufacturing assembly line from an aisle-level three-quarter viewpoint. Run one belt conveyor through the middle, ending beside a feeder bowl and a guarded work station. On the station, separate the pneumatic screwdriver, workpiece jig and inspection lamp; place the red emergency-stop button clearly on the machine frame and make the transparent guard edge visible. Put one component tote beneath the bench, a safety helmet on a hook and a parked pallet truck in the lower background. Include one operator observing from behind the guard with hands down. Use bright even industrial lighting and realistic brushed metal. No moving machinery blur, sparks, readable control text, massed identical products, exposed gears, missing guards, brand logos or duplicated targets.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Factory assembly line (工厂生产线). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nShow a modern light-manufacturing assembly line from an aisle-level three-quarter viewpoint. Run one belt conveyor through the middle, ending beside a feeder bowl and a guarded work station. On the station, separate the pneumatic screwdriver, workpiece jig and inspection lamp; place the red emergency-stop button clearly on the machine frame and make the transparent guard edge visible. Put one component tote beneath the bench, a safety helmet on a hook and a parked pallet truck in the lower background. Include one operator observing from behind the guard with hands down. Use bright even industrial lighting and realistic brushed metal. No moving machinery blur, sparks, readable control text, massed identical products, exposed gears, missing guards, brand logos or duplicated targets.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: industrial belt conveyor, parts feeder bowl, pneumatic assembly screwdriver, workpiece assembly jig, red emergency-stop button, transparent machine guard panel, quality-inspection task lamp, factory component tote, factory safety helmet, manual factory pallet truck.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "9fe0dcdab28a8ea2d5118f0bafb6865a1f728f5809b77bea0763fd8f255b004a"
+}

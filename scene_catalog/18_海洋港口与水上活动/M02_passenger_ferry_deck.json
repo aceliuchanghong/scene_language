@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "M02",
+  "slug": "M02_passenger_ferry_deck",
+  "batch": "F",
+  "category": {
+    "id": "M",
+    "order": 18,
+    "zh": "海洋、港口与水上活动",
+    "en": "Marine, harbour and water activities"
+  },
+  "scene": {
+    "zh": "客运渡轮甲板",
+    "en": "Passenger ferry deck"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "客运渡轮",
+      "en": "coastal passenger ferry"
+    },
+    {
+      "order": 2,
+      "zh": "船用救生衣",
+      "en": "marine life jacket"
+    },
+    {
+      "order": 3,
+      "zh": "渡轮甲板栏杆",
+      "en": "ferry deck railing"
+    },
+    {
+      "order": 4,
+      "zh": "圆形救生圈",
+      "en": "circular marine lifebuoy"
+    },
+    {
+      "order": 5,
+      "zh": "有盖救生艇",
+      "en": "covered ferry rescue boat"
+    },
+    {
+      "order": 6,
+      "zh": "红绿航行灯",
+      "en": "port-and-starboard navigation lights"
+    },
+    {
+      "order": 7,
+      "zh": "登船跳板",
+      "en": "ferry boarding gangway"
+    },
+    {
+      "order": 8,
+      "zh": "甲板系缆羊角",
+      "en": "deck mooring cleat"
+    },
+    {
+      "order": 9,
+      "zh": "船用风向袋",
+      "en": "marine windsock"
+    },
+    {
+      "order": 10,
+      "zh": "固定甲板长椅",
+      "en": "fixed ferry deck bench"
+    }
+  ],
+  "image": {
+    "filename": "M02_passenger_ferry_deck.png",
+    "path": "input_pics/18_海洋港口与水上活动/M02_passenger_ferry_deck.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Take an eye-level photograph along the open upper deck of a coastal passenger ferry in calm daylight. Use the railing as a leading line, with one fixed bench and one life jacket mounted separately along it. Hang the circular lifebuoy high on the cabin wall; place the covered rescue boat above and behind it without overlap. Frame the red and green navigation lights at opposite upper corners of the cabin, a windsock against open sky, and a cleat in the lower foreground. Through the side opening, show the boarding gangway connected safely to the terminal. A few passengers may face the horizon at a distance. No rough sea, emergency action, readable safety notices, logos, duplicated rescue equipment or impossible deck geometry.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Passenger ferry deck (客运渡轮甲板). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nTake an eye-level photograph along the open upper deck of a coastal passenger ferry in calm daylight. Use the railing as a leading line, with one fixed bench and one life jacket mounted separately along it. Hang the circular lifebuoy high on the cabin wall; place the covered rescue boat above and behind it without overlap. Frame the red and green navigation lights at opposite upper corners of the cabin, a windsock against open sky, and a cleat in the lower foreground. Through the side opening, show the boarding gangway connected safely to the terminal. A few passengers may face the horizon at a distance. No rough sea, emergency action, readable safety notices, logos, duplicated rescue equipment or impossible deck geometry.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: coastal passenger ferry, marine life jacket, ferry deck railing, circular marine lifebuoy, covered ferry rescue boat, port-and-starboard navigation lights, ferry boarding gangway, deck mooring cleat, marine windsock, fixed ferry deck bench.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "8ae5f5262aee291b14e4ac76235fba72956a5a997ecf96f0298ccfcf7aa573e3"
+}

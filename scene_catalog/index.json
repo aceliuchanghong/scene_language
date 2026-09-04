@@ -2,11 +2,11 @@
   "schema_version": 1,
   "source_of_truth": "scene_json",
   "summary": {
-    "category_count": 11,
-    "scene_count": 82,
+    "category_count": 20,
+    "scene_count": 136,
     "targets_per_scene": 10,
-    "learning_slots": 820,
-    "unique_english_targets": 814
+    "learning_slots": 1360,
+    "unique_english_targets": 1354
   },
   "status_flow": [
     "planned",
@@ -35,6 +35,19 @@
       "A",
       "E",
       "P"
+    ],
+    "E": [
+      "C",
+      "G",
+      "N",
+      "Q",
+      "V"
+    ],
+    "F": [
+      "K",
+      "M",
+      "I",
+      "U"
     ]
   },
   "categories": [
@@ -158,6 +171,105 @@
       "learning_slots": 60,
       "directory": "11_个人护理与时尚",
       "index": "11_个人护理与时尚/_category.json"
+    },
+    {
+      "id": "C",
+      "order": 12,
+      "zh": "驾驶与车辆",
+      "en": "Driving and vehicles",
+      "batch": "E",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "12_驾驶与车辆",
+      "index": "12_驾驶与车辆/_category.json"
+    },
+    {
+      "id": "G",
+      "order": 13,
+      "zh": "宠物与动物照护",
+      "en": "Pet and animal care",
+      "batch": "E",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "13_宠物与动物照护",
+      "index": "13_宠物与动物照护/_category.json"
+    },
+    {
+      "id": "N",
+      "order": 14,
+      "zh": "自然、天气与乡野",
+      "en": "Nature, weather and countryside",
+      "batch": "E",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "14_自然天气与乡野",
+      "index": "14_自然天气与乡野/_category.json"
+    },
+    {
+      "id": "Q",
+      "order": 15,
+      "zh": "安全与应急",
+      "en": "Safety and emergencies",
+      "batch": "E",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "15_安全与应急",
+      "index": "15_安全与应急/_category.json"
+    },
+    {
+      "id": "V",
+      "order": 16,
+      "zh": "节庆与人生事件",
+      "en": "Celebrations and life events",
+      "batch": "E",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "16_节庆与人生事件",
+      "index": "16_节庆与人生事件/_category.json"
+    },
+    {
+      "id": "K",
+      "order": 17,
+      "zh": "科学与探索",
+      "en": "Science and exploration",
+      "batch": "F",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "17_科学与探索",
+      "index": "17_科学与探索/_category.json"
+    },
+    {
+      "id": "M",
+      "order": 18,
+      "zh": "海洋、港口与水上活动",
+      "en": "Marine, harbour and water activities",
+      "batch": "F",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "18_海洋港口与水上活动",
+      "index": "18_海洋港口与水上活动/_category.json"
+    },
+    {
+      "id": "I",
+      "order": 19,
+      "zh": "工业、能源与环保",
+      "en": "Industry, energy and environmental services",
+      "batch": "F",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "19_工业能源与环保",
+      "index": "19_工业能源与环保/_category.json"
+    },
+    {
+      "id": "U",
+      "order": 20,
+      "zh": "家装、维修与 DIY",
+      "en": "Home improvement, repair and DIY",
+      "batch": "F",
+      "scene_count": 6,
+      "learning_slots": 60,
+      "directory": "20_家装维修与DIY",
+      "index": "20_家装维修与DIY/_category.json"
     }
   ]
 }

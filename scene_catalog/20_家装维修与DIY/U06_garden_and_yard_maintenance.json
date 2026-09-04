@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "U06",
+  "slug": "U06_garden_and_yard_maintenance",
+  "batch": "F",
+  "category": {
+    "id": "U",
+    "order": 20,
+    "zh": "家装、维修与 DIY",
+    "en": "Home improvement, repair and DIY"
+  },
+  "scene": {
+    "zh": "花园与庭院维护",
+    "en": "Garden and yard maintenance"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "旋转式割草机",
+      "en": "rotary lawn mower"
+    },
+    {
+      "order": 2,
+      "zh": "绿色花园水管",
+      "en": "green garden hose"
+    },
+    {
+      "order": 3,
+      "zh": "宽齿落叶耙",
+      "en": "wide-tine leaf rake"
+    },
+    {
+      "order": 4,
+      "zh": "花园独轮车",
+      "en": "garden wheelbarrow"
+    },
+    {
+      "order": 5,
+      "zh": "电动绿篱机",
+      "en": "electric hedge trimmer"
+    },
+    {
+      "order": 6,
+      "zh": "旁路修枝剪",
+      "en": "bypass pruning shears"
+    },
+    {
+      "order": 7,
+      "zh": "长嘴浇水壶",
+      "en": "long-spout watering can"
+    },
+    {
+      "order": 8,
+      "zh": "园艺跪坐凳",
+      "en": "garden kneeling stool"
+    },
+    {
+      "order": 9,
+      "zh": "堆肥土袋",
+      "en": "sealed compost bag"
+    },
+    {
+      "order": 10,
+      "zh": "防噪耳罩",
+      "en": "gardening ear defenders"
+    }
+  ],
+  "image": {
+    "filename": "U06_garden_and_yard_maintenance.png",
+    "path": "input_pics/20_家装维修与DIY/U06_garden_and_yard_maintenance.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Create a tidy suburban garden-maintenance scene in bright overcast light from patio level. Park the rotary mower on a short grass strip at left and the wheelbarrow on paving at right, with one sealed compost bag inside it. Coil the green hose against the wall, lean the wide-tine rake securely nearby and place the long-spout watering can by a flower bed. On a clean garden table, separate the switched-off hedge trimmer, closed pruning shears and ear defenders; put the kneeling stool beside the border. One gardener may stand in the background inspecting the hedge, not operating equipment. No flying clippings, exposed power cable near water, readable packaging, duplicate tools, overgrown jungle, children near blades or impossibly manicured advertising imagery.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Garden and yard maintenance (花园与庭院维护). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCreate a tidy suburban garden-maintenance scene in bright overcast light from patio level. Park the rotary mower on a short grass strip at left and the wheelbarrow on paving at right, with one sealed compost bag inside it. Coil the green hose against the wall, lean the wide-tine rake securely nearby and place the long-spout watering can by a flower bed. On a clean garden table, separate the switched-off hedge trimmer, closed pruning shears and ear defenders; put the kneeling stool beside the border. One gardener may stand in the background inspecting the hedge, not operating equipment. No flying clippings, exposed power cable near water, readable packaging, duplicate tools, overgrown jungle, children near blades or impossibly manicured advertising imagery.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: rotary lawn mower, green garden hose, wide-tine leaf rake, garden wheelbarrow, electric hedge trimmer, bypass pruning shears, long-spout watering can, garden kneeling stool, sealed compost bag, gardening ear defenders.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "93e55580ba3dbfb1b41b05974f7341f63676011ff483b2336b1f28058bf20edb"
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "G05",
+  "slug": "G05_horse_stable",
+  "batch": "E",
+  "category": {
+    "id": "G",
+    "order": 13,
+    "zh": "宠物与动物照护",
+    "en": "Pet and animal care"
+  },
+  "scene": {
+    "zh": "马厩与骑马准备",
+    "en": "horse stable and riding preparation"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "马",
+      "en": "horse"
+    },
+    {
+      "order": 2,
+      "zh": "马鞍",
+      "en": "English riding saddle"
+    },
+    {
+      "order": 3,
+      "zh": "马笼头",
+      "en": "bridle"
+    },
+    {
+      "order": 4,
+      "zh": "马镫",
+      "en": "stirrup"
+    },
+    {
+      "order": 5,
+      "zh": "马靴",
+      "en": "riding boot"
+    },
+    {
+      "order": 6,
+      "zh": "干草网袋",
+      "en": "hay net"
+    },
+    {
+      "order": 7,
+      "zh": "马厩叉",
+      "en": "stable fork"
+    },
+    {
+      "order": 8,
+      "zh": "橡胶马刷",
+      "en": "rubber curry comb"
+    },
+    {
+      "order": 9,
+      "zh": "马蹄清理钩",
+      "en": "hoof pick"
+    },
+    {
+      "order": 10,
+      "zh": "饮水槽",
+      "en": "water trough"
+    }
+  ],
+  "image": {
+    "filename": "G05_horse_stable.png",
+    "path": "input_pics/13_宠物与动物照护/G05_horse_stable.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Create a spacious timber stable aisle at golden morning light. One calm horse stands side-on in an open stall with all four legs naturally formed. Hang the saddle and bridle on separate racks at chest height, turning one stirrup toward the camera. Place a single riding boot, curry comb and hoof pick as distinct foreground items on a tack bench; lean the stable fork safely against the wall. The filled hay net hangs in the stall and the water trough is visible below it. Rustic but tidy, no rider, no second horse and no excessive loose tack.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of horse stable and riding preparation (马厩与骑马准备). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCreate a spacious timber stable aisle at golden morning light. One calm horse stands side-on in an open stall with all four legs naturally formed. Hang the saddle and bridle on separate racks at chest height, turning one stirrup toward the camera. Place a single riding boot, curry comb and hoof pick as distinct foreground items on a tack bench; lean the stable fork safely against the wall. The filled hay net hangs in the stall and the water trough is visible below it. Rustic but tidy, no rider, no second horse and no excessive loose tack.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: horse, English riding saddle, bridle, stirrup, riding boot, hay net, stable fork, rubber curry comb, hoof pick, water trough.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "28a8fb8a0d098deda0995624f075b7d14fe01aff87ff39ed903b3d000a54de19"
+}

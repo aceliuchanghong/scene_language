@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "N",
+    "order": 14,
+    "zh": "自然、天气与乡野",
+    "en": "Nature, weather and countryside",
+    "batch": "E"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "N01_rainy_day_commute.json",
+    "N02_snowy_street.json",
+    "N03_woodland_stream.json",
+    "N04_lakeside_wetland.json",
+    "N05_coastal_rock_pool.json",
+    "N06_vegetable_garden_and_greenhouse.json"
+  ]
+}

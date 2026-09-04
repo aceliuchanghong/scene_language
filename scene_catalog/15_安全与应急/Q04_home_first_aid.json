@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "Q04",
+  "slug": "Q04_home_first_aid",
+  "batch": "E",
+  "category": {
+    "id": "Q",
+    "order": 15,
+    "zh": "安全与应急",
+    "en": "Safety and emergencies"
+  },
+  "scene": {
+    "zh": "家庭急救",
+    "en": "home first aid"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "急救收纳盒",
+      "en": "first-aid storage box"
+    },
+    {
+      "order": 2,
+      "zh": "无菌纱布片",
+      "en": "sterile gauze pad"
+    },
+    {
+      "order": 3,
+      "zh": "消毒湿巾",
+      "en": "antiseptic wipe"
+    },
+    {
+      "order": 4,
+      "zh": "医用弹性绷带",
+      "en": "medical elastic wrap"
+    },
+    {
+      "order": 5,
+      "zh": "医用胶带",
+      "en": "medical adhesive tape"
+    },
+    {
+      "order": 6,
+      "zh": "医用镊子",
+      "en": "medical tweezers"
+    },
+    {
+      "order": 7,
+      "zh": "即时冰袋",
+      "en": "instant cold pack"
+    },
+    {
+      "order": 8,
+      "zh": "一次性医用手套",
+      "en": "disposable medical gloves"
+    },
+    {
+      "order": 9,
+      "zh": "安全剪刀",
+      "en": "first-aid safety scissors"
+    },
+    {
+      "order": 10,
+      "zh": "烧伤敷料",
+      "en": "burn dressing"
+    }
+  ],
+  "image": {
+    "filename": "Q04_home_first_aid.png",
+    "path": "input_pics/15_安全与应急/Q04_home_first_aid.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph an open first-aid storage box on a clean kitchen table from a natural three-quarter overhead angle, not a flat-lay catalogue. Use the open lid to occupy the upper third and arrange the nine supplies in realistic compartments and on the table edge, each appearing once with clear space around it. Keep the gauze pad, wipe, elastic wrap, tape and burn dressing visually distinct by shape and packaging; unfold the gloves but leave them empty, and keep the scissors closed. Soft window light, ordinary home setting, no person, injury, blood, medicine branding or readable packaging text.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of home first aid (家庭急救). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph an open first-aid storage box on a clean kitchen table from a natural three-quarter overhead angle, not a flat-lay catalogue. Use the open lid to occupy the upper third and arrange the nine supplies in realistic compartments and on the table edge, each appearing once with clear space around it. Keep the gauze pad, wipe, elastic wrap, tape and burn dressing visually distinct by shape and packaging; unfold the gloves but leave them empty, and keep the scissors closed. Soft window light, ordinary home setting, no person, injury, blood, medicine branding or readable packaging text.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: first-aid storage box, sterile gauze pad, antiseptic wipe, medical elastic wrap, medical adhesive tape, medical tweezers, instant cold pack, disposable medical gloves, first-aid safety scissors, burn dressing.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "d7867cf090efcd817607712cd490ec2844ae099046442eac9fbc7a27891b4943"
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "K05",
+  "slug": "K05_robotics_development_lab",
+  "batch": "F",
+  "category": {
+    "id": "K",
+    "order": 17,
+    "zh": "科学与探索",
+    "en": "Science and exploration"
+  },
+  "scene": {
+    "zh": "机器人研发室",
+    "en": "Robotics development laboratory"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "工业机器人手臂",
+      "en": "industrial robotic arm"
+    },
+    {
+      "order": 2,
+      "zh": "电路原型板",
+      "en": "circuit prototype board"
+    },
+    {
+      "order": 3,
+      "zh": "距离传感器模块",
+      "en": "distance sensor module"
+    },
+    {
+      "order": 4,
+      "zh": "伺服电机",
+      "en": "robotics servo motor"
+    },
+    {
+      "order": 5,
+      "zh": "恒温焊接台",
+      "en": "temperature-controlled soldering station"
+    },
+    {
+      "order": 6,
+      "zh": "彩色线束",
+      "en": "robotics wire harness"
+    },
+    {
+      "order": 7,
+      "zh": "三维打印底盘",
+      "en": "3D-printed robot chassis"
+    },
+    {
+      "order": 8,
+      "zh": "安全光幕",
+      "en": "robot safety light curtain"
+    },
+    {
+      "order": 9,
+      "zh": "机器人示教器",
+      "en": "robot teach pendant"
+    },
+    {
+      "order": 10,
+      "zh": "数显卡尺",
+      "en": "digital caliper gauge"
+    }
+  ],
+  "image": {
+    "filename": "K05_robotics_development_lab.png",
+    "path": "input_pics/17_科学与探索/K05_robotics_development_lab.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Show a clean robotics development laboratory in a wide vertical three-quarter composition. Anchor a single powered-down industrial robotic arm behind a waist-high safety bench, with the light curtain posts visible on both sides but not glowing excessively. Across the foreground bench, separate the prototype board, distance sensor, servo motor, wire harness and printed chassis so each has a readable silhouette. Put the soldering station at the far left with its iron safely docked, the teach pendant hanging centrally, and the digital caliper at lower right. Two engineers may observe from behind the barrier. Use cool industrial daylight with one warm bench lamp. No sparks, exposed mains wiring, readable code, brand marks, humanoid robots, duplicate circuit boards or science-fiction holograms.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Robotics development laboratory (机器人研发室). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nShow a clean robotics development laboratory in a wide vertical three-quarter composition. Anchor a single powered-down industrial robotic arm behind a waist-high safety bench, with the light curtain posts visible on both sides but not glowing excessively. Across the foreground bench, separate the prototype board, distance sensor, servo motor, wire harness and printed chassis so each has a readable silhouette. Put the soldering station at the far left with its iron safely docked, the teach pendant hanging centrally, and the digital caliper at lower right. Two engineers may observe from behind the barrier. Use cool industrial daylight with one warm bench lamp. No sparks, exposed mains wiring, readable code, brand marks, humanoid robots, duplicate circuit boards or science-fiction holograms.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: industrial robotic arm, circuit prototype board, distance sensor module, robotics servo motor, temperature-controlled soldering station, robotics wire harness, 3D-printed robot chassis, robot safety light curtain, robot teach pendant, digital caliper gauge.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "7ce9e8285e6f2b248c48fb751f3319fb41dd2cda22bb44cf432c3e0c33d0d427"
+}

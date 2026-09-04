@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "I06",
+  "slug": "I06_wastewater_treatment_plant",
+  "batch": "F",
+  "category": {
+    "id": "I",
+    "order": 19,
+    "zh": "工业、能源与环保",
+    "en": "Industry, energy and environmental services"
+  },
+  "scene": {
+    "zh": "污水处理设施",
+    "en": "Wastewater treatment facility"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "圆形沉淀池",
+      "en": "circular settling tank"
+    },
+    {
+      "order": 2,
+      "zh": "曝气处理池",
+      "en": "wastewater aeration basin"
+    },
+    {
+      "order": 3,
+      "zh": "粗格栅过滤器",
+      "en": "coarse bar-screen filter"
+    },
+    {
+      "order": 4,
+      "zh": "药剂计量泵",
+      "en": "chemical dosing pump"
+    },
+    {
+      "order": 5,
+      "zh": "管道阀门手轮",
+      "en": "pipeline valve wheel"
+    },
+    {
+      "order": 6,
+      "zh": "长柄水样采集器",
+      "en": "long-handled water sampler"
+    },
+    {
+      "order": 7,
+      "zh": "处理水样瓶",
+      "en": "treated-water sample bottle"
+    },
+    {
+      "order": 8,
+      "zh": "便携酸碱度探头",
+      "en": "portable pH meter probe"
+    },
+    {
+      "order": 9,
+      "zh": "污泥脱水压滤机",
+      "en": "sludge dewatering press"
+    },
+    {
+      "order": 10,
+      "zh": "防滑安全护栏",
+      "en": "non-slip plant safety railing"
+    }
+  ],
+  "image": {
+    "filename": "I06_wastewater_treatment_plant.png",
+    "path": "input_pics/19_工业能源与环保/I06_wastewater_treatment_plant.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Create a clean municipal wastewater-treatment facility in soft morning light from a raised walkway. Use the circular settling tank and bubbling aeration basin as distinct middle-ground zones divided by the safety railing. Show the coarse bar screen at the channel entrance and the dewatering press in the rear building opening. Along the near service platform, separate the dosing pump, large valve wheel, long-handled sampler, capped treated-water bottle and portable pH probe. One technician may stand behind the railing recording observations, with no readable clipboard. Keep water treatment realistic but visually clean. No sewage close-ups, bodily waste, overflowing tanks, readable hazard signs, uncovered chemicals, duplicate pipes as targets or implausibly pristine drinking-water imagery.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Wastewater treatment facility (污水处理设施). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCreate a clean municipal wastewater-treatment facility in soft morning light from a raised walkway. Use the circular settling tank and bubbling aeration basin as distinct middle-ground zones divided by the safety railing. Show the coarse bar screen at the channel entrance and the dewatering press in the rear building opening. Along the near service platform, separate the dosing pump, large valve wheel, long-handled sampler, capped treated-water bottle and portable pH probe. One technician may stand behind the railing recording observations, with no readable clipboard. Keep water treatment realistic but visually clean. No sewage close-ups, bodily waste, overflowing tanks, readable hazard signs, uncovered chemicals, duplicate pipes as targets or implausibly pristine drinking-water imagery.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: circular settling tank, wastewater aeration basin, coarse bar-screen filter, chemical dosing pump, pipeline valve wheel, long-handled water sampler, treated-water sample bottle, portable pH meter probe, sludge dewatering press, non-slip plant safety railing.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "1fa9fcda85f3038bdf00dc8b820f72e119d99d03cfe06d55fbfe2ca2cab16b10"
+}

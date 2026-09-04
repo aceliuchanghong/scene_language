@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "K",
+    "order": 17,
+    "zh": "科学与探索",
+    "en": "Science and exploration",
+    "batch": "F"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "K01_biology_laboratory.json",
+    "K02_chemistry_laboratory.json",
+    "K03_astronomical_observatory.json",
+    "K04_archaeological_excavation.json",
+    "K05_robotics_development_lab.json",
+    "K06_field_science_survey.json"
+  ]
+}

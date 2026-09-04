@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "K01",
+  "slug": "K01_biology_laboratory",
+  "batch": "F",
+  "category": {
+    "id": "K",
+    "order": 17,
+    "zh": "科学与探索",
+    "en": "Science and exploration"
+  },
+  "scene": {
+    "zh": "生物实验室",
+    "en": "Biology laboratory"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "研究级显微镜",
+      "en": "research microscope"
+    },
+    {
+      "order": 2,
+      "zh": "玻璃试管架",
+      "en": "glass test tube rack"
+    },
+    {
+      "order": 3,
+      "zh": "带盖培养皿",
+      "en": "covered petri dish"
+    },
+    {
+      "order": 4,
+      "zh": "可调微量移液器",
+      "en": "adjustable micropipette"
+    },
+    {
+      "order": 5,
+      "zh": "生物标本载玻片",
+      "en": "specimen microscope slide"
+    },
+    {
+      "order": 6,
+      "zh": "实验室离心机",
+      "en": "laboratory centrifuge"
+    },
+    {
+      "order": 7,
+      "zh": "丁腈手套盒",
+      "en": "nitrile glove box"
+    },
+    {
+      "order": 8,
+      "zh": "台式试剂瓶",
+      "en": "bench reagent bottle"
+    },
+    {
+      "order": 9,
+      "zh": "实验记录本",
+      "en": "laboratory record book"
+    },
+    {
+      "order": 10,
+      "zh": "生物废物桶",
+      "en": "biohazard waste bin"
+    }
+  ],
+  "image": {
+    "filename": "K01_biology_laboratory.png",
+    "path": "input_pics/17_科学与探索/K01_biology_laboratory.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Use an eye-level three-quarter view down one immaculate biology laboratory bench, with cool daylight from a high side window and soft ceiling light. Put the research microscope and closed centrifuge in the middle third, separated by clear bench space. Arrange the test tube rack, covered petri dish, micropipette, specimen slide, reagent bottle and open record book as distinct foreground items, never overlapping. Mount the glove box on the rear wall and place the biohazard bin fully visible below the bench. Include one gloved researcher at the far end, hands resting away from all targets. Use authentic stainless steel, glass and polymer textures; keep liquids colourless or softly tinted. No exposed biological material, open flames, readable hazard wording, crowded glassware or duplicated equipment.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Biology laboratory (生物实验室). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nUse an eye-level three-quarter view down one immaculate biology laboratory bench, with cool daylight from a high side window and soft ceiling light. Put the research microscope and closed centrifuge in the middle third, separated by clear bench space. Arrange the test tube rack, covered petri dish, micropipette, specimen slide, reagent bottle and open record book as distinct foreground items, never overlapping. Mount the glove box on the rear wall and place the biohazard bin fully visible below the bench. Include one gloved researcher at the far end, hands resting away from all targets. Use authentic stainless steel, glass and polymer textures; keep liquids colourless or softly tinted. No exposed biological material, open flames, readable hazard wording, crowded glassware or duplicated equipment.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: research microscope, glass test tube rack, covered petri dish, adjustable micropipette, specimen microscope slide, laboratory centrifuge, nitrile glove box, bench reagent bottle, laboratory record book, biohazard waste bin.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "2c7bc12731656fc991b9f638a7b5fd7a8f80641e9ec12c6372fe84b42a4296c1"
+}

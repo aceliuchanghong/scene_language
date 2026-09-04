@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "Q01",
+  "slug": "Q01_fire_station_apparatus_bay",
+  "batch": "E",
+  "category": {
+    "id": "Q",
+    "order": 15,
+    "zh": "安全与应急",
+    "en": "Safety and emergencies"
+  },
+  "scene": {
+    "zh": "消防站车库",
+    "en": "fire station apparatus bay"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "消防车",
+      "en": "fire engine"
+    },
+    {
+      "order": 2,
+      "zh": "消防员",
+      "en": "firefighter"
+    },
+    {
+      "order": 3,
+      "zh": "盘卷消防水带",
+      "en": "coiled fire hose"
+    },
+    {
+      "order": 4,
+      "zh": "呼吸器",
+      "en": "breathing apparatus"
+    },
+    {
+      "order": 5,
+      "zh": "消防头盔",
+      "en": "firefighting helmet"
+    },
+    {
+      "order": 6,
+      "zh": "消防防护服",
+      "en": "turnout jacket"
+    },
+    {
+      "order": 7,
+      "zh": "救援斧",
+      "en": "rescue axe"
+    },
+    {
+      "order": 8,
+      "zh": "伸缩梯",
+      "en": "extension ladder"
+    },
+    {
+      "order": 9,
+      "zh": "器材储物柜",
+      "en": "equipment locker"
+    },
+    {
+      "order": 10,
+      "zh": "调度对讲机",
+      "en": "dispatch radio"
+    }
+  ],
+  "image": {
+    "filename": "Q01_fire_station_apparatus_bay.png",
+    "path": "input_pics/15_安全与应急/Q01_fire_station_apparatus_bay.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph a modern fire-station apparatus bay from a low central aisle, with exactly one fire engine parked diagonally in the background. One firefighter checks equipment at an open locker without wearing or covering the displayed gear. Mount the extension ladder correctly on the engine, hang the turnout jacket and helmet separately, and place the breathing apparatus, coiled hose, rescue axe and dispatch radio in clearly divided locker compartments. Strong clean overhead lighting mixed with daylight from the open bay door, authentic scale, no emergency action, flames, smoke, logos or readable station markings.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of fire station apparatus bay (消防站车库). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph a modern fire-station apparatus bay from a low central aisle, with exactly one fire engine parked diagonally in the background. One firefighter checks equipment at an open locker without wearing or covering the displayed gear. Mount the extension ladder correctly on the engine, hang the turnout jacket and helmet separately, and place the breathing apparatus, coiled hose, rescue axe and dispatch radio in clearly divided locker compartments. Strong clean overhead lighting mixed with daylight from the open bay door, authentic scale, no emergency action, flames, smoke, logos or readable station markings.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: fire engine, firefighter, coiled fire hose, breathing apparatus, firefighting helmet, turnout jacket, rescue axe, extension ladder, equipment locker, dispatch radio.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "6b03560983efcf31d5b24becae4b8d0195d8b84094b0ffc71128313fab0bb6f3"
+}

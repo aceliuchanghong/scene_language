@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "G02",
+  "slug": "G02_cat_care_at_home",
+  "batch": "E",
+  "category": {
+    "id": "G",
+    "order": 13,
+    "zh": "宠物与动物照护",
+    "en": "Pet and animal care"
+  },
+  "scene": {
+    "zh": "家庭养猫",
+    "en": "cat care at home"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "宠物猫",
+      "en": "pet cat"
+    },
+    {
+      "order": 2,
+      "zh": "猫爬架",
+      "en": "cat tree"
+    },
+    {
+      "order": 3,
+      "zh": "猫抓柱",
+      "en": "scratching post"
+    },
+    {
+      "order": 4,
+      "zh": "猫砂盆",
+      "en": "litter tray"
+    },
+    {
+      "order": 5,
+      "zh": "猫砂铲",
+      "en": "litter scoop"
+    },
+    {
+      "order": 6,
+      "zh": "硬壳猫包",
+      "en": "hard-shell cat carrier"
+    },
+    {
+      "order": 7,
+      "zh": "逗猫羽毛棒",
+      "en": "feather wand toy"
+    },
+    {
+      "order": 8,
+      "zh": "猫粮袋",
+      "en": "cat food pouch"
+    },
+    {
+      "order": 9,
+      "zh": "陶瓷猫食碟",
+      "en": "ceramic cat dish"
+    },
+    {
+      "order": 10,
+      "zh": "窗边猫吊床",
+      "en": "window cat hammock"
+    }
+  ],
+  "image": {
+    "filename": "G02_cat_care_at_home.png",
+    "path": "input_pics/13_宠物与动物照护/G02_cat_care_at_home.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Create a clean apartment corner designed for one adult cat. The cat rests visibly in the window hammock in the upper third. Place a compact cat tree to one side and a separate freestanding scratching post on the other so they cannot be confused. The litter tray and scoop occupy a discreet lower corner; the closed hard-shell carrier, upright food pouch, ceramic dish and feather wand are spaced across the foreground. Gentle window light, neutral décor, believable feline anatomy, no extra cats and no scattered duplicate toys.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of cat care at home (家庭养猫). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCreate a clean apartment corner designed for one adult cat. The cat rests visibly in the window hammock in the upper third. Place a compact cat tree to one side and a separate freestanding scratching post on the other so they cannot be confused. The litter tray and scoop occupy a discreet lower corner; the closed hard-shell carrier, upright food pouch, ceramic dish and feather wand are spaced across the foreground. Gentle window light, neutral décor, believable feline anatomy, no extra cats and no scattered duplicate toys.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: pet cat, cat tree, scratching post, litter tray, litter scoop, hard-shell cat carrier, feather wand toy, cat food pouch, ceramic cat dish, window cat hammock.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "e2b33e3c5e509de25829df3015a76f8355e5b59016d9b9c365a71a8acff6940a"
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "K06",
+  "slug": "K06_field_science_survey",
+  "batch": "F",
+  "category": {
+    "id": "K",
+    "order": 17,
+    "zh": "科学与探索",
+    "en": "Science and exploration"
+  },
+  "scene": {
+    "zh": "野外科学考察",
+    "en": "Field science survey"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "水质取样瓶",
+      "en": "water-quality sample bottle"
+    },
+    {
+      "order": 2,
+      "zh": "样方框",
+      "en": "ecology quadrat frame"
+    },
+    {
+      "order": 3,
+      "zh": "野外观察双筒镜",
+      "en": "field survey binoculars"
+    },
+    {
+      "order": 4,
+      "zh": "防水野外笔记本",
+      "en": "waterproof field notebook"
+    },
+    {
+      "order": 5,
+      "zh": "手持气象仪",
+      "en": "handheld weather meter"
+    },
+    {
+      "order": 6,
+      "zh": "昆虫扫网",
+      "en": "insect sweep net"
+    },
+    {
+      "order": 7,
+      "zh": "土壤取芯器",
+      "en": "soil core sampler"
+    },
+    {
+      "order": 8,
+      "zh": "标本小瓶盒",
+      "en": "specimen vial case"
+    },
+    {
+      "order": 9,
+      "zh": "手持野外定位仪",
+      "en": "field GPS receiver"
+    },
+    {
+      "order": 10,
+      "zh": "折叠测量标尺",
+      "en": "folding survey rod"
+    }
+  ],
+  "image": {
+    "filename": "K06_field_science_survey.png",
+    "path": "input_pics/17_科学与探索/K06_field_science_survey.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Stage a documentary-style ecological field survey beside a shallow meadow stream under soft overcast daylight. In the lower third, lay the quadrat frame flat in grass, with the soil corer and folding survey rod parallel but separated. Place the water sample bottle at the stream edge and the closed vial case plus waterproof notebook on a dry field bag. One scientist should hold the weather meter at chest height while another carries the sweep net lowered and away from wildlife; hang the binoculars and GPS visibly on separate straps. Keep every tool large and dry enough to identify. No captured animals, dramatic wilderness danger, readable map text, branded clothing, duplicate bottles, cluttered camping gear or objects floating above the ground.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Field science survey (野外科学考察). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nStage a documentary-style ecological field survey beside a shallow meadow stream under soft overcast daylight. In the lower third, lay the quadrat frame flat in grass, with the soil corer and folding survey rod parallel but separated. Place the water sample bottle at the stream edge and the closed vial case plus waterproof notebook on a dry field bag. One scientist should hold the weather meter at chest height while another carries the sweep net lowered and away from wildlife; hang the binoculars and GPS visibly on separate straps. Keep every tool large and dry enough to identify. No captured animals, dramatic wilderness danger, readable map text, branded clothing, duplicate bottles, cluttered camping gear or objects floating above the ground.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: water-quality sample bottle, ecology quadrat frame, field survey binoculars, waterproof field notebook, handheld weather meter, insect sweep net, soil core sampler, specimen vial case, field GPS receiver, folding survey rod.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "b573b4783b02c5244731dbebdb9f0e05aabe75e3030ae9666425af06a1c654aa"
+}

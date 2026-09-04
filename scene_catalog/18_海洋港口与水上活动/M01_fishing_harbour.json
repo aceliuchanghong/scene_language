@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "M01",
+  "slug": "M01_fishing_harbour",
+  "batch": "F",
+  "category": {
+    "id": "M",
+    "order": 18,
+    "zh": "海洋、港口与水上活动",
+    "en": "Marine, harbour and water activities"
+  },
+  "scene": {
+    "zh": "渔港清晨",
+    "en": "Fishing harbour at dawn"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "近海拖网渔船",
+      "en": "inshore fishing trawler"
+    },
+    {
+      "order": 2,
+      "zh": "码头起重机",
+      "en": "quayside harbour crane"
+    },
+    {
+      "order": 3,
+      "zh": "盘绕系泊绳",
+      "en": "coiled mooring rope"
+    },
+    {
+      "order": 4,
+      "zh": "保温鱼箱",
+      "en": "insulated fish crate"
+    },
+    {
+      "order": 5,
+      "zh": "铸铁系船柱",
+      "en": "cast-iron harbour bollard"
+    },
+    {
+      "order": 6,
+      "zh": "橙色渔网浮球",
+      "en": "orange net float"
+    },
+    {
+      "order": 7,
+      "zh": "长柄抄网",
+      "en": "long-handled landing net"
+    },
+    {
+      "order": 8,
+      "zh": "防水甲板靴",
+      "en": "waterproof deck boots"
+    },
+    {
+      "order": 9,
+      "zh": "渔船驾驶舱窗",
+      "en": "trawler wheelhouse window"
+    },
+    {
+      "order": 10,
+      "zh": "码头潮位尺",
+      "en": "harbour tide gauge"
+    }
+  ],
+  "image": {
+    "filename": "M01_fishing_harbour.png",
+    "path": "input_pics/18_海洋港口与水上活动/M01_fishing_harbour.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph a working fishing harbour just after sunrise from the quay, using the portrait frame to layer water, vessel and harbour structures. Moor one inshore trawler across the middle, with its wheelhouse window unobstructed and a single quay crane rising into the upper third. In the foreground, isolate a bollard wrapped by one coil of rope, one insulated fish crate, a pair of upright deck boots, an orange net float and a landing net leaned safely against the crate. Fix the tide gauge vertically at the waterline. Add two distant crew members unloading nothing so hands do not obscure targets. Use misty golden light, wet stone and restrained reflections. No visible catch, brand names, vessel lettering, duplicate boats, piles of crates, tangled ropes or unsafe suspended loads.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Fishing harbour at dawn (渔港清晨). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph a working fishing harbour just after sunrise from the quay, using the portrait frame to layer water, vessel and harbour structures. Moor one inshore trawler across the middle, with its wheelhouse window unobstructed and a single quay crane rising into the upper third. In the foreground, isolate a bollard wrapped by one coil of rope, one insulated fish crate, a pair of upright deck boots, an orange net float and a landing net leaned safely against the crate. Fix the tide gauge vertically at the waterline. Add two distant crew members unloading nothing so hands do not obscure targets. Use misty golden light, wet stone and restrained reflections. No visible catch, brand names, vessel lettering, duplicate boats, piles of crates, tangled ropes or unsafe suspended loads.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: inshore fishing trawler, quayside harbour crane, coiled mooring rope, insulated fish crate, cast-iron harbour bollard, orange net float, long-handled landing net, waterproof deck boots, trawler wheelhouse window, harbour tide gauge.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "3f9d89f59156e8c942c928ea981d82c754db4df440ad749e7d5235ce22f3978f"
+}

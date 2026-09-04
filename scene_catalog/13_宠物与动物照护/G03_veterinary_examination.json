@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "G03",
+  "slug": "G03_veterinary_examination",
+  "batch": "E",
+  "category": {
+    "id": "G",
+    "order": 13,
+    "zh": "宠物与动物照护",
+    "en": "Pet and animal care"
+  },
+  "scene": {
+    "zh": "宠物医院诊疗",
+    "en": "veterinary examination"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "兽医",
+      "en": "veterinary surgeon"
+    },
+    {
+      "order": 2,
+      "zh": "兽医检查台",
+      "en": "veterinary examination table"
+    },
+    {
+      "order": 3,
+      "zh": "宠物电子秤",
+      "en": "digital pet scale"
+    },
+    {
+      "order": 4,
+      "zh": "兽医耳镜",
+      "en": "veterinary otoscope"
+    },
+    {
+      "order": 5,
+      "zh": "宠物芯片扫描器",
+      "en": "pet microchip scanner"
+    },
+    {
+      "order": 6,
+      "zh": "伊丽莎白圈",
+      "en": "Elizabethan collar"
+    },
+    {
+      "order": 7,
+      "zh": "动物疫苗注射器",
+      "en": "animal vaccination syringe"
+    },
+    {
+      "order": 8,
+      "zh": "爪部绷带",
+      "en": "paw bandage"
+    },
+    {
+      "order": 9,
+      "zh": "喂药滴管",
+      "en": "medicine dropper"
+    },
+    {
+      "order": 10,
+      "zh": "宠物航空箱",
+      "en": "pet travel crate"
+    }
+  ],
+  "image": {
+    "filename": "G03_veterinary_examination.png",
+    "path": "input_pics/13_宠物与动物照护/G03_veterinary_examination.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph a calm modern veterinary consultation room from the doorway. A veterinary surgeon gently examines one small dog on the central examination table; one front paw has a neat bandage, and the hands do not obscure the animal. Arrange the otoscope, microchip scanner, capped vaccination syringe and medicine dropper separately on a stainless tray. Put the digital pet scale on the floor at left, the empty travel crate at right and an Elizabethan collar hanging from a wall peg above. Soft clinical daylight, reassuring mood, no procedure in progress, no blood and no readable screen text.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of veterinary examination (宠物医院诊疗). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph a calm modern veterinary consultation room from the doorway. A veterinary surgeon gently examines one small dog on the central examination table; one front paw has a neat bandage, and the hands do not obscure the animal. Arrange the otoscope, microchip scanner, capped vaccination syringe and medicine dropper separately on a stainless tray. Put the digital pet scale on the floor at left, the empty travel crate at right and an Elizabethan collar hanging from a wall peg above. Soft clinical daylight, reassuring mood, no procedure in progress, no blood and no readable screen text.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: veterinary surgeon, veterinary examination table, digital pet scale, veterinary otoscope, pet microchip scanner, Elizabethan collar, animal vaccination syringe, paw bandage, medicine dropper, pet travel crate.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "6c568b3b651105683b2673194b329f5d603e4095647a1a90fe7f5c75ae1ef4dc"
+}

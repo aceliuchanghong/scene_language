@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "I04",
+  "slug": "I04_wind_farm_maintenance",
+  "batch": "F",
+  "category": {
+    "id": "I",
+    "order": 19,
+    "zh": "工业、能源与环保",
+    "en": "Industry, energy and environmental services"
+  },
+  "scene": {
+    "zh": "风力发电场维护",
+    "en": "Wind farm maintenance"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "风力发电机塔筒",
+      "en": "wind-turbine tower"
+    },
+    {
+      "order": 2,
+      "zh": "机舱检修舱口",
+      "en": "nacelle access hatch"
+    },
+    {
+      "order": 3,
+      "zh": "塔筒内部爬梯",
+      "en": "internal turbine service ladder"
+    },
+    {
+      "order": 4,
+      "zh": "高空防坠安全带",
+      "en": "wind-maintenance fall-arrest harness"
+    },
+    {
+      "order": 5,
+      "zh": "大型扭矩扳手",
+      "en": "large turbine torque wrench"
+    },
+    {
+      "order": 6,
+      "zh": "风电场升压站",
+      "en": "wind-farm electrical substation"
+    },
+    {
+      "order": 7,
+      "zh": "检修提升机",
+      "en": "turbine maintenance hoist"
+    },
+    {
+      "order": 8,
+      "zh": "杯式风速计",
+      "en": "cup anemometer"
+    },
+    {
+      "order": 9,
+      "zh": "风机叶片根部",
+      "en": "turbine blade root"
+    },
+    {
+      "order": 10,
+      "zh": "风电检修头盔",
+      "en": "wind technician helmet"
+    }
+  ],
+  "image": {
+    "filename": "I04_wind_farm_maintenance.png",
+    "path": "input_pics/19_工业能源与环保/I04_wind_farm_maintenance.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Use a carefully framed maintenance scene at the base and open service entrance of one wind turbine under clear, breezy daylight. Let the tower fill the vertical frame and reveal a believable glimpse of its internal ladder. In the foreground service area, hang the fall-arrest harness and helmet on separate hooks, place the large torque wrench on a bench and show the compact maintenance hoist beside it. Higher up, make the nacelle hatch and blade root visible through perspective without creating a cutaway. Put a cup anemometer near the access road and the electrical substation in the distant side background. Include one technician on the ground only. No person at dangerous height, spinning-motion blur, lightning, readable signs, duplicate turbines dominating the frame or impossible views through solid walls.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Wind farm maintenance (风力发电场维护). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nUse a carefully framed maintenance scene at the base and open service entrance of one wind turbine under clear, breezy daylight. Let the tower fill the vertical frame and reveal a believable glimpse of its internal ladder. In the foreground service area, hang the fall-arrest harness and helmet on separate hooks, place the large torque wrench on a bench and show the compact maintenance hoist beside it. Higher up, make the nacelle hatch and blade root visible through perspective without creating a cutaway. Put a cup anemometer near the access road and the electrical substation in the distant side background. Include one technician on the ground only. No person at dangerous height, spinning-motion blur, lightning, readable signs, duplicate turbines dominating the frame or impossible views through solid walls.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: wind-turbine tower, nacelle access hatch, internal turbine service ladder, wind-maintenance fall-arrest harness, large turbine torque wrench, wind-farm electrical substation, turbine maintenance hoist, cup anemometer, turbine blade root, wind technician helmet.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "ae507a51e859010d64ac990722cabdbc5a64d2e0c6668aeab889e4c433e746f2"
+}

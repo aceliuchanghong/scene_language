@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "Q05",
+  "slug": "Q05_building_evacuation_drill",
+  "batch": "E",
+  "category": {
+    "id": "Q",
+    "order": 15,
+    "zh": "安全与应急",
+    "en": "Safety and emergencies"
+  },
+  "scene": {
+    "zh": "建筑疏散演练",
+    "en": "building evacuation drill"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "火警按钮",
+      "en": "fire alarm call point"
+    },
+    {
+      "order": 2,
+      "zh": "烟雾探测器",
+      "en": "smoke detector"
+    },
+    {
+      "order": 3,
+      "zh": "紧急出口门",
+      "en": "emergency exit door"
+    },
+    {
+      "order": 4,
+      "zh": "出口指示灯",
+      "en": "illuminated exit light"
+    },
+    {
+      "order": 5,
+      "zh": "疏散引导员",
+      "en": "evacuation marshal"
+    },
+    {
+      "order": 6,
+      "zh": "高可视臂章",
+      "en": "high-visibility armband"
+    },
+    {
+      "order": 7,
+      "zh": "集合点旗帜",
+      "en": "assembly-point flag"
+    },
+    {
+      "order": 8,
+      "zh": "疏散椅",
+      "en": "evacuation chair"
+    },
+    {
+      "order": 9,
+      "zh": "防火楼梯门",
+      "en": "fire-stair door"
+    },
+    {
+      "order": 10,
+      "zh": "点名夹板",
+      "en": "roll-call clipboard"
+    }
+  ],
+  "image": {
+    "filename": "Q05_building_evacuation_drill.png",
+    "path": "input_pics/15_安全与应急/Q05_building_evacuation_drill.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Show an orderly office evacuation drill spanning an indoor exit corridor and the visible outdoor assembly area beyond. A marshal wearing one high-visibility armband holds the roll-call clipboard beside the open emergency exit, without blocking it. Place the alarm call point on the near wall, smoke detector on the ceiling, illuminated exit light above the doorway and a folded evacuation chair beside the fire-stair door. Outside, one plain coloured assembly flag is visible. Architectural documentary photography, bright safety lighting, no smoke, flames, panic, crowds or readable safety words; use only universal colour and shape cues.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of building evacuation drill (建筑疏散演练). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nShow an orderly office evacuation drill spanning an indoor exit corridor and the visible outdoor assembly area beyond. A marshal wearing one high-visibility armband holds the roll-call clipboard beside the open emergency exit, without blocking it. Place the alarm call point on the near wall, smoke detector on the ceiling, illuminated exit light above the doorway and a folded evacuation chair beside the fire-stair door. Outside, one plain coloured assembly flag is visible. Architectural documentary photography, bright safety lighting, no smoke, flames, panic, crowds or readable safety words; use only universal colour and shape cues.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: fire alarm call point, smoke detector, emergency exit door, illuminated exit light, evacuation marshal, high-visibility armband, assembly-point flag, evacuation chair, fire-stair door, roll-call clipboard.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "61fc6032a277460b603b5b402a3d5255fabd568a78bcbb5abf2e62c2314787e6"
+}

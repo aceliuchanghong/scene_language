@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "C01",
+  "slug": "C01_car_cockpit",
+  "batch": "E",
+  "category": {
+    "id": "C",
+    "order": 12,
+    "zh": "驾驶与车辆",
+    "en": "Driving and vehicles"
+  },
+  "scene": {
+    "zh": "汽车驾驶舱",
+    "en": "car cockpit"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "仪表盘",
+      "en": "instrument cluster"
+    },
+    {
+      "order": 2,
+      "zh": "换挡杆",
+      "en": "gear lever"
+    },
+    {
+      "order": 3,
+      "zh": "手刹杆",
+      "en": "handbrake lever"
+    },
+    {
+      "order": 4,
+      "zh": "油门踏板",
+      "en": "accelerator pedal"
+    },
+    {
+      "order": 5,
+      "zh": "刹车踏板",
+      "en": "brake pedal"
+    },
+    {
+      "order": 6,
+      "zh": "离合器踏板",
+      "en": "clutch pedal"
+    },
+    {
+      "order": 7,
+      "zh": "外后视镜",
+      "en": "wing mirror"
+    },
+    {
+      "order": 8,
+      "zh": "遮阳板",
+      "en": "sun visor"
+    },
+    {
+      "order": 9,
+      "zh": "手套箱",
+      "en": "glove compartment"
+    },
+    {
+      "order": 10,
+      "zh": "点火按钮",
+      "en": "ignition button"
+    }
+  ],
+  "image": {
+    "filename": "C01_car_cockpit.png",
+    "path": "input_pics/12_驾驶与车辆/C01_car_cockpit.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph from the open front-passenger doorway with a slightly elevated 24 mm wide-angle view toward the driver's side. Keep the dashboard and windscreen in the upper third, the centre console in the middle, and the open, well-lit footwell in the lower third. The three pedals must be separate and anatomically correct; the wing mirror is visible through the side window. Use soft overcast daylight, dark neutral upholstery and restrained reflections. No driver is needed.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of car cockpit (汽车驾驶舱). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph from the open front-passenger doorway with a slightly elevated 24 mm wide-angle view toward the driver's side. Keep the dashboard and windscreen in the upper third, the centre console in the middle, and the open, well-lit footwell in the lower third. The three pedals must be separate and anatomically correct; the wing mirror is visible through the side window. Use soft overcast daylight, dark neutral upholstery and restrained reflections. No driver is needed.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: instrument cluster, gear lever, handbrake lever, accelerator pedal, brake pedal, clutch pedal, wing mirror, sun visor, glove compartment, ignition button.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "6fe52ce962092efd09f43eac745060b7802699b7f694e18e550fac46793f2b42"
+}

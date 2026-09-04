@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "N02",
+  "slug": "N02_snowy_street",
+  "batch": "E",
+  "category": {
+    "id": "N",
+    "order": 14,
+    "zh": "自然、天气与乡野",
+    "en": "Nature, weather and countryside"
+  },
+  "scene": {
+    "zh": "雪天街道",
+    "en": "snowy street"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "积雪人行道",
+      "en": "snow-covered pavement"
+    },
+    {
+      "order": 2,
+      "zh": "推雪铲",
+      "en": "snow shovel"
+    },
+    {
+      "order": 3,
+      "zh": "道路融雪盐箱",
+      "en": "road-grit bin"
+    },
+    {
+      "order": 4,
+      "zh": "针织围巾",
+      "en": "knitted scarf"
+    },
+    {
+      "order": 5,
+      "zh": "羊毛手套",
+      "en": "woollen gloves"
+    },
+    {
+      "order": 6,
+      "zh": "雪地靴",
+      "en": "snow boots"
+    },
+    {
+      "order": 7,
+      "zh": "雪人",
+      "en": "snowman"
+    },
+    {
+      "order": 8,
+      "zh": "冰柱",
+      "en": "icicle"
+    },
+    {
+      "order": 9,
+      "zh": "停放的除雪车",
+      "en": "parked snowplough"
+    },
+    {
+      "order": 10,
+      "zh": "雪地轮胎印",
+      "en": "tyre tracks in snow"
+    }
+  ],
+  "image": {
+    "filename": "N02_snowy_street.png",
+    "path": "input_pics/14_自然天气与乡野/N02_snowy_street.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Show a quiet neighbourhood just after snowfall, viewed down a gently receding pavement. A bundled resident wearing the scarf, gloves and snow boots holds one snow shovel near a small cleared patch. Position the grit bin against a wall, icicles along a porch roof and a simple snowman in the middle distance. One parked snowplough remains in the upper background while strong tyre tracks curve through the lower foreground. Soft blue winter daylight with subtle warm window glow, undisturbed snow texture, no active traffic and no repeated shovels or clothing accessories.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of snowy street (雪天街道). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nShow a quiet neighbourhood just after snowfall, viewed down a gently receding pavement. A bundled resident wearing the scarf, gloves and snow boots holds one snow shovel near a small cleared patch. Position the grit bin against a wall, icicles along a porch roof and a simple snowman in the middle distance. One parked snowplough remains in the upper background while strong tyre tracks curve through the lower foreground. Soft blue winter daylight with subtle warm window glow, undisturbed snow texture, no active traffic and no repeated shovels or clothing accessories.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: snow-covered pavement, snow shovel, road-grit bin, knitted scarf, woollen gloves, snow boots, snowman, icicle, parked snowplough, tyre tracks in snow.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "03d107350fc0a9d8286c3649e8696fbecb4a49ec2d07d08d9c551a14ec6c46a9"
+}

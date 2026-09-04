@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "Q03",
+  "slug": "Q03_police_public_enquiry_desk",
+  "batch": "E",
+  "category": {
+    "id": "Q",
+    "order": 15,
+    "zh": "安全与应急",
+    "en": "Safety and emergencies"
+  },
+  "scene": {
+    "zh": "警务接待室",
+    "en": "police public enquiry desk"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "警务人员",
+      "en": "police officer"
+    },
+    {
+      "order": 2,
+      "zh": "公众接待柜台",
+      "en": "public enquiry counter"
+    },
+    {
+      "order": 3,
+      "zh": "事件报告表",
+      "en": "incident report form"
+    },
+    {
+      "order": 4,
+      "zh": "证物袋",
+      "en": "evidence bag"
+    },
+    {
+      "order": 5,
+      "zh": "执法记录仪",
+      "en": "body-worn camera"
+    },
+    {
+      "order": 6,
+      "zh": "警用对讲机",
+      "en": "police radio"
+    },
+    {
+      "order": 7,
+      "zh": "手铐",
+      "en": "handcuffs"
+    },
+    {
+      "order": 8,
+      "zh": "指纹印台",
+      "en": "fingerprint ink pad"
+    },
+    {
+      "order": 9,
+      "zh": "失物箱",
+      "en": "lost-property box"
+    },
+    {
+      "order": 10,
+      "zh": "询问室门",
+      "en": "interview-room door"
+    }
+  ],
+  "image": {
+    "filename": "Q03_police_public_enquiry_desk.png",
+    "path": "input_pics/15_安全与应急/Q03_police_public_enquiry_desk.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Create a neutral community police-station reception area viewed from the public side of the enquiry counter. One police officer stands behind the counter with a body-worn camera and radio clearly attached, hands resting away from the objects. On the counter, separate a blank incident form, transparent evidence bag, closed handcuffs and fingerprint ink pad. Put one lost-property box on a lower shelf and a plain interview-room door in the upper background. Even civic-office lighting, calm non-confrontational mood, no weapons, detainees, police logos, flags or legible writing.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of police public enquiry desk (警务接待室). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCreate a neutral community police-station reception area viewed from the public side of the enquiry counter. One police officer stands behind the counter with a body-worn camera and radio clearly attached, hands resting away from the objects. On the counter, separate a blank incident form, transparent evidence bag, closed handcuffs and fingerprint ink pad. Put one lost-property box on a lower shelf and a plain interview-room door in the upper background. Even civic-office lighting, calm non-confrontational mood, no weapons, detainees, police logos, flags or legible writing.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: police officer, public enquiry counter, incident report form, evidence bag, body-worn camera, police radio, handcuffs, fingerprint ink pad, lost-property box, interview-room door.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "8eff8d96b21a9f19bc80aa294c38d1427a1b8649701e0b3ba3e210593fc89fb7"
+}

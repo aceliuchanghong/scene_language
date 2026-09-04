@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "C02",
+  "slug": "C02_driving_practice_area",
+  "batch": "E",
+  "category": {
+    "id": "C",
+    "order": 12,
+    "zh": "驾驶与车辆",
+    "en": "Driving and vehicles"
+  },
+  "scene": {
+    "zh": "驾校练习场",
+    "en": "driving practice area"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "驾驶教练",
+      "en": "driving instructor"
+    },
+    {
+      "order": 2,
+      "zh": "学员驾驶员",
+      "en": "learner driver"
+    },
+    {
+      "order": 3,
+      "zh": "教练车",
+      "en": "dual-control training car"
+    },
+    {
+      "order": 4,
+      "zh": "驾校车顶牌",
+      "en": "driving-school roof sign"
+    },
+    {
+      "order": 5,
+      "zh": "平行停车标杆",
+      "en": "parallel-parking pole"
+    },
+    {
+      "order": 6,
+      "zh": "停车位标线",
+      "en": "painted parking bay"
+    },
+    {
+      "order": 7,
+      "zh": "柔性路桩",
+      "en": "flexible traffic bollard"
+    },
+    {
+      "order": 8,
+      "zh": "便携式停车指示牌",
+      "en": "portable stop board"
+    },
+    {
+      "order": 9,
+      "zh": "侧后视镜",
+      "en": "side-view mirror"
+    },
+    {
+      "order": 10,
+      "zh": "道路方向箭头",
+      "en": "road direction arrow"
+    }
+  ],
+  "image": {
+    "filename": "C02_driving_practice_area.png",
+    "path": "input_pics/12_驾驶与车辆/C02_driving_practice_area.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Stage a calm driving lesson on a clean closed practice ground, viewed from the front-left corner of one compact training car. The learner sits visibly at the wheel and the instructor stands beside the open passenger door without blocking the car. Arrange parking poles and one flexible bollard around a clearly painted bay, with a portable octagonal stop board to one side and a large direction arrow on the tarmac in the foreground. The roof sign must be a plain coloured block with no readable school name. Bright soft morning light, realistic road-school atmosphere, no other cars or crowds.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of driving practice area (驾校练习场). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nStage a calm driving lesson on a clean closed practice ground, viewed from the front-left corner of one compact training car. The learner sits visibly at the wheel and the instructor stands beside the open passenger door without blocking the car. Arrange parking poles and one flexible bollard around a clearly painted bay, with a portable octagonal stop board to one side and a large direction arrow on the tarmac in the foreground. The roof sign must be a plain coloured block with no readable school name. Bright soft morning light, realistic road-school atmosphere, no other cars or crowds.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: driving instructor, learner driver, dual-control training car, driving-school roof sign, parallel-parking pole, painted parking bay, flexible traffic bollard, portable stop board, side-view mirror, road direction arrow.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "a3f53e27a9523899731e2fcc869dafe069c9b3fb0d215b1c366d2fae5e71045d"
+}

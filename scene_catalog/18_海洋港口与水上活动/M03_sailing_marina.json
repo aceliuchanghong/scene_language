@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "M03",
+  "slug": "M03_sailing_marina",
+  "batch": "F",
+  "category": {
+    "id": "M",
+    "order": 18,
+    "zh": "海洋、港口与水上活动",
+    "en": "Marine, harbour and water activities"
+  },
+  "scene": {
+    "zh": "帆船码头",
+    "en": "Sailing marina"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "巡航帆船",
+      "en": "cruising sailing yacht"
+    },
+    {
+      "order": 2,
+      "zh": "铝合金桅杆",
+      "en": "aluminium sailing mast"
+    },
+    {
+      "order": 3,
+      "zh": "收卷主帆",
+      "en": "furled mainsail"
+    },
+    {
+      "order": 4,
+      "zh": "船首起锚机",
+      "en": "bow anchor windlass"
+    },
+    {
+      "order": 5,
+      "zh": "浮动码头",
+      "en": "floating marina pontoon"
+    },
+    {
+      "order": 6,
+      "zh": "船侧防撞球",
+      "en": "inflatable boat fender"
+    },
+    {
+      "order": 7,
+      "zh": "岸电电源柱",
+      "en": "marina shore-power pedestal"
+    },
+    {
+      "order": 8,
+      "zh": "帆船绞盘",
+      "en": "sailboat sheet winch"
+    },
+    {
+      "order": 9,
+      "zh": "帆船舵轮",
+      "en": "yacht steering wheel"
+    },
+    {
+      "order": 10,
+      "zh": "码头下水梯",
+      "en": "marina boarding ladder"
+    }
+  ],
+  "image": {
+    "filename": "M03_sailing_marina.png",
+    "path": "input_pics/18_海洋港口与水上活动/M03_sailing_marina.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Compose a tranquil marina scene from the floating pontoon at late afternoon, looking diagonally onto one moored cruising yacht. Let the aluminium mast and furled mainsail rise clearly through the upper frame. Keep the steering wheel visible in the cockpit, the sheet winch on the near coaming and the anchor windlass at the bow. Between hull and pontoon, show exactly one inflated fender. Place the shore-power pedestal, boarding ladder and clean pontoon in distinct foreground zones. One sailor may check a loose rope at the far end without blocking hardware. Use crisp natural reflections and realistic rigging with limited background boats softened by depth of field. No readable yacht names, racing action, duplicate fenders, tangled lines, impossible mast proportions or luxury-advertising styling.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Sailing marina (帆船码头). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCompose a tranquil marina scene from the floating pontoon at late afternoon, looking diagonally onto one moored cruising yacht. Let the aluminium mast and furled mainsail rise clearly through the upper frame. Keep the steering wheel visible in the cockpit, the sheet winch on the near coaming and the anchor windlass at the bow. Between hull and pontoon, show exactly one inflated fender. Place the shore-power pedestal, boarding ladder and clean pontoon in distinct foreground zones. One sailor may check a loose rope at the far end without blocking hardware. Use crisp natural reflections and realistic rigging with limited background boats softened by depth of field. No readable yacht names, racing action, duplicate fenders, tangled lines, impossible mast proportions or luxury-advertising styling.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: cruising sailing yacht, aluminium sailing mast, furled mainsail, bow anchor windlass, floating marina pontoon, inflatable boat fender, marina shore-power pedestal, sailboat sheet winch, yacht steering wheel, marina boarding ladder.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "fa3c0f55510b798aa37613d3eb87290da40fb8f3be236848feb4ef2c260218c2"
+}

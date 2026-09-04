@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "N03",
+  "slug": "N03_woodland_stream",
+  "batch": "E",
+  "category": {
+    "id": "N",
+    "order": 14,
+    "zh": "自然、天气与乡野",
+    "en": "Nature, weather and countryside"
+  },
+  "scene": {
+    "zh": "林间溪流",
+    "en": "woodland stream"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "林间溪流",
+      "en": "woodland stream"
+    },
+    {
+      "order": 2,
+      "zh": "覆苔岩石",
+      "en": "moss-covered rock"
+    },
+    {
+      "order": 3,
+      "zh": "倒下的树干",
+      "en": "fallen log"
+    },
+    {
+      "order": 4,
+      "zh": "蕨类植物",
+      "en": "fern"
+    },
+    {
+      "order": 5,
+      "zh": "松果",
+      "en": "pine cone"
+    },
+    {
+      "order": 6,
+      "zh": "橡子",
+      "en": "acorn"
+    },
+    {
+      "order": 7,
+      "zh": "树桩",
+      "en": "tree stump"
+    },
+    {
+      "order": 8,
+      "zh": "溪中踏脚石",
+      "en": "stream stepping stones"
+    },
+    {
+      "order": 9,
+      "zh": "野生蘑菇",
+      "en": "wild mushroom"
+    },
+    {
+      "order": 10,
+      "zh": "蜻蜓",
+      "en": "dragonfly"
+    }
+  ],
+  "image": {
+    "filename": "N03_woodland_stream.png",
+    "path": "input_pics/14_自然天气与乡野/N03_woodland_stream.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Create a highly realistic temperate woodland stream from a low bank-level viewpoint. Let the stream form a gentle S-curve from the upper background to the lower foreground, crossed by a short line of dry stepping stones. Frame it with one fallen log and one tree stump at different heights. Place a single recognisable fern, moss-covered rock, pine cone, acorn and wild mushroom in separated foreground pockets, with one dragonfly resting on a reed rather than flying blurred. Dappled morning light, moist natural textures and restrained foliage so every small target remains findable.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of woodland stream (林间溪流). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCreate a highly realistic temperate woodland stream from a low bank-level viewpoint. Let the stream form a gentle S-curve from the upper background to the lower foreground, crossed by a short line of dry stepping stones. Frame it with one fallen log and one tree stump at different heights. Place a single recognisable fern, moss-covered rock, pine cone, acorn and wild mushroom in separated foreground pockets, with one dragonfly resting on a reed rather than flying blurred. Dappled morning light, moist natural textures and restrained foliage so every small target remains findable.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: woodland stream, moss-covered rock, fallen log, fern, pine cone, acorn, tree stump, stream stepping stones, wild mushroom, dragonfly.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "052eca67efca4d026a982671822555bce8331c653732f6aa42d304c09581a2c8"
+}

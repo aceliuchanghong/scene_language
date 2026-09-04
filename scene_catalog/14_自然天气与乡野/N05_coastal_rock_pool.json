@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "N05",
+  "slug": "N05_coastal_rock_pool",
+  "batch": "E",
+  "category": {
+    "id": "N",
+    "order": 14,
+    "zh": "自然、天气与乡野",
+    "en": "Nature, weather and countryside"
+  },
+  "scene": {
+    "zh": "海岸岩池",
+    "en": "coastal rock pool"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "潮间带岩池",
+      "en": "tidal rock pool"
+    },
+    {
+      "order": 2,
+      "zh": "海藻",
+      "en": "seaweed"
+    },
+    {
+      "order": 3,
+      "zh": "岸蟹",
+      "en": "shore crab"
+    },
+    {
+      "order": 4,
+      "zh": "海星",
+      "en": "starfish"
+    },
+    {
+      "order": 5,
+      "zh": "海葵",
+      "en": "sea anemone"
+    },
+    {
+      "order": 6,
+      "zh": "帽贝壳",
+      "en": "limpet shell"
+    },
+    {
+      "order": 7,
+      "zh": "贻贝簇",
+      "en": "mussel cluster"
+    },
+    {
+      "order": 8,
+      "zh": "光滑卵石",
+      "en": "smooth pebble"
+    },
+    {
+      "order": 9,
+      "zh": "漂流木",
+      "en": "driftwood"
+    },
+    {
+      "order": 10,
+      "zh": "灯塔",
+      "en": "lighthouse"
+    }
+  ],
+  "image": {
+    "filename": "N05_coastal_rock_pool.png",
+    "path": "input_pics/14_自然天气与乡野/N05_coastal_rock_pool.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Use a low, close coastal viewpoint looking across one clear tidal rock pool toward a distant lighthouse. In and around the pool, isolate one shore crab, one starfish, one sea anemone, one limpet shell and one mussel cluster so none overlap. Arrange seaweed, a smooth pebble and a short piece of driftwood around the rim as natural foreground anchors. The lighthouse stands small but unmistakable on the upper horizon. Crisp late-afternoon side light, wet-rock highlights, biologically plausible scale, clear water and no piles of repeated shells or marine animals.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of coastal rock pool (海岸岩池). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nUse a low, close coastal viewpoint looking across one clear tidal rock pool toward a distant lighthouse. In and around the pool, isolate one shore crab, one starfish, one sea anemone, one limpet shell and one mussel cluster so none overlap. Arrange seaweed, a smooth pebble and a short piece of driftwood around the rim as natural foreground anchors. The lighthouse stands small but unmistakable on the upper horizon. Crisp late-afternoon side light, wet-rock highlights, biologically plausible scale, clear water and no piles of repeated shells or marine animals.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: tidal rock pool, seaweed, shore crab, starfish, sea anemone, limpet shell, mussel cluster, smooth pebble, driftwood, lighthouse.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "53241f459b32c327cbf6964419ea2ccfc7261cc78f30f32c73a2b3d1d19e5012"
+}

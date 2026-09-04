@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "G06",
+  "slug": "G06_farm_animal_yard",
+  "batch": "E",
+  "category": {
+    "id": "G",
+    "order": 13,
+    "zh": "宠物与动物照护",
+    "en": "Pet and animal care"
+  },
+  "scene": {
+    "zh": "农场动物院落",
+    "en": "farm animal yard"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "奶牛",
+      "en": "dairy cow"
+    },
+    {
+      "order": 2,
+      "zh": "绵羊",
+      "en": "woolly sheep"
+    },
+    {
+      "order": 3,
+      "zh": "山羊",
+      "en": "farm goat"
+    },
+    {
+      "order": 4,
+      "zh": "家猪",
+      "en": "domestic pig"
+    },
+    {
+      "order": 5,
+      "zh": "散养母鸡",
+      "en": "free-range hen"
+    },
+    {
+      "order": 6,
+      "zh": "木制谷仓",
+      "en": "wooden barn"
+    },
+    {
+      "order": 7,
+      "zh": "鸡舍",
+      "en": "chicken coop"
+    },
+    {
+      "order": 8,
+      "zh": "干草捆",
+      "en": "hay bale"
+    },
+    {
+      "order": 9,
+      "zh": "饲料桶",
+      "en": "feed bucket"
+    },
+    {
+      "order": 10,
+      "zh": "农场门",
+      "en": "farm gate"
+    }
+  ],
+  "image": {
+    "filename": "G06_farm_animal_yard.png",
+    "path": "input_pics/13_宠物与动物照护/G06_farm_animal_yard.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph a small educational farmyard from just inside an open farm gate. Arrange exactly one dairy cow, one sheep, one goat, one pig and one hen in separate natural zones, all fully visible and correctly scaled. The wooden barn forms the upper background and a distinct chicken coop sits to the opposite side. Place one hay bale and one feed bucket apart in the lower foreground. Clear soft morning light, pastoral realism and clean ground; avoid crowded herds, duplicate animals, hybrid anatomy or animals overlapping one another.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of farm animal yard (农场动物院落). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph a small educational farmyard from just inside an open farm gate. Arrange exactly one dairy cow, one sheep, one goat, one pig and one hen in separate natural zones, all fully visible and correctly scaled. The wooden barn forms the upper background and a distinct chicken coop sits to the opposite side. Place one hay bale and one feed bucket apart in the lower foreground. Clear soft morning light, pastoral realism and clean ground; avoid crowded herds, duplicate animals, hybrid anatomy or animals overlapping one another.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: dairy cow, woolly sheep, farm goat, domestic pig, free-range hen, wooden barn, chicken coop, hay bale, feed bucket, farm gate.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "2e224e32a5d697b40c4dec00cc6f0ee21471db5986cc2bfd9ee622c4bf78117b"
+}

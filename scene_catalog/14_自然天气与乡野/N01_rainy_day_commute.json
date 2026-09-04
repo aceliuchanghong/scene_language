@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "N01",
+  "slug": "N01_rainy_day_commute",
+  "batch": "E",
+  "category": {
+    "id": "N",
+    "order": 14,
+    "zh": "自然、天气与乡野",
+    "en": "Nature, weather and countryside"
+  },
+  "scene": {
+    "zh": "雨天出行",
+    "en": "rainy-day commute"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "带帽防雨夹克",
+      "en": "hooded rain jacket"
+    },
+    {
+      "order": 2,
+      "zh": "透明雨伞",
+      "en": "transparent umbrella"
+    },
+    {
+      "order": 3,
+      "zh": "雨靴",
+      "en": "rubber boots"
+    },
+    {
+      "order": 4,
+      "zh": "路面积水",
+      "en": "pavement puddle"
+    },
+    {
+      "order": 5,
+      "zh": "街道排水篦",
+      "en": "street drain grate"
+    },
+    {
+      "order": 6,
+      "zh": "屋檐雨水槽",
+      "en": "rain gutter"
+    },
+    {
+      "order": 7,
+      "zh": "防水背包罩",
+      "en": "waterproof backpack cover"
+    },
+    {
+      "order": 8,
+      "zh": "骑行雨披",
+      "en": "cycling poncho"
+    },
+    {
+      "order": 9,
+      "zh": "自行车防雨罩",
+      "en": "bicycle rain cover"
+    },
+    {
+      "order": 10,
+      "zh": "溅起的雨水",
+      "en": "rainwater splash"
+    }
+  ],
+  "image": {
+    "filename": "N01_rainy_day_commute.png",
+    "path": "input_pics/14_自然天气与乡野/N01_rainy_day_commute.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Capture a genuine rainy residential street from a sheltered doorway at pedestrian eye level. One commuter in a hooded rain jacket carries the transparent umbrella and wears clearly visible rubber boots; a second distant cyclist wears one poncho without dominating the frame. Show the backpack cover on the commuter, a covered parked bicycle at one side, the rain gutter above and a drain grate beside a broad pavement puddle below. Freeze one natural rainwater splash near a boot. Cool overcast daylight, visible rain streaks and wet reflections, but retain crisp target edges and avoid a dense crowd.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of rainy-day commute (雨天出行). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCapture a genuine rainy residential street from a sheltered doorway at pedestrian eye level. One commuter in a hooded rain jacket carries the transparent umbrella and wears clearly visible rubber boots; a second distant cyclist wears one poncho without dominating the frame. Show the backpack cover on the commuter, a covered parked bicycle at one side, the rain gutter above and a drain grate beside a broad pavement puddle below. Freeze one natural rainwater splash near a boot. Cool overcast daylight, visible rain streaks and wet reflections, but retain crisp target edges and avoid a dense crowd.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: hooded rain jacket, transparent umbrella, rubber boots, pavement puddle, street drain grate, rain gutter, waterproof backpack cover, cycling poncho, bicycle rain cover, rainwater splash.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "c77713fe9ff287ac18274a02e7c0f2de79f2ce500b4fe192ae71b168c41da77d"
+}

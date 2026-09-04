@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "V05",
+  "slug": "V05_lunar_new_year_reunion",
+  "batch": "E",
+  "category": {
+    "id": "V",
+    "order": 16,
+    "zh": "节庆与人生事件",
+    "en": "Celebrations and life events"
+  },
+  "scene": {
+    "zh": "春节家庭团聚",
+    "en": "Lunar New Year family reunion"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "红灯笼",
+      "en": "red festival lantern"
+    },
+    {
+      "order": 2,
+      "zh": "红包",
+      "en": "red envelope"
+    },
+    {
+      "order": 3,
+      "zh": "橘子果盘",
+      "en": "mandarin orange platter"
+    },
+    {
+      "order": 4,
+      "zh": "剪纸窗花",
+      "en": "paper-cut window decoration"
+    },
+    {
+      "order": 5,
+      "zh": "春联卷轴",
+      "en": "red couplet scroll"
+    },
+    {
+      "order": 6,
+      "zh": "团圆火锅",
+      "en": "reunion hotpot"
+    },
+    {
+      "order": 7,
+      "zh": "饺子盘",
+      "en": "dumpling platter"
+    },
+    {
+      "order": 8,
+      "zh": "中国结挂饰",
+      "en": "Chinese knot ornament"
+    },
+    {
+      "order": 9,
+      "zh": "鞭炮挂饰",
+      "en": "firecracker ornament"
+    },
+    {
+      "order": 10,
+      "zh": "盖碗茶具",
+      "en": "gaiwan tea set"
+    }
+  ],
+  "image": {
+    "filename": "V05_lunar_new_year_reunion.png",
+    "path": "input_pics/16_节庆与人生事件/V05_lunar_new_year_reunion.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph a warm Lunar New Year family dining room before dinner from one corner of the table. Suspend one red festival lantern in the upper third, place a single paper-cut decoration on the window, and hang the knot and decorative firecrackers on separate wall areas. A blank pair of red couplet scrolls may frame the doorway but must contain no characters. Centre one steaming hotpot on the table, with the dumpling platter, orange platter and gaiwan tea set clearly separated; place one red envelope near a place setting. Include only a few family members in the background preparing to sit, hands away from the targets. Cinematic warm light, authentic materials, no legible calligraphy, excess dishes or duplicate decorations.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Lunar New Year family reunion (春节家庭团聚). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph a warm Lunar New Year family dining room before dinner from one corner of the table. Suspend one red festival lantern in the upper third, place a single paper-cut decoration on the window, and hang the knot and decorative firecrackers on separate wall areas. A blank pair of red couplet scrolls may frame the doorway but must contain no characters. Centre one steaming hotpot on the table, with the dumpling platter, orange platter and gaiwan tea set clearly separated; place one red envelope near a place setting. Include only a few family members in the background preparing to sit, hands away from the targets. Cinematic warm light, authentic materials, no legible calligraphy, excess dishes or duplicate decorations.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: red festival lantern, red envelope, mandarin orange platter, paper-cut window decoration, red couplet scroll, reunion hotpot, dumpling platter, Chinese knot ornament, firecracker ornament, gaiwan tea set.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "1ce15a49210076dde1c7d42d0984abf6216e8d50d5088dcdb5de3b620fbd42fb"
+}

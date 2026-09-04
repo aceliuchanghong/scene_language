@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "M06",
+  "slug": "M06_kayaking_and_paddleboarding",
+  "batch": "F",
+  "category": {
+    "id": "M",
+    "order": 18,
+    "zh": "海洋、港口与水上活动",
+    "en": "Marine, harbour and water activities"
+  },
+  "scene": {
+    "zh": "皮划艇与桨板活动",
+    "en": "Kayaking and paddleboarding"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "旅行皮划艇",
+      "en": "touring sea kayak"
+    },
+    {
+      "order": 2,
+      "zh": "立式桨板",
+      "en": "stand-up paddleboard"
+    },
+    {
+      "order": 3,
+      "zh": "双叶船桨",
+      "en": "double-bladed kayak paddle"
+    },
+    {
+      "order": 4,
+      "zh": "盘绕脚绳",
+      "en": "coiled paddleboard ankle leash"
+    },
+    {
+      "order": 5,
+      "zh": "卷口防水袋",
+      "en": "roll-top dry bag"
+    },
+    {
+      "order": 6,
+      "zh": "桨运动浮力背心",
+      "en": "paddling buoyancy aid"
+    },
+    {
+      "order": 7,
+      "zh": "皮划艇防水裙",
+      "en": "kayak spray skirt"
+    },
+    {
+      "order": 8,
+      "zh": "防水手机袋",
+      "en": "waterproof phone pouch"
+    },
+    {
+      "order": 9,
+      "zh": "手动充气泵",
+      "en": "manual paddleboard pump"
+    },
+    {
+      "order": 10,
+      "zh": "皮划艇搬运车",
+      "en": "kayak transport trolley"
+    }
+  ],
+  "image": {
+    "filename": "M06_kayaking_and_paddleboarding.png",
+    "path": "input_pics/18_海洋港口与水上活动/M06_kayaking_and_paddleboarding.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph a lakeside launch area from a slightly elevated angle before anyone enters the water. Position one touring kayak on its transport trolley along the left and one inflated paddleboard on the right, leaving a clear strip of shore between them. Lay the double-bladed paddle diagonally in the lower third; place the spray skirt, buoyancy aid, closed dry bag and waterproof phone pouch separately on a timber landing. Connect one coiled ankle leash to the board and stand the manual pump nearby. Two paddlers may wait in the background wearing ordinary clothes, not yet handling the equipment. Use fresh morning light and calm water. No white-water action, loose duplicate paddles, brand graphics, readable phone screen, children without supervision or equipment floating unsupported.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Kayaking and paddleboarding (皮划艇与桨板活动). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph a lakeside launch area from a slightly elevated angle before anyone enters the water. Position one touring kayak on its transport trolley along the left and one inflated paddleboard on the right, leaving a clear strip of shore between them. Lay the double-bladed paddle diagonally in the lower third; place the spray skirt, buoyancy aid, closed dry bag and waterproof phone pouch separately on a timber landing. Connect one coiled ankle leash to the board and stand the manual pump nearby. Two paddlers may wait in the background wearing ordinary clothes, not yet handling the equipment. Use fresh morning light and calm water. No white-water action, loose duplicate paddles, brand graphics, readable phone screen, children without supervision or equipment floating unsupported.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: touring sea kayak, stand-up paddleboard, double-bladed kayak paddle, coiled paddleboard ankle leash, roll-top dry bag, paddling buoyancy aid, kayak spray skirt, waterproof phone pouch, manual paddleboard pump, kayak transport trolley.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "55a53189d5773ac478e3b0d75b6b21c0339a87acb0d9809b4d909c9e336d21af"
+}

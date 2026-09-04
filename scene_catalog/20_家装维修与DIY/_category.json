@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "U",
+    "order": 20,
+    "zh": "家装、维修与 DIY",
+    "en": "Home improvement, repair and DIY",
+    "batch": "F"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "U01_hardware_store.json",
+    "U02_interior_wall_painting.json",
+    "U03_household_plumbing_repair.json",
+    "U04_home_electrical_repair.json",
+    "U05_flat_pack_furniture_assembly.json",
+    "U06_garden_and_yard_maintenance.json"
+  ]
+}

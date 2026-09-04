@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "U02",
+  "slug": "U02_interior_wall_painting",
+  "batch": "F",
+  "category": {
+    "id": "U",
+    "order": 20,
+    "zh": "家装、维修与 DIY",
+    "en": "Home improvement, repair and DIY"
+  },
+  "scene": {
+    "zh": "墙面粉刷",
+    "en": "Interior wall painting"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "油漆托盘",
+      "en": "paint roller tray"
+    },
+    {
+      "order": 2,
+      "zh": "长柄滚筒",
+      "en": "long-handled wall roller"
+    },
+    {
+      "order": 3,
+      "zh": "低粘美纹纸",
+      "en": "low-tack masking tape"
+    },
+    {
+      "order": 4,
+      "zh": "铝制人字梯",
+      "en": "aluminium step ladder"
+    },
+    {
+      "order": 5,
+      "zh": "棉质防尘布",
+      "en": "cotton decorating dust sheet"
+    },
+    {
+      "order": 6,
+      "zh": "斜角油漆刷",
+      "en": "angled cutting-in brush"
+    },
+    {
+      "order": 7,
+      "zh": "开启的乳胶漆桶",
+      "en": "open emulsion paint tin"
+    },
+    {
+      "order": 8,
+      "zh": "滚筒延长杆",
+      "en": "paint-roller extension pole"
+    },
+    {
+      "order": 9,
+      "zh": "墙面填缝刮刀",
+      "en": "wall-filler putty knife"
+    },
+    {
+      "order": 10,
+      "zh": "手持打磨块",
+      "en": "hand sanding block"
+    }
+  ],
+  "image": {
+    "filename": "U02_interior_wall_painting.png",
+    "path": "input_pics/20_家装维修与DIY/U02_interior_wall_painting.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Show a bright, partly redecorated living room from a doorway-height three-quarter angle. Cover the lower foreground floor with one cotton dust sheet and place the paint tray, open paint tin, brush, putty knife and sanding block on distinct clean areas of it. Lean the extension pole safely against a blank side wall and show the long-handled roller applying one broad strip of paint higher up, held by a decorator whose body does not hide it. Position the step ladder open and empty at the opposite side; run one visible line of masking tape around a window edge. Use natural window light and realistic wet-versus-dry paint texture. No readable décor, paint spills, person standing on the ladder, duplicated rollers, floating brushes or implausibly perfect showroom styling.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Interior wall painting (墙面粉刷). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nShow a bright, partly redecorated living room from a doorway-height three-quarter angle. Cover the lower foreground floor with one cotton dust sheet and place the paint tray, open paint tin, brush, putty knife and sanding block on distinct clean areas of it. Lean the extension pole safely against a blank side wall and show the long-handled roller applying one broad strip of paint higher up, held by a decorator whose body does not hide it. Position the step ladder open and empty at the opposite side; run one visible line of masking tape around a window edge. Use natural window light and realistic wet-versus-dry paint texture. No readable décor, paint spills, person standing on the ladder, duplicated rollers, floating brushes or implausibly perfect showroom styling.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: paint roller tray, long-handled wall roller, low-tack masking tape, aluminium step ladder, cotton decorating dust sheet, angled cutting-in brush, open emulsion paint tin, paint-roller extension pole, wall-filler putty knife, hand sanding block.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "efcfbb0158358c059dc05c57d323b6e3b1bb7bed192dd91719185fe51f78d7de"
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "C04",
+  "slug": "C04_self_service_car_wash",
+  "batch": "E",
+  "category": {
+    "id": "C",
+    "order": 12,
+    "zh": "驾驶与车辆",
+    "en": "Driving and vehicles"
+  },
+  "scene": {
+    "zh": "自助洗车场",
+    "en": "self-service car wash"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "高压清洗机",
+      "en": "pressure washer"
+    },
+    {
+      "order": 2,
+      "zh": "泡沫壶",
+      "en": "foam cannon"
+    },
+    {
+      "order": 3,
+      "zh": "汽车清洁剂瓶",
+      "en": "car shampoo bottle"
+    },
+    {
+      "order": 4,
+      "zh": "超细纤维洗车手套",
+      "en": "microfibre wash mitt"
+    },
+    {
+      "order": 5,
+      "zh": "轮毂刷",
+      "en": "wheel brush"
+    },
+    {
+      "order": 6,
+      "zh": "吸水擦车巾",
+      "en": "drying towel"
+    },
+    {
+      "order": 7,
+      "zh": "干湿两用吸尘器",
+      "en": "wet-and-dry vacuum"
+    },
+    {
+      "order": 8,
+      "zh": "洗车位排水沟",
+      "en": "wash-bay drain"
+    },
+    {
+      "order": 9,
+      "zh": "自动回卷水管盘",
+      "en": "retractable hose reel"
+    },
+    {
+      "order": 10,
+      "zh": "覆有泡沫的汽车",
+      "en": "soap-covered car"
+    }
+  ],
+  "image": {
+    "filename": "C04_self_service_car_wash.png",
+    "path": "input_pics/12_驾驶与车辆/C04_self_service_car_wash.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Create one open-sided self-service wash bay, photographed at a three-quarter angle along a single foam-covered car. Mount the retractable hose reel high on the wall and show the pressure washer wand connected to one foam cannon. A person may hold the wand beside the car, keeping the equipment visible. Arrange the shampoo bottle, wash mitt, wheel brush and drying towel separately on a small utility ledge; place the wet-and-dry vacuum near the rear wheel and run the grated drain diagonally through the foreground. Crisp daylight, wet concrete reflections, realistic foam, no duplicate bottles or brushes.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of self-service car wash (自助洗车场). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCreate one open-sided self-service wash bay, photographed at a three-quarter angle along a single foam-covered car. Mount the retractable hose reel high on the wall and show the pressure washer wand connected to one foam cannon. A person may hold the wand beside the car, keeping the equipment visible. Arrange the shampoo bottle, wash mitt, wheel brush and drying towel separately on a small utility ledge; place the wet-and-dry vacuum near the rear wheel and run the grated drain diagonally through the foreground. Crisp daylight, wet concrete reflections, realistic foam, no duplicate bottles or brushes.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: pressure washer, foam cannon, car shampoo bottle, microfibre wash mitt, wheel brush, drying towel, wet-and-dry vacuum, wash-bay drain, retractable hose reel, soap-covered car.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "f6132672ea94daef9f4d0e4e7afe97e1bca744779d92e539a8dcf76c5838e5ef"
+}

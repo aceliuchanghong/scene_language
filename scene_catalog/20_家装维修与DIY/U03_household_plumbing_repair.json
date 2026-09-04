@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "U03",
+  "slug": "U03_household_plumbing_repair",
+  "batch": "F",
+  "category": {
+    "id": "U",
+    "order": 20,
+    "zh": "家装、维修与 DIY",
+    "en": "Home improvement, repair and DIY"
+  },
+  "scene": {
+    "zh": "家庭水管维修",
+    "en": "Household plumbing repair"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "水槽管钳",
+      "en": "sink pipe wrench"
+    },
+    {
+      "order": 2,
+      "zh": "滴水混合龙头",
+      "en": "dripping mixer tap"
+    },
+    {
+      "order": 3,
+      "zh": "橡胶龙头垫圈",
+      "en": "rubber tap washer"
+    },
+    {
+      "order": 4,
+      "zh": "杯式皮搋子",
+      "en": "cup-style sink plunger"
+    },
+    {
+      "order": 5,
+      "zh": "硅胶密封胶枪",
+      "en": "silicone sealant gun"
+    },
+    {
+      "order": 6,
+      "zh": "塑料存水弯",
+      "en": "plastic sink trap"
+    },
+    {
+      "order": 7,
+      "zh": "面盆专用扳手",
+      "en": "plumber basin wrench"
+    },
+    {
+      "order": 8,
+      "zh": "聚四氟乙烯生料带",
+      "en": "PTFE thread-seal tape"
+    },
+    {
+      "order": 9,
+      "zh": "棘轮式切管器",
+      "en": "ratcheting pipe cutter"
+    },
+    {
+      "order": 10,
+      "zh": "接水检查桶",
+      "en": "plumbing inspection bucket"
+    }
+  ],
+  "image": {
+    "filename": "U03_household_plumbing_repair.png",
+    "path": "input_pics/20_家装维修与DIY/U03_household_plumbing_repair.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph an under-sink household plumbing repair with the cabinet doors fully open and the camera low but outside the cabinet. Keep the dripping mixer tap and basin visible in the upper third, with a single drop rather than flooding. Expose the plastic trap in the middle while a plumber points nearby without touching it. Across a clean floor mat, separate the pipe wrench, tiny rubber washer in a shallow dish, plunger, sealant gun, basin wrench, thread-seal tape and closed pipe cutter. Put the inspection bucket directly beneath the pipework. Use bright portable work light and realistic chrome and plastic. No standing water, mould, sewage, exposed electrical sockets, readable labels, duplicate tools, severed pipes or hands obscuring small parts.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Household plumbing repair (家庭水管维修). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph an under-sink household plumbing repair with the cabinet doors fully open and the camera low but outside the cabinet. Keep the dripping mixer tap and basin visible in the upper third, with a single drop rather than flooding. Expose the plastic trap in the middle while a plumber points nearby without touching it. Across a clean floor mat, separate the pipe wrench, tiny rubber washer in a shallow dish, plunger, sealant gun, basin wrench, thread-seal tape and closed pipe cutter. Put the inspection bucket directly beneath the pipework. Use bright portable work light and realistic chrome and plastic. No standing water, mould, sewage, exposed electrical sockets, readable labels, duplicate tools, severed pipes or hands obscuring small parts.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: sink pipe wrench, dripping mixer tap, rubber tap washer, cup-style sink plunger, silicone sealant gun, plastic sink trap, plumber basin wrench, PTFE thread-seal tape, ratcheting pipe cutter, plumbing inspection bucket.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "631f49e2baa21ca58c558892f8069618022433cbdb4b0c3d9e0d6e3fbd8bc191"
+}

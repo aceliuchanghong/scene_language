@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "K03",
+  "slug": "K03_astronomical_observatory",
+  "batch": "F",
+  "category": {
+    "id": "K",
+    "order": 17,
+    "zh": "科学与探索",
+    "en": "Science and exploration"
+  },
+  "scene": {
+    "zh": "天文观测站",
+    "en": "Astronomical observatory"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "反射式望远镜",
+      "en": "reflector telescope"
+    },
+    {
+      "order": 2,
+      "zh": "观测穹顶开口",
+      "en": "observatory dome slit"
+    },
+    {
+      "order": 3,
+      "zh": "旋转星图盘",
+      "en": "planisphere star wheel"
+    },
+    {
+      "order": 4,
+      "zh": "红光手电筒",
+      "en": "red astronomy torch"
+    },
+    {
+      "order": 5,
+      "zh": "望远镜目镜",
+      "en": "telescope eyepiece"
+    },
+    {
+      "order": 6,
+      "zh": "赤道仪支架",
+      "en": "equatorial telescope mount"
+    },
+    {
+      "order": 7,
+      "zh": "三脚架支撑盘",
+      "en": "tripod leg spreader"
+    },
+    {
+      "order": 8,
+      "zh": "天文双筒望远镜",
+      "en": "astronomy binoculars"
+    },
+    {
+      "order": 9,
+      "zh": "气象百叶箱",
+      "en": "observatory weather screen"
+    },
+    {
+      "order": 10,
+      "zh": "穹顶控制手柄",
+      "en": "dome control lever"
+    }
+  ],
+  "image": {
+    "filename": "K03_astronomical_observatory.png",
+    "path": "input_pics/17_科学与探索/K03_astronomical_observatory.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Create a believable blue-hour observatory interior with the camera low enough to show the full instrument and open dome above. Aim one reflector telescope toward the dome slit; make its equatorial mount, eyepiece and tripod spreader individually visible in the central silhouette. Place the planisphere, red torch and astronomy binoculars on three separate areas of a small foreground worktable. Show the dome control lever on the side wall and the white weather screen through the open doorway outside. Include one astronomer in profile adjusting nothing, so no target is blocked. Mix dim red task light with cool twilight, preserving detail in shadows. No fantasy planets, giant moon, star trails, readable computer interfaces, labels, duplicate telescopes or impossible optical geometry.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Astronomical observatory (天文观测站). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCreate a believable blue-hour observatory interior with the camera low enough to show the full instrument and open dome above. Aim one reflector telescope toward the dome slit; make its equatorial mount, eyepiece and tripod spreader individually visible in the central silhouette. Place the planisphere, red torch and astronomy binoculars on three separate areas of a small foreground worktable. Show the dome control lever on the side wall and the white weather screen through the open doorway outside. Include one astronomer in profile adjusting nothing, so no target is blocked. Mix dim red task light with cool twilight, preserving detail in shadows. No fantasy planets, giant moon, star trails, readable computer interfaces, labels, duplicate telescopes or impossible optical geometry.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: reflector telescope, observatory dome slit, planisphere star wheel, red astronomy torch, telescope eyepiece, equatorial telescope mount, tripod leg spreader, astronomy binoculars, observatory weather screen, dome control lever.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "1c9e34047205d63a4e89d987e552532cbe87dc3036547717962feff306dd6374"
+}

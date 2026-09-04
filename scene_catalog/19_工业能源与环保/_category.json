@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "source_of_truth": "scene_json",
+  "category": {
+    "id": "I",
+    "order": 19,
+    "zh": "工业、能源与环保",
+    "en": "Industry, energy and environmental services",
+    "batch": "F"
+  },
+  "summary": {
+    "scene_count": 6,
+    "learning_slots": 60
+  },
+  "scenes": [
+    "I01_factory_assembly_line.json",
+    "I02_power_station_control_room.json",
+    "I03_solar_power_station.json",
+    "I04_wind_farm_maintenance.json",
+    "I05_recycling_sorting_centre.json",
+    "I06_wastewater_treatment_plant.json"
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "K02",
+  "slug": "K02_chemistry_laboratory",
+  "batch": "F",
+  "category": {
+    "id": "K",
+    "order": 17,
+    "zh": "科学与探索",
+    "en": "Science and exploration"
+  },
+  "scene": {
+    "zh": "化学实验室",
+    "en": "Chemistry laboratory"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "锥形烧瓶",
+      "en": "conical Erlenmeyer flask"
+    },
+    {
+      "order": 2,
+      "zh": "硼硅玻璃烧杯",
+      "en": "borosilicate beaker"
+    },
+    {
+      "order": 3,
+      "zh": "通风橱",
+      "en": "laboratory fume cupboard"
+    },
+    {
+      "order": 4,
+      "zh": "防化飞溅护目镜",
+      "en": "chemical splash goggles"
+    },
+    {
+      "order": 5,
+      "zh": "铁环支架",
+      "en": "laboratory ring stand"
+    },
+    {
+      "order": 6,
+      "zh": "滴定管夹",
+      "en": "burette clamp"
+    },
+    {
+      "order": 7,
+      "zh": "数显加热搅拌器",
+      "en": "digital hotplate stirrer"
+    },
+    {
+      "order": 8,
+      "zh": "挤压洗瓶",
+      "en": "laboratory wash bottle"
+    },
+    {
+      "order": 9,
+      "zh": "刻度量筒",
+      "en": "graduated measuring cylinder"
+    },
+    {
+      "order": 10,
+      "zh": "化学品防溢托盘",
+      "en": "chemical spill tray"
+    }
+  ],
+  "image": {
+    "filename": "K02_chemistry_laboratory.png",
+    "path": "input_pics/17_科学与探索/K02_chemistry_laboratory.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph a bright teaching chemistry laboratory from slightly above bench height, looking diagonally toward one switched-off fume cupboard in the upper third. Place the ring stand with its burette clamp inside the cupboard without any active reaction. On the broad foreground bench, isolate one conical flask, beaker, graduated cylinder and wash bottle in a gentle left-to-right rhythm; set the goggles beside them. Centre the hotplate stirrer with no glowing surface and place the spill tray at the lower right. A laboratory instructor may stand in the background wearing a plain coat, not touching the targets. Use crisp neutral light and realistic transparent glass reflections. No smoke, flames, splashes, dangerous mixing, coloured labels, equations, readable screens or duplicate vessels.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Chemistry laboratory (化学实验室). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph a bright teaching chemistry laboratory from slightly above bench height, looking diagonally toward one switched-off fume cupboard in the upper third. Place the ring stand with its burette clamp inside the cupboard without any active reaction. On the broad foreground bench, isolate one conical flask, beaker, graduated cylinder and wash bottle in a gentle left-to-right rhythm; set the goggles beside them. Centre the hotplate stirrer with no glowing surface and place the spill tray at the lower right. A laboratory instructor may stand in the background wearing a plain coat, not touching the targets. Use crisp neutral light and realistic transparent glass reflections. No smoke, flames, splashes, dangerous mixing, coloured labels, equations, readable screens or duplicate vessels.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: conical Erlenmeyer flask, borosilicate beaker, laboratory fume cupboard, chemical splash goggles, laboratory ring stand, burette clamp, digital hotplate stirrer, laboratory wash bottle, graduated measuring cylinder, chemical spill tray.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "48cb920358e30a2205708b41720b5384f0271970f614cfaa95cf78bf948d31ae"
+}

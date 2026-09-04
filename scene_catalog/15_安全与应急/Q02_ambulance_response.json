@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "Q02",
+  "slug": "Q02_ambulance_response",
+  "batch": "E",
+  "category": {
+    "id": "Q",
+    "order": 15,
+    "zh": "安全与应急",
+    "en": "Safety and emergencies"
+  },
+  "scene": {
+    "zh": "救护车急救",
+    "en": "ambulance response"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "救护车",
+      "en": "ambulance"
+    },
+    {
+      "order": 2,
+      "zh": "急救员",
+      "en": "paramedic"
+    },
+    {
+      "order": 3,
+      "zh": "轮式担架",
+      "en": "wheeled stretcher"
+    },
+    {
+      "order": 4,
+      "zh": "医用氧气瓶",
+      "en": "medical oxygen cylinder"
+    },
+    {
+      "order": 5,
+      "zh": "自动体外除颤器",
+      "en": "automated external defibrillator"
+    },
+    {
+      "order": 6,
+      "zh": "创伤急救包",
+      "en": "trauma bag"
+    },
+    {
+      "order": 7,
+      "zh": "颈托",
+      "en": "cervical collar"
+    },
+    {
+      "order": 8,
+      "zh": "脉搏血氧仪",
+      "en": "pulse oximeter"
+    },
+    {
+      "order": 9,
+      "zh": "急救保温毯",
+      "en": "emergency foil blanket"
+    },
+    {
+      "order": 10,
+      "zh": "便携吸引器",
+      "en": "portable suction unit"
+    }
+  ],
+  "image": {
+    "filename": "Q02_ambulance_response.png",
+    "path": "input_pics/15_安全与应急/Q02_ambulance_response.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Stage a calm training demonstration beside the open rear doors of one parked ambulance in daylight. A paramedic stands to the side guiding an empty wheeled stretcher, leaving its frame and wheels visible. Secure the oxygen cylinder inside the vehicle; arrange the closed defibrillator, trauma bag, cervical collar, pulse oximeter and suction unit on separate shelves or ground zones. Fold one foil blanket over the stretcher corner so its metallic material is recognisable. Clinical realism, no patient, blood, panic, logos, numbers or readable medical text.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of ambulance response (救护车急救). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nStage a calm training demonstration beside the open rear doors of one parked ambulance in daylight. A paramedic stands to the side guiding an empty wheeled stretcher, leaving its frame and wheels visible. Secure the oxygen cylinder inside the vehicle; arrange the closed defibrillator, trauma bag, cervical collar, pulse oximeter and suction unit on separate shelves or ground zones. Fold one foil blanket over the stretcher corner so its metallic material is recognisable. Clinical realism, no patient, blood, panic, logos, numbers or readable medical text.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: ambulance, paramedic, wheeled stretcher, medical oxygen cylinder, automated external defibrillator, trauma bag, cervical collar, pulse oximeter, emergency foil blanket, portable suction unit.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "60377b6df87b9839a599b15ac73966dd4fdcf29f37f20efb131d2f631a57523f"
+}

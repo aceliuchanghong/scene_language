@@ -49,12 +49,21 @@ EXPECTED_CATEGORY_COUNTS = {
     "A": 6,
     "E": 6,
     "P": 6,
+    "C": 6,
+    "G": 6,
+    "N": 6,
+    "Q": 6,
+    "V": 6,
+    "K": 6,
+    "M": 6,
+    "I": 6,
+    "U": 6,
 }
-EXPECTED_SCENES = 82
+EXPECTED_SCENES = 136
 EXPECTED_TARGETS_PER_SCENE = 10
-EXPECTED_LEARNING_SLOTS = 820
-EXPECTED_UNIQUE_ENGLISH_TARGETS = 814
-SCENE_ID_RE = re.compile(r"^[HFTWSLRDAEP]\d{2}$")
+EXPECTED_LEARNING_SLOTS = 1360
+EXPECTED_UNIQUE_ENGLISH_TARGETS = 1354
+SCENE_ID_RE = re.compile(r"^[HFTWSLRDAEPCGNQVKMIU]\d{2}$")
 STATUS_FLOW = [
     "planned",
     "generated",
@@ -89,9 +98,38 @@ def require_text(value: Any, field: str, path: Path) -> str:
 
 
 def generation_prompt(
-    scene_zh: str, scene_en: str, targets: list[dict[str, Any]]
+    scene_zh: str,
+    scene_en: str,
+    targets: list[dict[str, Any]],
+    visual_plan: str | None = None,
 ) -> str:
     target_text = ", ".join(target["en"] for target in targets)
+    if visual_plan:
+        return (
+            f"Create one photorealistic vertical 9:16 educational photograph of "
+            f"{scene_en} ({scene_zh}). The result must look like a single candid "
+            "real-world photograph, never a collage, cutaway diagram, catalogue "
+            "layout or labelled illustration.\n\n"
+            f"SCENE DIRECTION\n{visual_plan}\n\n"
+            "REQUIRED LEARNING TARGETS\n"
+            "Show exactly one clear primary instance of each of these ten targets: "
+            f"{target_text}.\n\n"
+            "COMPOSITION AND LEGIBILITY\n"
+            "Distribute the targets across the upper, middle and lower thirds and "
+            "across both sides of the portrait frame. Preserve realistic scale, "
+            "perspective, contact shadows and spatial relationships. Every target "
+            "must have a distinct silhouette, be large enough to identify on a "
+            "phone screen, and remain fully visible rather than hidden behind a "
+            "person, furniture or another target. People may perform natural "
+            "actions, but their hands and bodies must not cover the learning "
+            "targets. Keep incidental background objects visually quiet.\n\n"
+            "STRICT EXCLUSIONS\n"
+            "No captions, vocabulary labels, subtitles, watermarks, brand logos, "
+            "readable signage, licence-plate text or gibberish lettering. No "
+            "duplicated target objects, floating objects, malformed hands, extra "
+            "limbs, distorted tools, impossible reflections or physically "
+            "incoherent architecture."
+        )
     return (
         f"Create a photorealistic vertical 9:16 educational scene of "
         f"{scene_en} ({scene_zh}).\n\n"
@@ -152,8 +190,10 @@ def normalise_scene(path: Path, raw: dict[str, Any]) -> dict[str, Any]:
     require_text(category.get("en"), "category.en", path)
 
     batch = require_text(scene.get("batch"), "batch", path)
-    if batch not in {"A", "B", "C", "D"}:
-        raise ValueError(f"{path.relative_to(ROOT)}: batch must be A, B, C, or D")
+    if batch not in {"A", "B", "C", "D", "E", "F"}:
+        raise ValueError(
+            f"{path.relative_to(ROOT)}: batch must be A, B, C, D, E, or F"
+        )
 
     scene_name = scene.get("scene")
     if not isinstance(scene_name, dict):
@@ -213,7 +253,13 @@ def normalise_scene(path: Path, raw: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(generation, dict):
         raise ValueError(f"{path.relative_to(ROOT)}: generation must be an object")
     require_text(generation.get("asset_strategy"), "generation.asset_strategy", path)
-    generation["prompt"] = generation_prompt(scene_zh, scene_en, targets)
+    visual_plan = generation.get("visual_plan")
+    if visual_plan is not None:
+        visual_plan = require_text(visual_plan, "generation.visual_plan", path)
+        generation["visual_plan"] = visual_plan
+    generation["prompt"] = generation_prompt(
+        scene_zh, scene_en, targets, visual_plan
+    )
 
     provenance = scene.get("source")
     if provenance is not None:

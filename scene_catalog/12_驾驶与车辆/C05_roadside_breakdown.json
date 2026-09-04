@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "C05",
+  "slug": "C05_roadside_breakdown",
+  "batch": "E",
+  "category": {
+    "id": "C",
+    "order": 12,
+    "zh": "驾驶与车辆",
+    "en": "Driving and vehicles"
+  },
+  "scene": {
+    "zh": "路边车辆故障",
+    "en": "roadside vehicle breakdown"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "三角警示牌",
+      "en": "warning triangle"
+    },
+    {
+      "order": 2,
+      "zh": "危险警示灯",
+      "en": "hazard warning lights"
+    },
+    {
+      "order": 3,
+      "zh": "反光安全背心",
+      "en": "reflective safety vest"
+    },
+    {
+      "order": 4,
+      "zh": "爆胎",
+      "en": "flat tyre"
+    },
+    {
+      "order": 5,
+      "zh": "车轮扳手",
+      "en": "wheel brace"
+    },
+    {
+      "order": 6,
+      "zh": "剪式千斤顶",
+      "en": "scissor jack"
+    },
+    {
+      "order": 7,
+      "zh": "汽车搭电线",
+      "en": "jump leads"
+    },
+    {
+      "order": 8,
+      "zh": "道路救援车",
+      "en": "roadside assistance van"
+    },
+    {
+      "order": 9,
+      "zh": "拖车绳",
+      "en": "tow rope"
+    },
+    {
+      "order": 10,
+      "zh": "便携工作灯",
+      "en": "portable work light"
+    }
+  ],
+  "image": {
+    "filename": "C05_roadside_breakdown.png",
+    "path": "input_pics/12_驾驶与车辆/C05_roadside_breakdown.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Set a safe roadside breakdown in a wide lay-by at blue hour, seen from behind and slightly above the disabled car. Its hazard lights glow amber and one front tyre is visibly flat. A person wearing the reflective vest kneels beside, not over, the scissor jack; the wheel brace and portable work light lie clearly apart on a mat. Put the warning triangle farther back in the lane, while one roadside assistance van is parked in the upper background. Coil the jump leads and tow rope separately near the open boot. Dry weather, controlled cinematic light, no crash damage and no dangerous traffic.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of roadside vehicle breakdown (路边车辆故障). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nSet a safe roadside breakdown in a wide lay-by at blue hour, seen from behind and slightly above the disabled car. Its hazard lights glow amber and one front tyre is visibly flat. A person wearing the reflective vest kneels beside, not over, the scissor jack; the wheel brace and portable work light lie clearly apart on a mat. Put the warning triangle farther back in the lane, while one roadside assistance van is parked in the upper background. Coil the jump leads and tow rope separately near the open boot. Dry weather, controlled cinematic light, no crash damage and no dangerous traffic.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: warning triangle, hazard warning lights, reflective safety vest, flat tyre, wheel brace, scissor jack, jump leads, roadside assistance van, tow rope, portable work light.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "45ff6b54cc8da271ebded5ef3c074bda9a21b2ca709f83317ea1dd0e7edbf01f"
+}

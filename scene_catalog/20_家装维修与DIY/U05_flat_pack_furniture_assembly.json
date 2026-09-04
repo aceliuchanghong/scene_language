@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "U05",
+  "slug": "U05_flat_pack_furniture_assembly",
+  "batch": "F",
+  "category": {
+    "id": "U",
+    "order": 20,
+    "zh": "家装、维修与 DIY",
+    "en": "Home improvement, repair and DIY"
+  },
+  "scene": {
+    "zh": "组合家具安装",
+    "en": "Flat-pack furniture assembly"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "平板包装柜体",
+      "en": "flat-pack cabinet carcass"
+    },
+    {
+      "order": 2,
+      "zh": "图示安装说明书",
+      "en": "pictorial assembly sheet"
+    },
+    {
+      "order": 3,
+      "zh": "木制定位销",
+      "en": "wooden furniture dowel"
+    },
+    {
+      "order": 4,
+      "zh": "内六角扳手",
+      "en": "L-shaped hex key"
+    },
+    {
+      "order": 5,
+      "zh": "偏心锁扣",
+      "en": "cam-lock furniture fastener"
+    },
+    {
+      "order": 6,
+      "zh": "家具侧板",
+      "en": "laminated furniture side panel"
+    },
+    {
+      "order": 7,
+      "zh": "电动螺丝批",
+      "en": "cordless assembly driver"
+    },
+    {
+      "order": 8,
+      "zh": "橡胶锤",
+      "en": "white rubber mallet"
+    },
+    {
+      "order": 9,
+      "zh": "零件分类托盘",
+      "en": "hardware sorting tray"
+    },
+    {
+      "order": 10,
+      "zh": "组装完成的抽屉",
+      "en": "assembled cabinet drawer"
+    }
+  ],
+  "image": {
+    "filename": "U05_flat_pack_furniture_assembly.png",
+    "path": "input_pics/20_家装维修与DIY/U05_flat_pack_furniture_assembly.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Photograph a calm home furniture-assembly project from a slightly elevated corner view on a wooden floor. Centre the partly built cabinet carcass upright and place its separate laminated side panel flat beside it. In the foreground, open a purely pictorial instruction sheet with no words, and isolate one wooden dowel, hex key and cam-lock fastener in enlarged but realistic positions within a sorting tray. Put the cordless driver and rubber mallet on opposite sides, and show one completed drawer nearby. A person may sit cross-legged comparing parts, hands clear of targets. Use soft afternoon window light and truthful flat-pack materials. No brand markings, readable instructions, missing fasteners scattered everywhere, duplicated panels, impossible joinery or unsafe power-tool use.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Flat-pack furniture assembly (组合家具安装). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nPhotograph a calm home furniture-assembly project from a slightly elevated corner view on a wooden floor. Centre the partly built cabinet carcass upright and place its separate laminated side panel flat beside it. In the foreground, open a purely pictorial instruction sheet with no words, and isolate one wooden dowel, hex key and cam-lock fastener in enlarged but realistic positions within a sorting tray. Put the cordless driver and rubber mallet on opposite sides, and show one completed drawer nearby. A person may sit cross-legged comparing parts, hands clear of targets. Use soft afternoon window light and truthful flat-pack materials. No brand markings, readable instructions, missing fasteners scattered everywhere, duplicated panels, impossible joinery or unsafe power-tool use.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: flat-pack cabinet carcass, pictorial assembly sheet, wooden furniture dowel, L-shaped hex key, cam-lock furniture fastener, laminated furniture side panel, cordless assembly driver, white rubber mallet, hardware sorting tray, assembled cabinet drawer.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "dcdfc1056a88343faa3e63c97d421188a5820a415409e1d308a77409c6aac5eb"
+}

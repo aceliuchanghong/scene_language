@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "id": "I03",
+  "slug": "I03_solar_power_station",
+  "batch": "F",
+  "category": {
+    "id": "I",
+    "order": 19,
+    "zh": "工业、能源与环保",
+    "en": "Industry, energy and environmental services"
+  },
+  "scene": {
+    "zh": "太阳能电站",
+    "en": "Solar power station"
+  },
+  "targets": [
+    {
+      "order": 1,
+      "zh": "光伏组件阵列",
+      "en": "photovoltaic module array"
+    },
+    {
+      "order": 2,
+      "zh": "组串式逆变器柜",
+      "en": "solar string inverter cabinet"
+    },
+    {
+      "order": 3,
+      "zh": "电池储能单元",
+      "en": "battery energy-storage unit"
+    },
+    {
+      "order": 4,
+      "zh": "直流汇流箱",
+      "en": "solar combiner box"
+    },
+    {
+      "order": 5,
+      "zh": "钳形电流表",
+      "en": "solar clamp meter"
+    },
+    {
+      "order": 6,
+      "zh": "绝缘检修手套",
+      "en": "insulated electrical work gloves"
+    },
+    {
+      "order": 7,
+      "zh": "光伏电缆接头",
+      "en": "photovoltaic cable connector"
+    },
+    {
+      "order": 8,
+      "zh": "组件清洁刷",
+      "en": "solar-panel cleaning brush"
+    },
+    {
+      "order": 9,
+      "zh": "电气隔离围栏",
+      "en": "temporary electrical safety barrier"
+    },
+    {
+      "order": 10,
+      "zh": "红外检测相机",
+      "en": "infrared inspection camera"
+    }
+  ],
+  "image": {
+    "filename": "I03_solar_power_station.png",
+    "path": "input_pics/19_工业能源与环保/I03_solar_power_station.png",
+    "aspect_ratio": "9:16",
+    "width": 1080,
+    "height": 1920
+  },
+  "generation": {
+    "asset_strategy": "ai_image",
+    "visual_plan": "Create a sunlit utility-scale solar farm from a low aisle viewpoint, using one row of photovoltaic modules as a strong diagonal into the distance. At the near end, show the inverter cabinet, compact battery unit and combiner box as separate grounded enclosures. On a clean service cart in the foreground, isolate the clamp meter, insulated gloves, cable connector, cleaning brush and infrared camera. Place a plain temporary safety barrier around the open service zone without any writing. One technician may inspect the outside of a closed cabinet, hands away from targets. Preserve realistic cable routing, panel reflections and midday shadows. No rooftop setting, broken panels, exposed live conductors, readable warning signs, glowing energy effects, duplicate tools or endless clutter.",
+    "prompt": "Create one photorealistic vertical 9:16 educational photograph of Solar power station (太阳能电站). The result must look like a single candid real-world photograph, never a collage, cutaway diagram, catalogue layout or labelled illustration.\n\nSCENE DIRECTION\nCreate a sunlit utility-scale solar farm from a low aisle viewpoint, using one row of photovoltaic modules as a strong diagonal into the distance. At the near end, show the inverter cabinet, compact battery unit and combiner box as separate grounded enclosures. On a clean service cart in the foreground, isolate the clamp meter, insulated gloves, cable connector, cleaning brush and infrared camera. Place a plain temporary safety barrier around the open service zone without any writing. One technician may inspect the outside of a closed cabinet, hands away from targets. Preserve realistic cable routing, panel reflections and midday shadows. No rooftop setting, broken panels, exposed live conductors, readable warning signs, glowing energy effects, duplicate tools or endless clutter.\n\nREQUIRED LEARNING TARGETS\nShow exactly one clear primary instance of each of these ten targets: photovoltaic module array, solar string inverter cabinet, battery energy-storage unit, solar combiner box, solar clamp meter, insulated electrical work gloves, photovoltaic cable connector, solar-panel cleaning brush, temporary electrical safety barrier, infrared inspection camera.\n\nCOMPOSITION AND LEGIBILITY\nDistribute the targets across the upper, middle and lower thirds and across both sides of the portrait frame. Preserve realistic scale, perspective, contact shadows and spatial relationships. Every target must have a distinct silhouette, be large enough to identify on a phone screen, and remain fully visible rather than hidden behind a person, furniture or another target. People may perform natural actions, but their hands and bodies must not cover the learning targets. Keep incidental background objects visually quiet.\n\nSTRICT EXCLUSIONS\nNo captions, vocabulary labels, subtitles, watermarks, brand logos, readable signage, licence-plate text or gibberish lettering. No duplicated target objects, floating objects, malformed hands, extra limbs, distorted tools, impossible reflections or physically incoherent architecture."
+  },
+  "requirements": {
+    "target_count": 10,
+    "all_targets_visible": true,
+    "single_clear_referent_per_target": true,
+    "no_generated_labels": true,
+    "spatial_distribution": {
+      "upper": 3,
+      "middle": 4,
+      "lower": 3
+    }
+  },
+  "source": {
+    "existing_asset": null,
+    "notes": [
+      "场景专属构图保存在 generation.visual_plan；最终提示词由维护脚本组合生成。"
+    ]
+  },
+  "workflow": {
+    "status": "planned",
+    "last_completed_step": null,
+    "attempts": 0
+  },
+  "qa": {
+    "status": "pending",
+    "visible_target_ids": [],
+    "missing_target_ids": [],
+    "ambiguous_target_ids": []
+  },
+  "content_signature": "fa8bb7d381e8fb84f3e4297f96686f7db306ecf6ac2db5f466e1d65f14675b82"
+}
