@@ -87,19 +87,19 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W05_programming_workspace_ja.mp4 --title "第三十七集-学习与工作-编程工作台场景" --desc "学习与工作-编程工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W05_programming_workspace_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-13 09:00"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W05_programming_workspace_ja.mp4 --title "第三十七集-学习与工作-编程工作台场景" --desc "学习与工作-编程工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W05_programming_workspace_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-12 09:03"
 ```
 
 ### 小红书
 
 ```powershell
-uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W05_programming_workspace_ja.mp4 --title "第三十七集-学习与工作-编程工作台场景" --desc "学习与工作-编程工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-09-13 09:00"
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W05_programming_workspace_ja.mp4 --title "第三十七集-学习与工作-编程工作台场景" --desc "学习与工作-编程工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-09-12 09:03"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W05_programming_workspace_ja.mp4 --title "第三十七集-学习与工作-编程工作台场景" --desc "学习与工作-编程工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W05_programming_workspace_ja.png --schedule "2026-09-13 09:00"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W05_programming_workspace_ja.mp4 --title "第三十七集-学习与工作-编程工作台场景" --desc "学习与工作-编程工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W05_programming_workspace_ja.png --schedule "2026-09-12 09:03"
 ```
 
 ## W06 维修工作台
@@ -107,19 +107,19 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W06_workshop_tools_ja.mp4 --title "第三十八集-学习与工作-维修工作台场景" --desc "学习与工作-维修工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W06_workshop_tools_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-13 09:01"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W06_workshop_tools_ja.mp4 --title "第三十八集-学习与工作-维修工作台场景" --desc "学习与工作-维修工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W06_workshop_tools_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-12 09:04"
 ```
 
 ### 小红书
 
 ```powershell
-uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W06_workshop_tools_ja.mp4 --title "第三十八集-学习与工作-维修工作台场景" --desc "学习与工作-维修工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-09-13 09:01"
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W06_workshop_tools_ja.mp4 --title "第三十八集-学习与工作-维修工作台场景" --desc "学习与工作-维修工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-09-12 09:04"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W06_workshop_tools_ja.mp4 --title "第三十八集-学习与工作-维修工作台场景" --desc "学习与工作-维修工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W06_workshop_tools_ja.png --schedule "2026-09-13 09:01"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W06_workshop_tools_ja.mp4 --title "第三十八集-学习与工作-维修工作台场景" --desc "学习与工作-维修工作台场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W06_workshop_tools_ja.png --schedule "2026-09-12 09:04"
 ```
 
 ## W07 仓库
@@ -127,19 +127,19 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse_ja.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W07_warehouse_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-14 09:00"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse_ja.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W07_warehouse_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-12 09:05"
 ```
 
 ### 小红书
 
 ```powershell
-uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse_ja.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-09-14 09:00"
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse_ja.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-09-12 09:05"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse_ja.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W07_warehouse_ja.png --schedule "2026-09-14 09:00"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse_ja.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W07_warehouse_ja.png --schedule "2026-09-12 09:05"
 ```
 
 ## W08 建筑工地
@@ -147,17 +147,17 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site_ja.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W08_construction_site_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-14 09:01"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site_ja.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W08_construction_site_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-12 09:06"
 ```
 
 ### 小红书
 
 ```powershell
-uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site_ja.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-09-14 09:01"
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site_ja.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --schedule "2026-09-12 09:06"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site_ja.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W08_construction_site_ja.png --schedule "2026-09-14 09:01"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site_ja.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W08_construction_site_ja.png --schedule "2026-09-12 09:06"
 ```

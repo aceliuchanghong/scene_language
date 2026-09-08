@@ -127,19 +127,19 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --collection "场景英语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W07_warehouse.png --declaration "内容为个人观点或见解" --schedule "2026-09-10 09:01"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --collection "场景英语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W07_warehouse.png --declaration "内容为个人观点或见解" --schedule "2026-09-11 09:01"
 ```
 
 ### 小红书
 
 ```powershell
-uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --schedule "2026-09-10 09:01"
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --schedule "2026-09-11 09:01"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --collection "场景英语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W07_warehouse.png --schedule "2026-09-10 09:01"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W07_warehouse.mp4 --title "第三十九集-学习与工作-仓库场景" --desc "学习与工作-仓库场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --collection "场景英语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W07_warehouse.png --schedule "2026-09-11 09:01"
 ```
 
 ## W08 建筑工地
@@ -147,17 +147,17 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --collection "场景英语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W08_construction_site.png --declaration "内容为个人观点或见解" --schedule "2026-09-11 09:00"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --collection "场景英语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W08_construction_site.png --declaration "内容为个人观点或见解" --schedule "2026-09-12 09:00"
 ```
 
 ### 小红书
 
 ```powershell
-uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --schedule "2026-09-11 09:00"
+uv run sau xiaohongshu upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --schedule "2026-09-12 09:00"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --collection "场景英语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W08_construction_site.png --schedule "2026-09-11 09:00"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/W08_construction_site.mp4 --title "第四十集-学习与工作-建筑工地场景" --desc "学习与工作-建筑工地场景-场景词汇学习" --tags "每日英语,零基础英语,英语单词速记" --collection "场景英语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/W08_construction_site.png --schedule "2026-09-12 09:00"
 ```
