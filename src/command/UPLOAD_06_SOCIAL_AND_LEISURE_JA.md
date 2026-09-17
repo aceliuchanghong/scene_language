@@ -7,13 +7,13 @@
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L01_park_picnic_ja.mp4 --title "第四十七集-社交与休闲-公园野餐场景" --desc "社交与休闲-公园野餐场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L01_park_picnic_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-19 17:25"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L01_park_picnic_ja.mp4 --title "第四十七集-社交与休闲-公园野餐场景" --desc "社交与休闲-公园野餐场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L01_park_picnic_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-19 09:01"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L01_park_picnic_ja.mp4 --title "第四十七集-社交与休闲-公园野餐场景" --desc "社交与休闲-公园野餐场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L01_park_picnic_ja.png --schedule "2026-09-19 17:25"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L01_park_picnic_ja.mp4 --title "第四十七集-社交与休闲-公园野餐场景" --desc "社交与休闲-公园野餐场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L01_park_picnic_ja.png --schedule "2026-09-19 09:01"
 ```
 
 ## L02 儿童游乐场
@@ -21,13 +21,13 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L02_playground_ja.mp4 --title "第四十八集-社交与休闲-儿童游乐场场景" --desc "社交与休闲-儿童游乐场场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L02_playground_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-20 17:25"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L02_playground_ja.mp4 --title "第四十八集-社交与休闲-儿童游乐场场景" --desc "社交与休闲-儿童游乐场场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L02_playground_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-20 09:01"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L02_playground_ja.mp4 --title "第四十八集-社交与休闲-儿童游乐场场景" --desc "社交与休闲-儿童游乐场场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L02_playground_ja.png --schedule "2026-09-20 17:25"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L02_playground_ja.mp4 --title "第四十八集-社交与休闲-儿童游乐场场景" --desc "社交与休闲-儿童游乐场场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L02_playground_ja.png --schedule "2026-09-20 09:01"
 ```
 
 ## L03 健身房
@@ -35,13 +35,13 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L03_gym_ja.mp4 --title "第四十九集-社交与休闲-健身房场景" --desc "社交与休闲-健身房场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L03_gym_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-21 17:25"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L03_gym_ja.mp4 --title "第四十九集-社交与休闲-健身房场景" --desc "社交与休闲-健身房场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L03_gym_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-21 09:01"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L03_gym_ja.mp4 --title "第四十九集-社交与休闲-健身房场景" --desc "社交与休闲-健身房场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L03_gym_ja.png --schedule "2026-09-21 17:25"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L03_gym_ja.mp4 --title "第四十九集-社交与休闲-健身房场景" --desc "社交与休闲-健身房场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L03_gym_ja.png --schedule "2026-09-21 09:01"
 ```
 
 ## L04 游泳池
@@ -49,13 +49,13 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L04_swimming_pool_ja.mp4 --title "第五十集-社交与休闲-游泳池场景" --desc "社交与休闲-游泳池场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L04_swimming_pool_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-22 17:25"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L04_swimming_pool_ja.mp4 --title "第五十集-社交与休闲-游泳池场景" --desc "社交与休闲-游泳池场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L04_swimming_pool_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-22 09:01"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L04_swimming_pool_ja.mp4 --title "第五十集-社交与休闲-游泳池场景" --desc "社交与休闲-游泳池场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L04_swimming_pool_ja.png --schedule "2026-09-22 17:25"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L04_swimming_pool_ja.mp4 --title "第五十集-社交与休闲-游泳池场景" --desc "社交与休闲-游泳池场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L04_swimming_pool_ja.png --schedule "2026-09-22 09:01"
 ```
 
 ## L05 电影院
@@ -63,13 +63,13 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L05_cinema_ja.mp4 --title "第五十一集-社交与休闲-电影院场景" --desc "社交与休闲-电影院场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L05_cinema_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-23 17:25"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L05_cinema_ja.mp4 --title "第五十一集-社交与休闲-电影院场景" --desc "社交与休闲-电影院场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L05_cinema_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-23 09:01"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L05_cinema_ja.mp4 --title "第五十一集-社交与休闲-电影院场景" --desc "社交与休闲-电影院场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L05_cinema_ja.png --schedule "2026-09-23 17:25"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L05_cinema_ja.mp4 --title "第五十一集-社交与休闲-电影院场景" --desc "社交与休闲-电影院场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L05_cinema_ja.png --schedule "2026-09-23 09:01"
 ```
 
 ## L06 生日聚会
@@ -77,11 +77,11 @@ uv run sau tencent upload-video --account lawrence --file ../scene_language/outp
 ### 抖音
 
 ```powershell
-uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L06_birthday_party_ja.mp4 --title "第五十二集-社交与休闲-生日聚会场景" --desc "社交与休闲-生日聚会场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L06_birthday_party_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-24 17:25"
+uv run sau douyin upload-video --account lawrence --file ../scene_language/output/videos/L06_birthday_party_ja.mp4 --title "第五十二集-社交与休闲-生日聚会场景" --desc "社交与休闲-生日聚会场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L06_birthday_party_ja.png --declaration "内容为个人观点或见解" --schedule "2026-09-24 09:01"
 ```
 
 ### 视频号
 
 ```powershell
-uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L06_birthday_party_ja.mp4 --title "第五十二集-社交与休闲-生日聚会场景" --desc "社交与休闲-生日聚会场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L06_birthday_party_ja.png --schedule "2026-09-24 17:25"
+uv run sau tencent upload-video --account lawrence --file ../scene_language/output/videos/L06_birthday_party_ja.mp4 --title "第五十二集-社交与休闲-生日聚会场景" --desc "社交与休闲-生日聚会场景-日语场景词汇学习" --tags "每日日语,零基础日语,日语单词速记,日语单词记忆" --collection "场景日语词汇学习" --thumbnail-portrait ../scene_language/output/pronunciation/L06_birthday_party_ja.png --schedule "2026-09-24 09:01"
 ```
